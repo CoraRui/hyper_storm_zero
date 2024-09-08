@@ -1,0 +1,18 @@
+
+
+simple select works with three things:
+	
+	simple_select
+	groups
+	options
+	
+	the simple select object contains everything, and reads player input.
+	
+	the group object contains a set of options which can be selected by the player.
+	each option can point to a different group which will be focused on when the option is selected.
+	
+	each option contains signals to perform different tasks.
+	
+	you have to reset like ALL OF THE FUCKING exports cause you're creating new things. whatever, deal with it.
+
+	good enough for now
