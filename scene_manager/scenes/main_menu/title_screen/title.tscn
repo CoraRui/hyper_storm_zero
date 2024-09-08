@@ -1,23 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://bf58yww00ho3i"]
+[gd_scene load_steps=8 format=3 uid="uid://bf58yww00ho3i"]
 
 [ext_resource type="Script" path="res://scene_manager/scenes/main_menu/title_screen/title.gd" id="1_jjcq2"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_n6r6n"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="3_lj53j"]
+[ext_resource type="Script" path="res://audio/music/resources/music_link/music_link.gd" id="4_tafn5"]
 
 [sub_resource type="Resource" id="Resource_olqb5"]
 script = ExtResource("2_n6r6n")
 scene_name = "start"
 
-[node name="title" type="Node2D"]
+[sub_resource type="Resource" id="Resource_31l0j"]
+script = ExtResource("3_lj53j")
+sf_name = "title_sf"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_63cws"]
+script = ExtResource("4_tafn5")
+name = "title_music"
+vol = -1.0
+delay = 0.0
+
+[node name="title" type="Node2D" node_paths=PackedStringArray("start_label")]
 script = ExtResource("1_jjcq2")
 start_link = SubResource("Resource_olqb5")
+start_label = NodePath("press start")
+start_sf = SubResource("Resource_31l0j")
+mus_link = SubResource("Resource_63cws")
 
 [node name="title_label" type="Label" parent="."]
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 188.0
-offset_bottom = 106.0
-theme_override_font_sizes/font_size = 20
-text = "VIDEO GAME
-press start"
+offset_left = 8.0
+offset_top = 57.0
+offset_right = 117.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 10
+text = "HYPER_STORM"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="press start" type="Label" parent="."]
+offset_left = 35.0
+offset_top = 86.0
+offset_right = 87.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 5
+text = "press start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="start_flash" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="start_flash" to="." method="_on_start_flash_timeout"]

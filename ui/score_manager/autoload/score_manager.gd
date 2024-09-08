@@ -19,10 +19,7 @@ class_name score_manager
 
 @export var max_digits : int = 10
 
-func _ready():
-	#testing the score label
-	score = 9999
-	update_label()
+
 
 
 func update_label() -> void:

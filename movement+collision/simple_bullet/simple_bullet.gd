@@ -2,6 +2,8 @@ extends Node2D
 class_name simple_bullet
 
 #TODO: needs more work i think idk
+#TODO: when spawning from the enemy loader script, i want some way to manipulate simple bullet.
+#or i can just have a few different versions of the enemy. which would probably be easier.
 
 
 #so i fixed the acceleration! by removing it... i just dont think it would work with the whole frame skipping thing.

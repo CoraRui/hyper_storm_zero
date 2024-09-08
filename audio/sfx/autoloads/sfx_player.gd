@@ -25,6 +25,7 @@ func play_effect(sl : sf_link) -> void:
 		return
 	
 	sp_arr[sp_index].stream = sft.sf_ref
+	sp_arr[sp_index].volume_db = sl.sf_vol
 	sp_arr[sp_index].play()
 	sp_index += 1
 	if sp_index > sp_arr.size()-1:

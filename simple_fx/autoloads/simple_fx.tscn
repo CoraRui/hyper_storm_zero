@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://jge3wy0rnjf0"]
+[gd_scene load_steps=7 format=3 uid="uid://jge3wy0rnjf0"]
 
 [ext_resource type="Script" path="res://simple_fx/autoloads/simple_fx.gd" id="1_jj0pr"]
-[ext_resource type="PackedScene" uid="uid://bd1po4tb1ecam" path="res://simple_fx/nodes/explosion_one.tscn" id="2_qcl4p"]
+[ext_resource type="PackedScene" uid="uid://bd1po4tb1ecam" path="res://simple_fx/nodes/fx/explosion_one/explosion_one.tscn" id="2_qcl4p"]
 [ext_resource type="Script" path="res://simple_fx/resources/fx_ref.gd" id="3_sie6x"]
+[ext_resource type="PackedScene" uid="uid://cf8jj7h7tda2k" path="res://simple_fx/nodes/fx/player_death/player_death_fx.tscn" id="4_awb4b"]
 
 [sub_resource type="Resource" id="Resource_k2gn5"]
 script = ExtResource("3_sie6x")
 name = "explosion_one"
 ref = ExtResource("2_qcl4p")
 
+[sub_resource type="Resource" id="Resource_v0go3"]
+script = ExtResource("3_sie6x")
+name = "player_death"
+ref = ExtResource("4_awb4b")
+
 [node name="simple_fx" type="Node2D"]
 script = ExtResource("1_jj0pr")
-fx_arr = Array[ExtResource("3_sie6x")]([SubResource("Resource_k2gn5")])
+fx_arr = Array[ExtResource("3_sie6x")]([SubResource("Resource_k2gn5"), SubResource("Resource_v0go3")])

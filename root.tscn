@@ -6,8 +6,9 @@
 
 [node name="windowTest" type="ColorRect" parent="."]
 visible = false
-offset_right = 200.0
-offset_bottom = 200.0
-color = Color(0.0392157, 0, 0.380392, 1)
+z_index = -20
+offset_right = 250.0
+offset_bottom = 350.0
+color = Color(0.0117647, 0, 0.211765, 1)
 
 [node name="game_init" parent="." instance=ExtResource("1_3y1d5")]

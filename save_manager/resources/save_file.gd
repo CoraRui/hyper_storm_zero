@@ -4,8 +4,9 @@ class_name save_file
 #contains info for the main save file
 
 @export var player_name : String = "cora"		#name of person playing game
-
-@export var health : int = 10					#current health idk whatever
+@export var coins : int = 0					#current health idk whatever
+@export var day : int = 0
+@export var lives : int = 2					#lives left
 
 
 #region settings values
@@ -23,7 +24,8 @@ func this_to_dict() -> Dictionary:
 	#converts this save_file into dictionary format
 	var new_dict : Dictionary = {
 		"player_name" : player_name,
-		"health" : health,
+		"coins" : coins,
+		"day" : day,
 		"master_volume" : master_volume,
 		"music_volume" : music_volume,
 		"sfx_volume" : sfx_volume,
@@ -37,7 +39,8 @@ static func dict_to_file(sd : Dictionary) -> save_file:
 	var new_file : save_file = save_file.new()
 	
 	new_file.player_name = sd["player_name"]
-	new_file.health = sd["health"]
+	new_file.coins = sd["coins"]
+	new_file.day = sd["day"]
 	new_file.master_volume = sd["master_volume"]
 	new_file.music_volume = sd["music_volume"]
 	new_file.sfx_volume = sd["sfx_volume"]
@@ -47,7 +50,8 @@ static func dict_to_file(sd : Dictionary) -> save_file:
 static func file_to_dict(sf : save_file) -> Dictionary:
 	var new_dict : Dictionary = {
 		"player_name" : sf.player_name,
-		"health" : sf.health,
+		"coins" : sf.coins,
+		"day" : sf.day,
 		"master_volume" : sf.master_volume,
 		"music_volume" : sf.music_volume,
 		"sfx_volume" : sf.sfx_volume,

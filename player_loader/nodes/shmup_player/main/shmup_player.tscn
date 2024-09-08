@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsil1jov41qpi"]
+[gd_scene load_steps=13 format=3 uid="uid://bsil1jov41qpi"]
 
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/main/shmup_player.gd" id="1_lpbq4"]
 [ext_resource type="Texture2D" uid="uid://kw23a1ib3sp2" path="res://raw_assets/test_sprites/test_ship/rocket.png" id="2_nmlhc"]
@@ -22,16 +22,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grlkt"]
-size = Vector2(16, 3)
+size = Vector2(7, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_som5s"]
-size = Vector2(16, 3)
+size = Vector2(7, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iv73"]
-size = Vector2(3, 14)
+size = Vector2(2, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ny2fv"]
-size = Vector2(3, 14)
+size = Vector2(2, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctush"]
+size = Vector2(7, 10)
 
 [node name="shmup_player" type="Node2D" node_paths=PackedStringArray("m_node", "player_anim", "col_box")]
 script = ExtResource("1_lpbq4")
@@ -56,7 +59,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="up_shape" type="CollisionShape2D" parent="collision_box/up_area"]
-position = Vector2(0, -8.5)
+position = Vector2(0.5, -6)
 shape = SubResource("RectangleShape2D_grlkt")
 
 [node name="down_area" type="Area2D" parent="collision_box"]
@@ -64,7 +67,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="down_shape" type="CollisionShape2D" parent="collision_box/down_area"]
-position = Vector2(0, 8.5)
+position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_som5s")
 
 [node name="left_area" type="Area2D" parent="collision_box"]
@@ -72,7 +75,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="left_shape" type="CollisionShape2D" parent="collision_box/left_area"]
-position = Vector2(-9.5, 0)
+position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_0iv73")
 
 [node name="right_area" type="Area2D" parent="collision_box"]
@@ -80,7 +83,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="right_shape" type="CollisionShape2D" parent="collision_box/right_area"]
-position = Vector2(9.5, 0)
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_ny2fv")
 
 [node name="laser_gun" type="Node2D" parent="." node_paths=PackedStringArray("bullet_point")]
@@ -89,6 +92,14 @@ bullet_ref = ExtResource("5_kaafp")
 bullet_point = NodePath("bullet_point")
 
 [node name="bullet_point" type="Node2D" parent="laser_gun"]
+
+[node name="hit_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="hitshape" type="CollisionShape2D" parent="hit_area"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ctush")
 
 [connection signal="area_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_entered"]
 [connection signal="area_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_exited"]
@@ -106,3 +117,4 @@ bullet_point = NodePath("bullet_point")
 [connection signal="area_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_area_exited"]
 [connection signal="body_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_entered"]
 [connection signal="body_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_exited"]
+[connection signal="area_entered" from="hit_area" to="." method="_on_hit_area_area_entered"]

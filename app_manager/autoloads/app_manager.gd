@@ -6,7 +6,7 @@ class_name app_manager
 #hold esc to quit
 #thats it
 
-@export var window_scale : float = 2.0
+@export var window_scale : float = 4.0
 
 @onready var double_size : Vector2i = Vector2i(int(get_window().size.x * window_scale), int(get_window().size.y * window_scale))
 
@@ -22,7 +22,6 @@ func _ready():
 func _physics_process(_delta):
 	if quitting :
 		quit_label.self_modulate.a8 += 15
-		
 
 func _input(event):
 	if event.is_action_pressed("app_resize"):

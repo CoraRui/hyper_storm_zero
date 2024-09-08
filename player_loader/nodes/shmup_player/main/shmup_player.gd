@@ -2,6 +2,7 @@ extends Node2D
 class_name shmup_player
 
 #TODO: make the whole thing. this is pretty essential actually, do this soon
+#TODO: i frames on respawn
 
 #input will be pretty similar to arpg player i think actually. right? its mostly the animation level design and 
 #attack mechanism thats different
@@ -18,6 +19,12 @@ var point_dir : Vector2i = Vector2i(0,0)
 @export var player_anim : AnimatedSprite2D
 
 @export var col_box : collision_box
+
+@export var frozen : bool = false
+
+var dying : bool = false
+
+@onready var shmup_hi : shmup_health = get_node("/root/shmup_health_auto")
 
 func _input(event):
 	collect_input(event)
@@ -49,6 +56,9 @@ func inc_frame():
 	frame_index = cmath.cycle_int(frame_index + 1, 0, frame_cap)
 
 func collect_input(e : InputEvent):
+	if frozen:
+		return
+	
 	if e.is_action_released("up") || e.is_action_released("down") || e.is_action_released("left") || e.is_action_released("right"):
 		point_dir = Vector2i(0,0)
 		player_anim.stop()
@@ -62,3 +72,12 @@ func collect_input(e : InputEvent):
 	if Input.is_action_pressed("right"):
 		point_dir.x = 1
 	
+func freeze(b : bool) -> void:
+	frozen = b
+	if b:
+		point_dir = Vector2i(0,0)
+
+func _on_hit_area_area_entered(area):
+	if !dying:
+		shmup_hi.hit()
+		dying = true

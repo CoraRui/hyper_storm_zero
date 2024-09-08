@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf8jj7h7tda2k"]
+
+[ext_resource type="Script" path="res://simple_fx/nodes/fx/player_death/player_death_fx.gd" id="1_dddb2"]
+
+[node name="player_death_fx" type="Node2D"]
+script = ExtResource("1_dddb2")

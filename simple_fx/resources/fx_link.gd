@@ -6,3 +6,5 @@ class_name fx_link
 
 
 @export var name : String
+
+@export var pos : Vector2i = Vector2i(0,0)			#position to place the fx. blank in export usually, needs script definition

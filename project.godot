@@ -29,11 +29,13 @@ screen_fx_auto="*res://screen_fx/autoloads/screen_fx.tscn"
 text_box_auto="*res://ui/text_box/autoloads/text_box.tscn"
 enemy_loader_auto="*res://enemy_loader/autoloads/enemy_loader.tscn"
 score_manager_auto="*res://ui/score_manager/autoload/score_manager.tscn"
+simple_drop_auto="*res://simple_drop/autoloads/simple_drop.tscn"
+shmup_health_auto="*res://player_loader/nodes/shmup_health/shmup_health.tscn"
 
 [display]
 
-window/size/viewport_width=200
-window/size/viewport_height=200
+window/size/viewport_width=125
+window/size/viewport_height=175
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"

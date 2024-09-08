@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://ui/score_manager/autoload/score_manager.gd" id="1_to1tb"]
 
 [node name="score_manager" type="Node2D" node_paths=PackedStringArray("score_label")]
+visible = false
 script = ExtResource("1_to1tb")
 score_label = NodePath("score_label")
 

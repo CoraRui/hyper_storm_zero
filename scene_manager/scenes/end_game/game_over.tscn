@@ -1,0 +1,122 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq1gdu8ue61vk"]
+
+[ext_resource type="Script" path="res://scene_manager/scenes/end_game/game_over.gd" id="1_l7cxs"]
+[ext_resource type="Script" path="res://audio/music/resources/music_link/music_link.gd" id="2_nekyt"]
+[ext_resource type="Texture2D" uid="uid://c4dgfxhwtgru6" path="res://raw_assets/test_sprites/enemies/bub/bub1.png" id="3_7b8mv"]
+[ext_resource type="Texture2D" uid="uid://l4n7swt4fwvm" path="res://raw_assets/test_sprites/enemies/bub/bub2.png" id="4_ehvui"]
+
+[sub_resource type="Resource" id="Resource_vltqu"]
+script = ExtResource("2_nekyt")
+name = "game_over"
+vol = 0.0
+delay = 0.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p5r3u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7b8mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ehvui")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="game_over" type="Node2D" node_paths=PackedStringArray("esc_label", "esc_timer", "esc_flash")]
+script = ExtResource("1_l7cxs")
+game_over_music = SubResource("Resource_vltqu")
+esc_label = NodePath("esc_label")
+esc_timer = NodePath("esc_timer")
+esc_flash = NodePath("esc_flash")
+
+[node name="game_over_text" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 71.0
+offset_right = 117.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 15
+text = "GAME_OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="esc_timer" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+autostart = true
+
+[node name="esc_label" type="Label" parent="."]
+visible = false
+offset_left = 40.0
+offset_top = 114.0
+offset_right = 84.0
+offset_bottom = 134.0
+theme_override_font_sizes/font_size = 5
+text = "esc to quit"
+
+[node name="esc_flash" type="Timer" parent="."]
+wait_time = 0.65
+
+[node name="bub" type="AnimatedSprite2D" parent="."]
+position = Vector2(109, 69)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.216572
+offset = Vector2(0.5, -0.5)
+
+[node name="bub2" type="AnimatedSprite2D" parent="."]
+position = Vector2(61, 81)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.945114
+offset = Vector2(0.5, -0.5)
+
+[node name="bub3" type="AnimatedSprite2D" parent="."]
+position = Vector2(13, 69)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.155935
+offset = Vector2(0.5, -0.5)
+
+[node name="bub4" type="AnimatedSprite2D" parent="."]
+position = Vector2(50, 69)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.398196
+offset = Vector2(0.5, -0.5)
+
+[node name="bub5" type="AnimatedSprite2D" parent="."]
+position = Vector2(73, 69)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.790504
+offset = Vector2(0.5, -0.5)
+
+[node name="bub6" type="AnimatedSprite2D" parent="."]
+position = Vector2(29, 69)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.639876
+offset = Vector2(0.5, -0.5)
+
+[node name="bub7" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, 69)
+sprite_frames = SubResource("SpriteFrames_p5r3u")
+autoplay = "default"
+frame_progress = 0.972757
+offset = Vector2(0.5, -0.5)
+
+[node name="thank_you" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 90.0
+offset_right = 106.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 5
+text = "thank you for playing!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="esc_timer" to="." method="_on_esc_timer_timeout"]
+[connection signal="timeout" from="esc_flash" to="." method="_on_esc_flash_timeout"]

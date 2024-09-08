@@ -1,4 +1,5 @@
 extends Node2D
+class_name simple_fx
 
 #this autoload has a library of special effects kinda nodes on hand that it can spawn in using the
 #place_fx command. theyre usually just nodes... they'll be placed by position passed in.
@@ -18,7 +19,7 @@ func place_fx(l : fx_link):
 	
 	get_tree().get_root().add_child.call_deferred()
 	
-	new_fx.global_position = l.fx_position
+	new_fx.global_position = l.pos
 	
 	
 	

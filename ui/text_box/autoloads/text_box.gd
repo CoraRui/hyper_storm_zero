@@ -163,6 +163,10 @@ func delay_next(p : Dictionary) -> void:
 	
 	next_command()
 	
+func cancel_commands():
+	var dict : Dictionary = {}
+	close_text_box(dict)
+	current_set.clear()
 	
 	
 	

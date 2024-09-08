@@ -23,9 +23,11 @@ func play_track(ml : music_link) -> void:
 	
 	var new_track : AudioStreamOggVorbis = find_track(ml).music_file
 	
-	if stream_player.stream != null && stream_player.stream != new_track :
+	if new_track != null && stream_player.stream != new_track :
 		stream_player.stream = new_track
 		stream_player.play()
+	else:
+		print("msuci player fucked up idk why")
 
 func pause_track() -> void:
 	#pause the track at its current position so it can be restarted.

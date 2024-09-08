@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3kdku3xfhkjv"]
+[gd_scene load_steps=17 format=3 uid="uid://d3kdku3xfhkjv"]
 
 [ext_resource type="Script" path="res://scene_manager/autoload/scene_manager.gd" id="1_s3dc7"]
 [ext_resource type="PackedScene" uid="uid://bbwg6uxy46a58" path="res://scene_manager/scenes/main_menu/intro/intro.tscn" id="2_s1om1"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bf58yww00ho3i" path="res://scene_manager/scenes/main_menu/title_screen/title.tscn" id="4_hpef4"]
 [ext_resource type="PackedScene" uid="uid://gihp7u0yj5x0" path="res://scene_manager/scenes/main_menu/start_menu/start.tscn" id="5_yfjj1"]
 [ext_resource type="PackedScene" uid="uid://c5jk4ln62o20c" path="res://scene_manager/scenes/main_menu/settings_menu/settings.tscn" id="6_4v74d"]
+[ext_resource type="PackedScene" uid="uid://c0tw3tftck06l" path="res://scene_manager/scenes/levels/level_one.tscn" id="7_1g7fb"]
+[ext_resource type="PackedScene" uid="uid://dq1gdu8ue61vk" path="res://scene_manager/scenes/end_game/game_over.tscn" id="8_fb0je"]
 
 [sub_resource type="Resource" id="Resource_xanhw"]
 script = ExtResource("3_oysdi")
@@ -28,6 +30,16 @@ script = ExtResource("3_oysdi")
 scene_name = "settings"
 scene_ref = ExtResource("6_4v74d")
 
+[sub_resource type="Resource" id="Resource_oc0dd"]
+script = ExtResource("3_oysdi")
+scene_name = "level_one"
+scene_ref = ExtResource("7_1g7fb")
+
+[sub_resource type="Resource" id="Resource_l47nw"]
+script = ExtResource("3_oysdi")
+scene_name = "game_over"
+scene_ref = ExtResource("8_fb0je")
+
 [sub_resource type="Resource" id="Resource_tfkmx"]
 script = ExtResource("3_oysdi")
 scene_name = "test_scene"
@@ -35,5 +47,5 @@ scene_ref = ExtResource("2_tmlig")
 
 [node name="scene_manager" type="Node2D"]
 script = ExtResource("1_s3dc7")
-scene_arr = Array[ExtResource("3_oysdi")]([SubResource("Resource_xanhw"), SubResource("Resource_t4f3d"), SubResource("Resource_uokr7"), SubResource("Resource_6s5bb")])
+scene_arr = Array[ExtResource("3_oysdi")]([SubResource("Resource_xanhw"), SubResource("Resource_t4f3d"), SubResource("Resource_uokr7"), SubResource("Resource_6s5bb"), SubResource("Resource_oc0dd"), SubResource("Resource_l47nw")])
 fail_scene = SubResource("Resource_tfkmx")

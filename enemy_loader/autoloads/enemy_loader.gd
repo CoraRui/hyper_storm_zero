@@ -102,3 +102,7 @@ func send_pattern(ea : Array[enemy_command]) -> void:
 	#receives an enemy pattern and starts it
 	enemy_queue = ea
 	execute_command()
+
+func clear_enemies():
+	for e in enemy_ia:
+		e.queue_free()

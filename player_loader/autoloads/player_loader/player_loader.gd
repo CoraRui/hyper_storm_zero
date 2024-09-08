@@ -7,10 +7,10 @@ class_name player_loader
 
 
 @export var player_ref : PackedScene
-@export var player_ins : Node2D
+@export var player_ins : shmup_player
 @onready var debug_i : debug = get_node("/root/debug_auto")
 
-func load_player():
+func load_player(pos : Vector2i = Vector2i(60,150)) -> void:
 
 	if player_ins:
 		debug_i.db_print("tried to spawn player when player already exists", "pla_loa")
@@ -18,8 +18,8 @@ func load_player():
 
 	#well for now ill just put them on the root and keep a reference to them. then have an unload function
 	player_ins = player_ref.instantiate()
-	
 	get_tree().get_root().add_child(player_ins)
+	player_ins.global_position = pos
 	
 func unload_player():
 	player_ins.queue_free()

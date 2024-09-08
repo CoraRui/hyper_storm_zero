@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://5qc0pfwa8gbd"]
+
+[ext_resource type="PackedScene" uid="uid://pcv4ypit0wli" path="res://enemy_loader/node/enemy_health/enemy_health.tscn" id="1_k5hc2"]
+[ext_resource type="Texture2D" uid="uid://c4dgfxhwtgru6" path="res://raw_assets/test_sprites/enemies/bub/bub1.png" id="2_2olg5"]
+[ext_resource type="Texture2D" uid="uid://l4n7swt4fwvm" path="res://raw_assets/test_sprites/enemies/bub/bub2.png" id="3_wosj8"]
+[ext_resource type="PackedScene" uid="uid://bc32velo42mfy" path="res://movement+collision/simple_bullet/simple_bullet.tscn" id="4_g104u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvhfa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2olg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wosj8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="bub" type="Node2D"]
+
+[node name="enemy_health" parent="." node_paths=PackedStringArray("enemy_node") instance=ExtResource("1_k5hc2")]
+hp = 1
+mhp = 1
+enemy_node = NodePath("..")
+drop_type = "coin"
+
+[node name="bub_anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lvhfa")
+autoplay = "default"
+frame = 1
+frame_progress = 0.479041
+
+[node name="simple_bullet" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("4_g104u")]
+target_node = NodePath("..")

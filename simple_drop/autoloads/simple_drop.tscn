@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://b60snxkplysds"]
+
+[ext_resource type="Script" path="res://simple_drop/autoloads/simple_drop.gd" id="1_do402"]
+[ext_resource type="PackedScene" uid="uid://w26fvo1pbas3" path="res://simple_drop/nodes/drops/coin/coin.tscn" id="2_qfkon"]
+[ext_resource type="Script" path="res://simple_drop/resources/drop_ref.gd" id="3_tedwd"]
+
+[sub_resource type="Resource" id="Resource_homrv"]
+script = ExtResource("3_tedwd")
+drop_name = "coin"
+drop_scene = ExtResource("2_qfkon")
+
+[node name="simple_drop" type="Node2D"]
+script = ExtResource("1_do402")
+drop_arr = Array[ExtResource("3_tedwd")]([SubResource("Resource_homrv")])

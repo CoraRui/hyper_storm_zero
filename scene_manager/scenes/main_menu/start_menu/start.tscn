@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_kduvt"]
 script = ExtResource("5_6squo")
-scene_name = "???? :)"
+scene_name = "level_one"
 
 [sub_resource type="Resource" id="Resource_cb8so"]
 script = ExtResource("5_6squo")
@@ -39,7 +39,7 @@ script = ExtResource("2_qbs78")
 options = [NodePath("start_option"), null, null, null]
 
 [node name="start_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "down_option")]
-position = Vector2(78, 125)
+position = Vector2(51, 97)
 script = ExtResource("3_kkgr4")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")
@@ -47,49 +47,59 @@ option_name = "start"
 down_option = NodePath("../settings_option")
 
 [node name="option_text" type="Label" parent="main_menu/simple_select/group_one/start_option"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 10
+offset_left = -1.0
+offset_right = 21.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 5
 text = "start"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/start_option"]
-position = Vector2(-7, 4)
+position = Vector2(-4, 3)
 
-[node name="settings_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "right_option")]
-position = Vector2(25, 158)
+[node name="settings_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(39, 116)
 script = ExtResource("3_kkgr4")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")
 option_name = "options"
 up_option = NodePath("../start_option")
-right_option = NodePath("../quit_option")
+down_option = NodePath("../quit_option")
 
 [node name="option_text" type="Label" parent="main_menu/simple_select/group_one/settings_option"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 10
+offset_left = 4.0
+offset_top = -3.0
+offset_right = 38.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 5
 text = "settings"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/settings_option"]
-position = Vector2(-7, 3)
+position = Vector2(2, 2)
 
-[node name="quit_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "left_option")]
-position = Vector2(136, 157)
+[node name="quit_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
+position = Vector2(52, 134)
 script = ExtResource("3_kkgr4")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")
 option_name = "quit"
-up_option = NodePath("../start_option")
-left_option = NodePath("../settings_option")
+up_option = NodePath("../settings_option")
 
 [node name="option_text" type="Label" parent="main_menu/simple_select/group_one/quit_option"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 10
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 18.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 5
 text = "quit"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/quit_option"]
-position = Vector2(-6, 3)
+position = Vector2(-4, 2)
 
 [node name="icon" type="AnimatedSprite2D" parent="main_menu/simple_select"]
 sprite_frames = SubResource("SpriteFrames_0wb2l")

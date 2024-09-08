@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://drvkd3l1p15a2"]
+
+[ext_resource type="Script" path="res://player_loader/nodes/shmup_health/shmup_health.gd" id="1_dgmkv"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="2_jbotc"]
+[ext_resource type="Script" path="res://simple_fx/resources/fx_link.gd" id="3_4pdfr"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="4_8dm5k"]
+[ext_resource type="Texture2D" uid="uid://kw23a1ib3sp2" path="res://raw_assets/test_sprites/test_ship/rocket.png" id="5_2ttuy"]
+
+[sub_resource type="Resource" id="Resource_g4aw3"]
+script = ExtResource("2_jbotc")
+sf_name = "player_hurt"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_4ibv8"]
+script = ExtResource("2_jbotc")
+sf_name = "player_death"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_plnb8"]
+script = ExtResource("3_4pdfr")
+name = "player_death"
+pos = Vector2i(0, 0)
+
+[sub_resource type="Resource" id="Resource_bdhhr"]
+script = ExtResource("4_8dm5k")
+scene_name = "game_over"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q5mp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_2ttuy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="shmup_health" type="Node2D" node_paths=PackedStringArray("destroy_timer", "respawn_timer", "life_arr")]
+visible = false
+script = ExtResource("1_dgmkv")
+hurt_sf = SubResource("Resource_g4aw3")
+death_sf = SubResource("Resource_4ibv8")
+death_fx = SubResource("Resource_plnb8")
+destroy_timer = NodePath("destroy_timer")
+respawn_timer = NodePath("respawn_timer")
+life_arr = [NodePath("life"), NodePath("life2"), NodePath("life3"), NodePath("life4")]
+game_over_link = SubResource("Resource_bdhhr")
+
+[node name="destroy_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="respawn_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="life" type="AnimatedSprite2D" parent="."]
+position = Vector2(6.5, 8)
+sprite_frames = SubResource("SpriteFrames_0q5mp")
+
+[node name="life2" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 8)
+sprite_frames = SubResource("SpriteFrames_0q5mp")
+offset = Vector2(0.5, 0)
+
+[node name="life3" type="AnimatedSprite2D" parent="."]
+position = Vector2(22, 8)
+sprite_frames = SubResource("SpriteFrames_0q5mp")
+offset = Vector2(0.5, 0)
+
+[node name="life4" type="AnimatedSprite2D" parent="."]
+position = Vector2(30, 8)
+sprite_frames = SubResource("SpriteFrames_0q5mp")
+offset = Vector2(0.5, 0)
+
+[connection signal="timeout" from="destroy_timer" to="." method="_on_destroy_timer_timeout"]
+[connection signal="timeout" from="respawn_timer" to="." method="_on_respawn_timer_timeout"]

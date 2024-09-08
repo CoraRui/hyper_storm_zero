@@ -8,5 +8,6 @@ target_node = NodePath(".")
 move_queue = Array[Resource("res://movement+collision/simple_bullet/resources/move_set/move_set.gd")]([null, null, null])
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 3.0
 offset_bottom = 3.0
