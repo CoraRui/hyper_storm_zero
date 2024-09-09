@@ -37,6 +37,8 @@ var queue_index : int = 0
 
 @export var delay_timer : Timer
 
+signal queue_finish
+
 #enemy spawning commands!
 
 @onready var debug_i : debug = get_node("/root/debug_auto")
@@ -46,6 +48,7 @@ func execute_command():
 	print("queue index: ", queue_index)
 	if queue_index >= enemy_queue.size():
 		debug_i.db_print("enemy queue finished", "emy_loa")
+		queue_finish.emit()
 		return
 	
 	var comm : enemy_command = enemy_queue[queue_index]
@@ -105,4 +108,5 @@ func send_pattern(ea : Array[enemy_command]) -> void:
 
 func clear_enemies():
 	for e in enemy_ia:
-		e.queue_free()
+		if e != null && is_instance_valid(e):
+			e.queue_free()

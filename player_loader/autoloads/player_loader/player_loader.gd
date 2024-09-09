@@ -22,6 +22,9 @@ func load_player(pos : Vector2i = Vector2i(60,150)) -> void:
 	player_ins.global_position = pos
 	
 func unload_player():
-	player_ins.queue_free()
-	player_ins = null
+	if is_instance_valid(player_ins):
+		player_ins.queue_free()
+		player_ins = null
+	else:
+		player_ins = null
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://7ogx55kxjhu7"]
+[gd_scene load_steps=26 format=3 uid="uid://7ogx55kxjhu7"]
 
 [ext_resource type="Script" path="res://audio/sfx/autoloads/sfx_player.gd" id="1_s02h6"]
 [ext_resource type="Script" path="res://audio/sfx/resources/sf_track.gd" id="2_uk66r"]
@@ -9,6 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://bnairn1qmx6b2" path="res://raw_assets/test_audio/sfx/pickup_one.ogg" id="7_46v4l"]
 [ext_resource type="AudioStream" uid="uid://dr4qxnt4x4slo" path="res://raw_assets/test_audio/sfx/player_hurt.ogg" id="8_yxuwm"]
 [ext_resource type="AudioStream" uid="uid://b28r0w6k68gux" path="res://raw_assets/test_audio/sfx/player_death.ogg" id="9_y7mto"]
+[ext_resource type="AudioStream" uid="uid://cvuoj23221ayn" path="res://raw_assets/test_audio/sfx/ui/money_up.ogg" id="10_ln3qo"]
+[ext_resource type="AudioStream" uid="uid://tb2v1qibis4l" path="res://raw_assets/test_audio/sfx/ui/fire_rate_up.ogg" id="11_d2tik"]
+[ext_resource type="AudioStream" uid="uid://cabocfgw3s5qp" path="res://raw_assets/test_audio/sfx/ui/speed_up.ogg" id="12_l7qmb"]
+[ext_resource type="AudioStream" uid="uid://chn6y50l5cjo6" path="res://raw_assets/test_audio/sfx/ui/upgrade_firepower.ogg" id="13_bnnpq"]
 
 [sub_resource type="Resource" id="Resource_txe5s"]
 script = ExtResource("2_uk66r")
@@ -45,6 +49,26 @@ script = ExtResource("2_uk66r")
 sf_name = "player_death"
 sf_ref = ExtResource("9_y7mto")
 
+[sub_resource type="Resource" id="Resource_fj6v1"]
+script = ExtResource("2_uk66r")
+sf_name = "money_up"
+sf_ref = ExtResource("10_ln3qo")
+
+[sub_resource type="Resource" id="Resource_1dvrd"]
+script = ExtResource("2_uk66r")
+sf_name = "fire_rate_up"
+sf_ref = ExtResource("11_d2tik")
+
+[sub_resource type="Resource" id="Resource_ffi1i"]
+script = ExtResource("2_uk66r")
+sf_name = "speed_up"
+sf_ref = ExtResource("12_l7qmb")
+
+[sub_resource type="Resource" id="Resource_kudv7"]
+script = ExtResource("2_uk66r")
+sf_name = "firepower_up"
+sf_ref = ExtResource("13_bnnpq")
+
 [sub_resource type="Resource" id="Resource_0w0wl"]
 script = ExtResource("2_uk66r")
 sf_name = "fail_blip"
@@ -53,7 +77,7 @@ sf_ref = ExtResource("3_qditg")
 [node name="sfx_player" type="Node2D" node_paths=PackedStringArray("sp_arr")]
 script = ExtResource("1_s02h6")
 sp_arr = [NodePath("sp_0"), NodePath("sp_1"), NodePath("sp_2"), NodePath("sp_3"), NodePath("sp_4"), NodePath("sp_5"), NodePath("sp_6"), NodePath("sp_7"), NodePath("sp_8"), NodePath("sp_9"), NodePath("sp_10"), NodePath("sp_11"), NodePath("sp_12"), NodePath("sp_13"), NodePath("sp_14"), NodePath("sp_15")]
-sf_arr = Array[ExtResource("2_uk66r")]([SubResource("Resource_txe5s"), SubResource("Resource_qlpeg"), SubResource("Resource_4617i"), SubResource("Resource_85edu"), SubResource("Resource_crtin"), SubResource("Resource_nqct5"), SubResource("Resource_otde7")])
+sf_arr = Array[ExtResource("2_uk66r")]([SubResource("Resource_txe5s"), SubResource("Resource_qlpeg"), SubResource("Resource_4617i"), SubResource("Resource_85edu"), SubResource("Resource_crtin"), SubResource("Resource_nqct5"), SubResource("Resource_otde7"), SubResource("Resource_fj6v1"), SubResource("Resource_1dvrd"), SubResource("Resource_ffi1i"), SubResource("Resource_kudv7")])
 fail_sf = SubResource("Resource_0w0wl")
 
 [node name="sp_0" type="AudioStreamPlayer" parent="."]

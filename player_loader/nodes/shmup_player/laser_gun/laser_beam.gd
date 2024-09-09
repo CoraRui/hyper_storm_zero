@@ -31,7 +31,9 @@ func inc_index():
 	frame_index = cmath.cycle_int(frame_index + 1, 0, frame_cap)
 	
 func clear():
-	laser_bi.return_bullet()
+	
+	if is_instance_valid(laser_bi):
+		laser_bi.return_bullet()
 	queue_free()
 
 

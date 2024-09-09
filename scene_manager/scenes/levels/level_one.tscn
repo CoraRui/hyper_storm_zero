@@ -1,10 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://c0tw3tftck06l"]
+[gd_scene load_steps=32 format=3 uid="uid://c0tw3tftck06l"]
 
 [ext_resource type="Script" path="res://scene_manager/scenes/levels/level_one.gd" id="1_g7ush"]
 [ext_resource type="PackedScene" uid="uid://v0ig1j0vucnl" path="res://enemy_loader/node/enemy_module/enemy_module.tscn" id="1_t1tsm"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_1dcqm"]
 [ext_resource type="Script" path="res://enemy_loader/resources/enemy_link.gd" id="2_bjlqp"]
 [ext_resource type="Script" path="res://enemy_loader/resources/enemy_command.gd" id="2_c85y4"]
 [ext_resource type="Script" path="res://movement+collision/collision_box/collision_box.gd" id="5_px5na"]
+
+[sub_resource type="Resource" id="Resource_jxjii"]
+script = ExtResource("2_1dcqm")
+scene_name = "upgrade_hangar"
 
 [sub_resource type="Resource" id="Resource_dwt04"]
 script = ExtResource("2_bjlqp")
@@ -159,8 +164,11 @@ size = Vector2(6, 187)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ny2fv"]
 size = Vector2(6, 202)
 
-[node name="level_one" type="Node2D"]
+[node name="level_one" type="Node2D" node_paths=PackedStringArray("clear_label", "next_stage_timer")]
 script = ExtResource("1_g7ush")
+clear_label = NodePath("clear")
+next_stage_timer = NodePath("next_stage")
+next_scene = SubResource("Resource_jxjii")
 
 [node name="enemy_module" parent="." instance=ExtResource("1_t1tsm")]
 send_onready = true
@@ -168,9 +176,9 @@ enemy_arr = Array[ExtResource("2_c85y4")]([SubResource("Resource_sg30c"), SubRes
 
 [node name="level_one" type="Label" parent="."]
 offset_left = 21.0
-offset_top = 72.0
+offset_top = 124.0
 offset_right = 103.0
-offset_bottom = 92.0
+offset_bottom = 144.0
 theme_override_font_sizes/font_size = 10
 text = "level_one
 "
@@ -216,6 +224,19 @@ collision_mask = 0
 position = Vector2(128, 80)
 shape = SubResource("RectangleShape2D_ny2fv")
 
+[node name="clear" type="Label" parent="."]
+visible = false
+offset_left = 16.0
+offset_top = 22.0
+offset_right = 112.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 15
+text = "CLEAR!!!"
+
+[node name="next_stage" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_entered"]
 [connection signal="area_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_exited"]
 [connection signal="body_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_body_entered"]
@@ -232,3 +253,4 @@ shape = SubResource("RectangleShape2D_ny2fv")
 [connection signal="area_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_area_exited"]
 [connection signal="body_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_entered"]
 [connection signal="body_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_exited"]
+[connection signal="timeout" from="next_stage" to="." method="_on_next_stage_timeout"]

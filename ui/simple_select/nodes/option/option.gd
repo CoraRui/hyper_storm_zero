@@ -26,7 +26,7 @@ signal unselected
 @export_group("","")
 
 func _ready():
-	icon_point = get_child(1)
+	pass
 
 func activate():
 	activated.emit()

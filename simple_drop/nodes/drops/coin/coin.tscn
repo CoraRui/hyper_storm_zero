@@ -37,6 +37,7 @@ acc_skip = Vector2i(2, 2)
 dur_frames = 10000
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1a00"]
+size = Vector2(5, 5)
 
 [node name="coin" type="Node2D"]
 script = ExtResource("1_seol1")
@@ -58,7 +59,8 @@ wait_time = 10.0
 [node name="coin_area" type="Area2D" parent="."]
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="coin_area"]
+[node name="coin_box" type="CollisionShape2D" parent="coin_area"]
+position = Vector2(-0.5, 1.5)
 shape = SubResource("RectangleShape2D_f1a00")
 
 [connection signal="timeout" from="clear_timer" to="." method="_on_clear_timer_timeout"]

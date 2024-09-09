@@ -94,7 +94,6 @@ bullet_point = NodePath("bullet_point")
 [node name="bullet_point" type="Node2D" parent="laser_gun"]
 
 [node name="hit_area" type="Area2D" parent="."]
-collision_layer = 0
 collision_mask = 2
 
 [node name="hitshape" type="CollisionShape2D" parent="hit_area"]

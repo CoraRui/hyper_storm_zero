@@ -19,4 +19,5 @@ func _on_coin_area_area_entered(area):
 	save_mi.file_01.coins += value;
 	save_mi.file_01.print_file()
 	sfx_pi.play_effect(pickup_sf)
+	queue_free()
 	

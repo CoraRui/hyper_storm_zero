@@ -22,8 +22,14 @@ class_name save_manager
 #endregion
 
 func _ready():
+	
+	file_01 = save_file.new()
+	file_01.coins = 999
+	return
+	
 	if !load_game():
 		file_01 = save_file.new()
+		
 	
 func save_game() -> void:
 	#saves the current save file in file 01 to the desired user directory

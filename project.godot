@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="default_set"
+config/name="hyper_storm_zero"
 run/main_scene="res://root.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://raw_assets/icon.svg"

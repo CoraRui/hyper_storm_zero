@@ -1,0 +1,217 @@
+[gd_scene load_steps=13 format=3 uid="uid://3vmixsh258vy"]
+
+[ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="1_6v355"]
+[ext_resource type="Script" path="res://ui/upgrade_ui/upgrade_ui.gd" id="1_351op"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/group/group.gd" id="2_vk26y"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="3_bwgxm"]
+[ext_resource type="Texture2D" uid="uid://eulgvsev88il" path="res://raw_assets/test_sprites/ui/icons/upgrade_box.png" id="4_vk1ld"]
+[ext_resource type="Texture2D" uid="uid://bykrs7joayy0u" path="res://raw_assets/test_sprites/ui/icons/speed_up.png" id="6_4x2p7"]
+[ext_resource type="Texture2D" uid="uid://cvhivluriyoj1" path="res://raw_assets/test_sprites/ui/icons/money_up.png" id="7_evxxp"]
+[ext_resource type="Texture2D" uid="uid://bg1760iukx1xt" path="res://raw_assets/test_sprites/ui/icons/fire_rate_up.png" id="8_1yxmu"]
+[ext_resource type="Texture2D" uid="uid://c8lsbywpjru35" path="res://raw_assets/test_sprites/pickups/coin/coin1.png" id="9_eu331"]
+[ext_resource type="Texture2D" uid="uid://b4o2b58r72p0w" path="res://raw_assets/test_sprites/pickups/coin/coin2.png" id="10_j8eu4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wb2l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqri6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_eu331")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j8eu4")
+}],
+"loop": true,
+"name": &"chaching",
+"speed": 15.0
+}]
+
+[node name="upgrade_ui" type="Node2D"]
+script = ExtResource("1_351op")
+
+[node name="ship" type="ColorRect" parent="."]
+offset_left = 26.0
+offset_top = 30.0
+offset_right = 104.0
+offset_bottom = 54.0
+
+[node name="simple_select" type="Node2D" parent="." node_paths=PackedStringArray("active_option", "active_group", "icon")]
+script = ExtResource("1_6v355")
+active_option = NodePath("group_one/velocity_option")
+active_group = NodePath("group_one")
+icon = NodePath("icon")
+
+[node name="group_one" type="Node2D" parent="simple_select" node_paths=PackedStringArray("options")]
+position = Vector2(36, 8)
+script = ExtResource("2_vk26y")
+options = [NodePath("velocity_option"), NodePath("fire_rate_option"), NodePath("option_three")]
+
+[node name="velocity_option" type="Node2D" parent="simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "target_group", "down_option")]
+position = Vector2(-18, 68)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+target_group = NodePath("../../group_two")
+down_option = NodePath("../fire_rate_option")
+
+[node name="box_one" type="Sprite2D" parent="simple_select/group_one/velocity_option"]
+position = Vector2(46, 8)
+texture = ExtResource("4_vk1ld")
+
+[node name="option_text" type="Label" parent="simple_select/group_one/velocity_option"]
+offset_left = 20.0
+offset_right = 86.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 5
+text = "velocity++"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon_point" type="Node2D" parent="simple_select/group_one/velocity_option"]
+position = Vector2(-9, 5)
+
+[node name="velocity_sprite" type="Sprite2D" parent="simple_select/group_one/velocity_option"]
+position = Vector2(0, -1)
+texture = ExtResource("6_4x2p7")
+centered = false
+
+[node name="fire_rate_option" type="Node2D" parent="simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(-18, 102)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+up_option = NodePath("../velocity_option")
+down_option = NodePath("../option_three")
+
+[node name="box_one2" type="Sprite2D" parent="simple_select/group_one/fire_rate_option"]
+position = Vector2(46, 6)
+texture = ExtResource("4_vk1ld")
+
+[node name="option_text" type="Label" parent="simple_select/group_one/fire_rate_option"]
+offset_left = 28.0
+offset_top = -2.0
+offset_right = 78.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 5
+text = "money++"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon_point" type="Node2D" parent="simple_select/group_one/fire_rate_option"]
+position = Vector2(-8, 4)
+
+[node name="money_sprite" type="Sprite2D" parent="simple_select/group_one/fire_rate_option"]
+position = Vector2(1, -3)
+texture = ExtResource("7_evxxp")
+centered = false
+
+[node name="option_three" type="Node2D" parent="simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
+position = Vector2(-16, 134)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+up_option = NodePath("../fire_rate_option")
+
+[node name="box_one3" type="Sprite2D" parent="simple_select/group_one/option_three"]
+position = Vector2(44, 6)
+texture = ExtResource("4_vk1ld")
+
+[node name="option_text" type="Label" parent="simple_select/group_one/option_three"]
+offset_left = 24.0
+offset_top = -1.0
+offset_right = 80.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 5
+text = "fire rate++"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon_point" type="Node2D" parent="simple_select/group_one/option_three"]
+position = Vector2(-9, 2)
+
+[node name="fire_rate_sprite" type="Sprite2D" parent="simple_select/group_one/option_three"]
+position = Vector2(-1, -3)
+texture = ExtResource("8_1yxmu")
+centered = false
+
+[node name="icon" type="AnimatedSprite2D" parent="simple_select"]
+sprite_frames = SubResource("SpriteFrames_0wb2l")
+
+[node name="temp_icon" type="ColorRect" parent="simple_select/icon"]
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="group_two" type="Node2D" parent="simple_select" node_paths=PackedStringArray("options")]
+visible = false
+position = Vector2(36, 122)
+script = ExtResource("2_vk26y")
+options = [NodePath("option"), NodePath("option2"), NodePath("option3")]
+
+[node name="option" type="Node2D" parent="simple_select/group_two" node_paths=PackedStringArray("icon_point", "option_label", "down_option")]
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+down_option = NodePath("../option2")
+
+[node name="option_text" type="Label" parent="simple_select/group_two/option"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "option one"
+
+[node name="icon_point" type="Node2D" parent="simple_select/group_two/option"]
+position = Vector2(-7, 8)
+
+[node name="option2" type="Node2D" parent="simple_select/group_two" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(2, 19)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+up_option = NodePath("../option")
+down_option = NodePath("../option3")
+
+[node name="option_text" type="Label" parent="simple_select/group_two/option2"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "option two"
+
+[node name="icon_point" type="Node2D" parent="simple_select/group_two/option2"]
+position = Vector2(-7, 8)
+
+[node name="option3" type="Node2D" parent="simple_select/group_two" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
+position = Vector2(0, 38)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+up_option = NodePath("../option2")
+
+[node name="option_text" type="Label" parent="simple_select/group_two/option3"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+text = "option three"
+
+[node name="icon_point" type="Node2D" parent="simple_select/group_two/option3"]
+position = Vector2(-7, 8)
+
+[node name="money" type="Label" parent="."]
+offset_left = 107.0
+offset_top = 5.0
+offset_right = 124.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 5
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="money_sprite" type="AnimatedSprite2D" parent="money"]
+position = Vector2(-3, 3)
+sprite_frames = SubResource("SpriteFrames_oqri6")
+animation = &"chaching"
+frame_progress = 0.756182
+
+[connection signal="activated" from="simple_select/group_one/velocity_option" to="." method="_on_velocity_option_activated"]
+[connection signal="activated" from="simple_select/group_one/fire_rate_option" to="." method="_on_fire_rate_option_activated"]
+[connection signal="activated" from="simple_select/group_one/option_three" to="." method="_on_option_three_activated"]
