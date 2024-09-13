@@ -15,7 +15,9 @@ class_name simple_select
 @export var active_group : group
 
 #icon marking currently selected option
-@export var icon : Node2D
+@export var icon : AnimatedSprite2D
+
+signal moved
 
 func _ready():
 	icon.global_position = active_option.icon_point.global_position
@@ -25,6 +27,7 @@ func _input(event):
 
 func collect_input(e : InputEvent):
 	if e.is_action_pressed("action"):
+		print("option activate")
 		active_option.activate()
 		if active_option.target_group:
 			switch_group(active_option.target_group)
@@ -40,7 +43,9 @@ func collect_input(e : InputEvent):
 func select_this(no : option):
 	if no:
 		active_option = no
+		active_option.selected.emit()
 		icon.global_position = active_option.icon_point.global_position
+		moved.emit()
 	
 func switch_group(ng : group):
 	active_group.set_visible(false)

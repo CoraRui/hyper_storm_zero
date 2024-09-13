@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://dd3x26y6t4to4"]
+
+[ext_resource type="Script" path="res://scene_manager/scenes/levels/level_two/level_two.gd" id="1_cp33b"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_pmrw3"]
+[ext_resource type="PackedScene" uid="uid://v0ig1j0vucnl" path="res://enemy_loader/node/enemy_module/enemy_module.tscn" id="3_un6i6"]
+[ext_resource type="Script" path="res://enemy_loader/resources/enemy_link.gd" id="4_40lsq"]
+[ext_resource type="Script" path="res://enemy_loader/resources/enemy_command.gd" id="4_wmd1h"]
+
+[sub_resource type="Resource" id="Resource_s1nb6"]
+script = ExtResource("2_pmrw3")
+scene_name = "hangar_menu"
+
+[sub_resource type="Resource" id="Resource_s21sn"]
+script = ExtResource("4_40lsq")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_4g3j3"]
+script = ExtResource("4_wmd1h")
+comm = 0
+par = {
+"enemy": SubResource("Resource_s21sn"),
+"position": Vector2i(60, 20)
+}
+
+[sub_resource type="Resource" id="Resource_6hpuf"]
+script = ExtResource("4_40lsq")
+enemy_name = "bub_jitter_down"
+
+[sub_resource type="Resource" id="Resource_exino"]
+script = ExtResource("4_wmd1h")
+comm = 0
+par = {
+"enemy": SubResource("Resource_6hpuf"),
+"position": Vector2i(60, 0)
+}
+
+[sub_resource type="Resource" id="Resource_mavct"]
+script = ExtResource("4_wmd1h")
+comm = 1
+par = {
+"time": 320.0
+}
+
+[node name="level_two" type="Node2D" node_paths=PackedStringArray("clear_label", "next_stage_timer")]
+script = ExtResource("1_cp33b")
+clear_label = NodePath("clear_label")
+next_stage_timer = NodePath("next_stage")
+upgrade_scene = SubResource("Resource_s1nb6")
+
+[node name="level_two_label" type="Label" parent="."]
+offset_left = 22.0
+offset_top = 76.0
+offset_right = 94.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 10
+text = "level_two"
+
+[node name="clear_label" type="Label" parent="."]
+visible = false
+offset_left = 13.0
+offset_top = 20.0
+offset_right = 109.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 15
+text = "CLEAR!!!"
+
+[node name="next_stage" type="Timer" parent="."]
+
+[node name="enemy_module" parent="." instance=ExtResource("3_un6i6")]
+send_onready = true
+enemy_arr = Array[ExtResource("4_wmd1h")]([SubResource("Resource_4g3j3"), SubResource("Resource_exino"), SubResource("Resource_mavct")])
+
+[connection signal="timeout" from="next_stage" to="." method="_on_next_stage_timeout"]

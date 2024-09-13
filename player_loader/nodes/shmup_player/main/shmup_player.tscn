@@ -1,10 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsil1jov41qpi"]
+[gd_scene load_steps=19 format=3 uid="uid://bsil1jov41qpi"]
 
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/main/shmup_player.gd" id="1_lpbq4"]
 [ext_resource type="Texture2D" uid="uid://kw23a1ib3sp2" path="res://raw_assets/test_sprites/test_ship/rocket.png" id="2_nmlhc"]
 [ext_resource type="Script" path="res://movement+collision/collision_box/collision_box.gd" id="3_xjy7j"]
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/laser_gun/laser_gun.gd" id="4_8080f"]
 [ext_resource type="PackedScene" uid="uid://ntkyekpbo2t5" path="res://player_loader/nodes/shmup_player/laser_gun/laser_beam.tscn" id="5_kaafp"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="6_g6728"]
+[ext_resource type="Script" path="res://player_loader/nodes/shmup_player/main/power_bomb.gd" id="7_k5nq3"]
+[ext_resource type="Texture2D" uid="uid://cjtyelmpyd3f4" path="res://raw_assets/test_sprites/test_ship/shield.png" id="8_4lljn"]
+[ext_resource type="Texture2D" uid="uid://cavdoih4x06e2" path="res://raw_assets/test_sprites/none.png" id="8_haaj8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cslgb"]
 atlas = ExtResource("2_nmlhc")
@@ -33,15 +37,42 @@ size = Vector2(2, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ny2fv"]
 size = Vector2(2, 10)
 
+[sub_resource type="Resource" id="Resource_jgfqe"]
+script = ExtResource("6_g6728")
+sf_name = "player_shoot"
+sf_vol = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctush"]
 size = Vector2(7, 10)
 
-[node name="shmup_player" type="Node2D" node_paths=PackedStringArray("m_node", "player_anim", "col_box")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mlkrp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_haaj8")
+}],
+"loop": true,
+"name": &"no_shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_4lljn")
+}],
+"loop": true,
+"name": &"shield",
+"speed": 5.0
+}]
+
+[node name="shmup_player" type="Node2D" node_paths=PackedStringArray("m_node", "col_box", "shield_anim", "player_anim", "laser_gi", "power_bi")]
 script = ExtResource("1_lpbq4")
 m_node = NodePath(".")
 v_skip = Vector2i(1, 1)
-player_anim = NodePath("player_anim")
 col_box = NodePath("collision_box")
+shield_anim = NodePath("shield_anim")
+player_anim = NodePath("player_anim")
+laser_gi = NodePath("laser_gun")
+power_bi = NodePath("power_bomb")
 
 [node name="player_anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0mwtu")
@@ -90,6 +121,7 @@ shape = SubResource("RectangleShape2D_ny2fv")
 script = ExtResource("4_8080f")
 bullet_ref = ExtResource("5_kaafp")
 bullet_point = NodePath("bullet_point")
+shoot_sf = SubResource("Resource_jgfqe")
 
 [node name="bullet_point" type="Node2D" parent="laser_gun"]
 
@@ -99,6 +131,15 @@ collision_mask = 2
 [node name="hitshape" type="CollisionShape2D" parent="hit_area"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_ctush")
+
+[node name="power_bomb" type="Node2D" parent="."]
+script = ExtResource("7_k5nq3")
+
+[node name="shield_anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mlkrp")
+animation = &"no_shield"
+autoplay = "no_shield"
+offset = Vector2(0.5, 0)
 
 [connection signal="area_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_entered"]
 [connection signal="area_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_exited"]

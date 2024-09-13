@@ -1,0 +1,256 @@
+[gd_scene load_steps=32 format=3 uid="uid://c0tw3tftck06l"]
+
+[ext_resource type="Script" path="res://scene_manager/scenes/levels/level_one.gd" id="1_g7ush"]
+[ext_resource type="PackedScene" uid="uid://v0ig1j0vucnl" path="res://enemy_loader/node/enemy_module/enemy_module.tscn" id="1_t1tsm"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_1dcqm"]
+[ext_resource type="Script" path="res://enemy_loader/resources/enemy_link.gd" id="2_bjlqp"]
+[ext_resource type="Script" path="res://enemy_loader/resources/enemy_command.gd" id="2_c85y4"]
+[ext_resource type="Script" path="res://movement+collision/collision_box/collision_box.gd" id="5_px5na"]
+
+[sub_resource type="Resource" id="Resource_jxjii"]
+script = ExtResource("2_1dcqm")
+scene_name = "hangar_menu"
+
+[sub_resource type="Resource" id="Resource_dwt04"]
+script = ExtResource("2_bjlqp")
+enemy_name = "bub_jitter_down"
+
+[sub_resource type="Resource" id="Resource_sg30c"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_dwt04"),
+"position": Vector2i(90, 20)
+}
+
+[sub_resource type="Resource" id="Resource_ufwdv"]
+script = ExtResource("2_bjlqp")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_u0c8p"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_ufwdv"),
+"position": Vector2i(90, -16)
+}
+
+[sub_resource type="Resource" id="Resource_t0fg3"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_ufwdv"),
+"position": Vector2i(90, -48)
+}
+
+[sub_resource type="Resource" id="Resource_4bpcw"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_ufwdv"),
+"position": Vector2i(90, -80)
+}
+
+[sub_resource type="Resource" id="Resource_ci8e8"]
+script = ExtResource("2_c85y4")
+comm = 1
+par = {
+"time": 2.0
+}
+
+[sub_resource type="Resource" id="Resource_otui2"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_ufwdv"),
+"position": Vector2i(30, -16)
+}
+
+[sub_resource type="Resource" id="Resource_2ta6g"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_ufwdv"),
+"position": Vector2i(30, -48)
+}
+
+[sub_resource type="Resource" id="Resource_qx2kl"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_ufwdv"),
+"position": Vector2i(30, -80)
+}
+
+[sub_resource type="Resource" id="Resource_3mdqr"]
+script = ExtResource("2_c85y4")
+comm = 1
+par = {
+"time": 2.0
+}
+
+[sub_resource type="Resource" id="Resource_evg12"]
+script = ExtResource("2_bjlqp")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_7trpn"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_evg12"),
+"position": Vector2i(20, -16)
+}
+
+[sub_resource type="Resource" id="Resource_qw4o0"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_evg12"),
+"position": Vector2i(100, -16)
+}
+
+[sub_resource type="Resource" id="Resource_c48sd"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_evg12"),
+"position": Vector2i(60, -48)
+}
+
+[sub_resource type="Resource" id="Resource_urxbw"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_evg12"),
+"position": Vector2i(100, -80)
+}
+
+[sub_resource type="Resource" id="Resource_i006f"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_evg12"),
+"position": Vector2i(20, -80)
+}
+
+[sub_resource type="Resource" id="Resource_crd8d"]
+script = ExtResource("2_c85y4")
+comm = 1
+par = {
+"time": 2.0
+}
+
+[sub_resource type="Resource" id="Resource_xm7fi"]
+script = ExtResource("2_bjlqp")
+enemy_name = "bub_jitter_down"
+
+[sub_resource type="Resource" id="Resource_j0qms"]
+script = ExtResource("2_c85y4")
+comm = 0
+par = {
+"enemy": SubResource("Resource_xm7fi"),
+"position": Vector2i(60, -16)
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grlkt"]
+size = Vector2(150, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_som5s"]
+size = Vector2(131, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0iv73"]
+size = Vector2(6, 187)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ny2fv"]
+size = Vector2(6, 202)
+
+[node name="level_one" type="Node2D" node_paths=PackedStringArray("clear_label", "next_stage_timer")]
+script = ExtResource("1_g7ush")
+clear_label = NodePath("clear")
+next_stage_timer = NodePath("next_stage")
+next_scene = SubResource("Resource_jxjii")
+
+[node name="enemy_module" parent="." instance=ExtResource("1_t1tsm")]
+send_onready = true
+enemy_arr = Array[ExtResource("2_c85y4")]([SubResource("Resource_sg30c"), SubResource("Resource_u0c8p"), SubResource("Resource_t0fg3"), SubResource("Resource_4bpcw"), SubResource("Resource_ci8e8"), SubResource("Resource_otui2"), SubResource("Resource_2ta6g"), SubResource("Resource_qx2kl"), SubResource("Resource_3mdqr"), SubResource("Resource_7trpn"), SubResource("Resource_qw4o0"), SubResource("Resource_c48sd"), SubResource("Resource_urxbw"), SubResource("Resource_i006f"), SubResource("Resource_crd8d"), SubResource("Resource_j0qms")])
+
+[node name="level_one" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 124.0
+offset_right = 103.0
+offset_bottom = 144.0
+theme_override_font_sizes/font_size = 10
+text = "level_one
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="collision_box" type="Node2D" parent="." node_paths=PackedStringArray("up_area", "down_area", "left_area", "right_area")]
+script = ExtResource("5_px5na")
+up_area = NodePath("up_area")
+down_area = NodePath("down_area")
+left_area = NodePath("left_area")
+right_area = NodePath("right_area")
+
+[node name="up_area" type="Area2D" parent="collision_box"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="up_shape" type="CollisionShape2D" parent="collision_box/up_area"]
+position = Vector2(67, -3)
+shape = SubResource("RectangleShape2D_grlkt")
+
+[node name="down_area" type="Area2D" parent="collision_box"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="down_shape" type="CollisionShape2D" parent="collision_box/down_area"]
+position = Vector2(59.5, 176.5)
+shape = SubResource("RectangleShape2D_som5s")
+
+[node name="left_area" type="Area2D" parent="collision_box"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="left_shape" type="CollisionShape2D" parent="collision_box/left_area"]
+position = Vector2(-3, 86.5)
+shape = SubResource("RectangleShape2D_0iv73")
+
+[node name="right_area" type="Area2D" parent="collision_box"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="right_shape" type="CollisionShape2D" parent="collision_box/right_area"]
+position = Vector2(128, 80)
+shape = SubResource("RectangleShape2D_ny2fv")
+
+[node name="clear" type="Label" parent="."]
+visible = false
+offset_left = 16.0
+offset_top = 22.0
+offset_right = 112.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 15
+text = "CLEAR!!!"
+
+[node name="next_stage" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_entered"]
+[connection signal="area_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_exited"]
+[connection signal="body_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_body_entered"]
+[connection signal="body_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_body_exited"]
+[connection signal="area_entered" from="collision_box/down_area" to="collision_box" method="_on_down_area_area_entered"]
+[connection signal="area_exited" from="collision_box/down_area" to="collision_box" method="_on_down_area_area_exited"]
+[connection signal="body_entered" from="collision_box/down_area" to="collision_box" method="_on_down_area_body_entered"]
+[connection signal="body_exited" from="collision_box/down_area" to="collision_box" method="_on_down_area_body_exited"]
+[connection signal="area_entered" from="collision_box/left_area" to="collision_box" method="_on_left_area_area_entered"]
+[connection signal="area_exited" from="collision_box/left_area" to="collision_box" method="_on_left_area_area_exited"]
+[connection signal="body_entered" from="collision_box/left_area" to="collision_box" method="_on_left_area_body_entered"]
+[connection signal="body_exited" from="collision_box/left_area" to="collision_box" method="_on_left_area_body_exited"]
+[connection signal="area_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_area_entered"]
+[connection signal="area_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_area_exited"]
+[connection signal="body_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_entered"]
+[connection signal="body_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_exited"]
+[connection signal="timeout" from="next_stage" to="." method="_on_next_stage_timeout"]

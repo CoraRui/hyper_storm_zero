@@ -15,6 +15,8 @@ var shot_frame : int = 0				#if greater than 0, shot_delay isn't over
 @export var shot_rem : int = 3;			#shots remaining
 @export var shot_count : int = 3		#max number of shots out at once
 
+@export var shoot_sf : sf_link
+
 #before, i had the bullet trigger a function in the laser gun to restore the bullet.
 #i could just have references in here then check them. but that sounds inefficient.
 #so yeah. from bullet

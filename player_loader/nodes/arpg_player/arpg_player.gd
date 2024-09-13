@@ -4,7 +4,6 @@ class_name arpg_player
 #movement script/player object for a typical arpg player.
 #4 directional movement, collision box for walls, sword eventually
 
-#TODO: add sword functionality
 
 
 @export var m_node : Node2D

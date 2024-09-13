@@ -21,34 +21,23 @@ class_name debug
 
 func _input(event):
 	if event.is_action_pressed("db_one"):
-		var sf : sf_link = sf_link.new()
-		sf.sf_name = "blip"
-		sfx_pi.play_effect(sf)
-	if event.is_action_pressed("db_two"):
-		var t : music_link = music_link.new()
-		t.name = "tension"
-		music_pi.play_track(t)
-	if event.is_action_pressed("db_three"):
 		save_mi.save_game()
-	if event.is_action_pressed("db_four"):
-		save_mi.load_game()
-	if event.is_action_pressed("db_five"):
+	if event.is_action_pressed("db_two"):
 		save_mi.file_01.print_file()
+	if event.is_action_pressed("db_three"):
+		save_mi.load_game()
+	if event.is_action_pressed("db_four"):
+		save_mi.file_01.block_dict[Vector2i(0,0)] = "line_shield_block"
+	if event.is_action_pressed("db_five"):
+		save_mi.file_01.block_dict[Vector2i(0,0)] = "line_rate_block"
 	if event.is_action_pressed("db_six"):
-		save_mi.file_01.health = randi_range(0,20)
+		pass
 	if event.is_action_pressed("db_seven"):
-		var test_scene : scene_link = scene_link.new()
-		test_scene.scene_name = "test_scene"
-		scene_mi.load_scene(test_scene)
+		pass
 	if event.is_action_pressed("db_eight"):
-		var test_scene : scene_link = scene_link.new()
-		test_scene.scene_name = "test_scene_2"
-		scene_mi.load_scene(test_scene)
+		pass
 	if event.is_action_pressed("db_nine"):
-		if !player_li.player_ins:
-			player_li.load_player()
-		else:
-			player_li.unload_player()
+		pass
 		
 func db_print(m : String, t : String) -> void:
 	#prints an error message, but only if the tag is active.

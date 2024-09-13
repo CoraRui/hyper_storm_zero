@@ -1,10 +1,6 @@
 extends Node2D
 class_name simple_bullet
 
-#TODO: needs more work i think idk
-#TODO: when spawning from the enemy loader script, i want some way to manipulate simple bullet.
-#or i can just have a few different versions of the enemy. which would probably be easier.
-
 
 #so i fixed the acceleration! by removing it... i just dont think it would work with the whole frame skipping thing.
 #so ill just do the accelerations manually by changing the velocity at certain points.
@@ -25,7 +21,7 @@ var fsli : int = 0
 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move()
 	count_frames()
 

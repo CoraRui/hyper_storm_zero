@@ -4,10 +4,6 @@ class_name music_player
 #contains functions to play music using the music_link resource type.
 #plays one track at a time. playing a new track will start a different track.
 
-#TODO: needs more work
-#TODO: transitions between songs.
-
-
 #audiostreamplayer node that plays the music
 @export var stream_player : AudioStreamPlayer
 #array that holds all music tracks
@@ -18,13 +14,12 @@ class_name music_player
 @onready var debug_i : debug = get_node("/root/debug_auto")
 
 func play_track(ml : music_link) -> void:
-	#TODO: check for same track? maybe restart on same track should be a parameter...
-	#TODO: adjustment of volume/delay from music link
 	
 	var new_track : AudioStreamOggVorbis = find_track(ml).music_file
 	
 	if new_track != null && stream_player.stream != new_track :
 		stream_player.stream = new_track
+		stream_player.volume_db = ml.vol
 		stream_player.play()
 	else:
 		print("msuci player fucked up idk why")

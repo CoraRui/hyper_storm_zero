@@ -8,8 +8,7 @@ class_name save_manager
 #into it and just use that as the save file. but how many save files will there be? do i need separate save files for
 #multiple things? :I lets just figure out the basics first...
 
-#TODO: works well i think, just gotta double check make sure that i understand the file save locations well and
-#what i need to change in order to actually change save file values. and choose a cool filename lol
+#TODO: what should the initial save_file be?
 
 @export var file_01 : save_file			#main save file
 
@@ -22,13 +21,9 @@ class_name save_manager
 #endregion
 
 func _ready():
-	
+#	if !load_game():
+#		file_01 = save_file.new()
 	file_01 = save_file.new()
-	file_01.coins = 999
-	return
-	
-	if !load_game():
-		file_01 = save_file.new()
 		
 	
 func save_game() -> void:
@@ -59,8 +54,8 @@ func load_game() -> bool:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", dict_line, " at line ", json.get_error_line())
 		return false
 
-		# this is the dictionary loaded from the file i think???
-	var load_dict = json.get_data()
+	# this is the dictionary loaded from the file i think???
+	var load_dict : Dictionary = json.get_data()
 
 	file_01 = save_file.dict_to_file(load_dict)
 	

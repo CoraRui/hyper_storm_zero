@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://brslbx4b5ok0r"]
+
+[ext_resource type="Script" path="res://player_loader/nodes/shmup_player/laser_gun/laser_gun.gd" id="1_rs1ys"]
+[ext_resource type="PackedScene" uid="uid://ntkyekpbo2t5" path="res://player_loader/nodes/shmup_player/laser_gun/laser_beam.tscn" id="3_igs1b"]
+[ext_resource type="Script" path="res://player_loader/nodes/shmup_player/option/option_move.gd" id="3_u2iiq"]
+
+[node name="option_gun" type="Node2D"]
+script = ExtResource("3_u2iiq")
+
+[node name="bullet_point" type="Node2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="temp_body" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="laser_gun" type="Node2D" parent="." node_paths=PackedStringArray("bullet_point")]
+script = ExtResource("1_rs1ys")
+bullet_ref = ExtResource("3_igs1b")
+bullet_point = NodePath("../bullet_point")

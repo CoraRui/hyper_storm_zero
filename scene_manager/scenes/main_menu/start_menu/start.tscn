@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://gihp7u0yj5x0"]
+[gd_scene load_steps=12 format=3 uid="uid://gihp7u0yj5x0"]
 
 [ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="1_bn6g4"]
 [ext_resource type="Script" path="res://scene_manager/scenes/main_menu/start_menu/start.gd" id="1_mop4u"]
@@ -6,16 +6,26 @@
 [ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="3_kkgr4"]
 [ext_resource type="PackedScene" uid="uid://ctgfb3nn5ssjb" path="res://scene_manager/nodes/scene_module.tscn" id="4_xvi4m"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="5_6squo"]
+[ext_resource type="Texture2D" uid="uid://bn8jyw5nuv1n3" path="res://raw_assets/test_sprites/ui/icons/select_icon.png" id="6_iqwuo"]
 
 [sub_resource type="Resource" id="Resource_kduvt"]
 script = ExtResource("5_6squo")
-scene_name = "level_one"
+scene_name = "hangar_menu"
 
 [sub_resource type="Resource" id="Resource_cb8so"]
 script = ExtResource("5_6squo")
 scene_name = "settings"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0wb2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_iqwuo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Resource" id="Resource_80ng3"]
 script = ExtResource("5_6squo")
@@ -56,7 +66,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/start_option"]
-position = Vector2(-4, 3)
+position = Vector2(-7, 3)
 
 [node name="settings_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
 position = Vector2(39, 116)
@@ -78,7 +88,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/settings_option"]
-position = Vector2(2, 2)
+position = Vector2(-3, 2)
 
 [node name="quit_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
 position = Vector2(52, 134)
@@ -99,14 +109,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/quit_option"]
-position = Vector2(-4, 2)
+position = Vector2(-8, 2)
 
 [node name="icon" type="AnimatedSprite2D" parent="main_menu/simple_select"]
 sprite_frames = SubResource("SpriteFrames_0wb2l")
-
-[node name="temp_icon" type="ColorRect" parent="main_menu/simple_select/icon"]
-offset_right = 4.0
-offset_bottom = 4.0
+offset = Vector2(0.5, 0.5)
 
 [node name="scene_module" parent="main_menu" instance=ExtResource("4_xvi4m")]
 link = SubResource("Resource_80ng3")

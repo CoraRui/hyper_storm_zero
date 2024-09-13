@@ -2,6 +2,8 @@ extends Node2D
 class_name settings
 
 
+#TODO: master/music/sfx volume. idk what else.
+
 @export var start_link : scene_link
 
 #region autoloads
@@ -12,9 +14,6 @@ class_name settings
 
 func _ready():
 	pass
-
-
-
 
 func _on_back_activated():
 	scene_mi.load_scene(start_link)

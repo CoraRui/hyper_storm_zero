@@ -10,6 +10,7 @@ class_name level_one
 @onready var shmup_hi : shmup_health = get_node("/root/shmup_health_auto")
 @onready var scene_mi : scene_manager = get_node("/root/scene_manager_auto")
 @onready var enemy_li : enemy_loader = get_node("/root/enemy_loader_auto")
+@onready var save_mi : save_manager = get_node("/root/save_manager_auto")
 
 
 func _ready():
@@ -19,13 +20,18 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
+func _input(event):
+	if event.is_action_pressed("db_eight"):
+		level_clear()
 
 func level_clear() -> void:
 	clear_label.set_visible(true)
 	next_stage_timer.start()
+	save_mi.file_01.day += 1
+	
 
 
 func _on_next_stage_timeout():

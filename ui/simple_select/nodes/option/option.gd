@@ -29,6 +29,7 @@ func _ready():
 	pass
 
 func activate():
+	print(name)
 	activated.emit()
 
 

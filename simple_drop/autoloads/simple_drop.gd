@@ -9,10 +9,13 @@ class_name simple_drop
 
 @export var fail_drop : drop_ref
 
+
+
 func drop_item(n : String, p : Vector2i):
 	var new_drop : Node2D = find_drop(n).drop_scene.instantiate()
 	get_tree().get_root().add_child.call_deferred(new_drop)
 	new_drop.global_position = p
+	
 
 func find_drop(n : String) -> drop_ref:
 	#finds a drop by string. not doing a drop link cause i really dont think its that much.

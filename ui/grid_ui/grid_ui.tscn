@@ -1,0 +1,573 @@
+[gd_scene load_steps=11 format=3 uid="uid://c1kr574ap8rtw"]
+
+[ext_resource type="Script" path="res://ui/grid_ui/grid_ui.gd" id="1_wnhru"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_4fok3"]
+[ext_resource type="Texture2D" uid="uid://dyqejqipxq4on" path="res://raw_assets/test_sprites/ui/upgrade_grid.png" id="2_dlric"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="3_ibydn"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/group/group.gd" id="4_ttkj4"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="5_l2k15"]
+[ext_resource type="Texture2D" uid="uid://bn8jyw5nuv1n3" path="res://raw_assets/test_sprites/ui/icons/select_icon.png" id="7_pi0n1"]
+
+[sub_resource type="Resource" id="Resource_4y2gm"]
+script = ExtResource("2_4fok3")
+scene_name = "hangar_menu"
+
+[sub_resource type="Resource" id="Resource_85hg7"]
+script = ExtResource("2_4fok3")
+scene_name = "store_ui"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wb2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_pi0n1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="grid_ui" type="Node2D" node_paths=PackedStringArray("spare_grid", "block_grid", "main_origin", "sim_select", "top_origin", "grid_tutorial_label")]
+script = ExtResource("1_wnhru")
+spare_grid = NodePath("spare_grid")
+block_grid = NodePath("block_grid")
+main_origin = NodePath("grid_sprite/grid_origin")
+block_adj = Array[Array]([[false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, false]])
+sim_select = NodePath("simple_select")
+hangar_scene = SubResource("Resource_4y2gm")
+left_scene = SubResource("Resource_85hg7")
+top_origin = NodePath("top_origin")
+grid_tutorial_label = NodePath("grid_tutorial")
+
+[node name="grid_sprite" type="Sprite2D" parent="."]
+position = Vector2(63, 136)
+texture = ExtResource("2_dlric")
+
+[node name="grid_origin" type="Node2D" parent="grid_sprite"]
+position = Vector2(-40, -24)
+
+[node name="simple_select" type="Node2D" parent="." node_paths=PackedStringArray("active_option", "active_group", "icon")]
+script = ExtResource("3_ibydn")
+active_option = NodePath("upgrade_grid/left")
+active_group = NodePath("upgrade_grid")
+icon = NodePath("icon")
+
+[node name="upgrade_grid" type="Node2D" parent="simple_select" node_paths=PackedStringArray("options")]
+position = Vector2(36, 8)
+script = ExtResource("4_ttkj4")
+options = [NodePath("bottom/0x/option_0_0"), NodePath("bottom/0x/option_0_1"), NodePath("bottom/0x/option_0_2"), NodePath("bottom/0x/option_0_3"), NodePath("bottom/1x/option_1_0"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+
+[node name="left" type="Node2D" parent="simple_select/upgrade_grid" node_paths=PackedStringArray("icon_point", "option_label", "down_option", "right_option")]
+position = Vector2(-2, 2)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+down_option = NodePath("../top/spare_option_0_0")
+right_option = NodePath("../right")
+
+[node name="option_text" type="Label" parent="simple_select/upgrade_grid/left"]
+offset_right = 13.0
+offset_bottom = 7.0
+theme_override_font_sizes/font_size = 5
+text = "<--"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/left"]
+position = Vector2(-11, 1)
+
+[node name="right" type="Node2D" parent="simple_select/upgrade_grid" node_paths=PackedStringArray("icon_point", "option_label", "down_option", "left_option")]
+position = Vector2(44, 2)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+option_label = NodePath("option_text")
+down_option = NodePath("../top/spare_option_2_0")
+left_option = NodePath("../left")
+
+[node name="option_text" type="Label" parent="simple_select/upgrade_grid/right"]
+offset_right = 14.0
+offset_bottom = 6.0
+theme_override_font_sizes/font_size = 5
+text = "-->"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/right"]
+position = Vector2(18, 1)
+
+[node name="top" type="Node2D" parent="simple_select/upgrade_grid"]
+position = Vector2(18, -60)
+
+[node name="spare_option_0_0" type="Node2D" parent="simple_select/upgrade_grid/top" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "right_option")]
+position = Vector2(-25, 109)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../left")
+down_option = NodePath("../../bottom/0x/option_0_0")
+right_option = NodePath("../spare_option_1_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/top/spare_option_0_0"]
+position = Vector2(0, -11)
+
+[node name="spare_option_1_0" type="Node2D" parent="simple_select/upgrade_grid/top" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(10, 116)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../left")
+down_option = NodePath("../../bottom/2x/option_2_0")
+left_option = NodePath("../spare_option_0_0")
+right_option = NodePath("../spare_option_2_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/top/spare_option_1_0"]
+position = Vector2(0, -11)
+
+[node name="spare_option_2_0" type="Node2D" parent="simple_select/upgrade_grid/top" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option")]
+position = Vector2(45, 108)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../right")
+down_option = NodePath("../../bottom/5x/option_5_0")
+left_option = NodePath("../spare_option_1_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/top/spare_option_2_0"]
+position = Vector2(0, -11)
+
+[node name="bottom" type="Node2D" parent="simple_select/upgrade_grid"]
+
+[node name="0x" type="Node2D" parent="simple_select/upgrade_grid/bottom"]
+
+[node name="option_0_0" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "right_option")]
+position = Vector2(-13, 104)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../../top/spare_option_0_0")
+down_option = NodePath("../option_0_1")
+right_option = NodePath("../../1x/option_1_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x/option_0_0"]
+position = Vector2(0, -11)
+
+[node name="option_0_1" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "right_option")]
+position = Vector2(-13, 119)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_0_0")
+down_option = NodePath("../option_0_2")
+right_option = NodePath("../../1x/option_1_1")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x/option_0_1"]
+position = Vector2(0, -11)
+
+[node name="option_0_2" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "right_option")]
+position = Vector2(-13, 135)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_0_1")
+down_option = NodePath("../option_0_3")
+right_option = NodePath("../../1x/option_1_2")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x/option_0_2"]
+position = Vector2(0, -11)
+
+[node name="option_0_3" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x" node_paths=PackedStringArray("icon_point", "up_option", "right_option")]
+position = Vector2(-13, 152)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_0_2")
+right_option = NodePath("../../1x/option_1_3")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/0x/option_0_3"]
+position = Vector2(0, -11)
+
+[node name="1x" type="Node2D" parent="simple_select/upgrade_grid/bottom"]
+position = Vector2(16, 0)
+
+[node name="option_1_0" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 104)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../../top/spare_option_0_0")
+down_option = NodePath("../option_1_1")
+left_option = NodePath("../../0x/option_0_0")
+right_option = NodePath("../../2x/option_2_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x/option_1_0"]
+position = Vector2(0, -11)
+
+[node name="option_1_1" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 119)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_1_0")
+down_option = NodePath("../option_1_2")
+left_option = NodePath("../../0x/option_0_1")
+right_option = NodePath("../../2x/option_2_1")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x/option_1_1"]
+position = Vector2(0, -11)
+
+[node name="option_1_2" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 135)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_1_1")
+down_option = NodePath("../option_1_3")
+left_option = NodePath("../../0x/option_0_2")
+right_option = NodePath("../../2x/option_2_2")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x/option_1_2"]
+position = Vector2(0, -11)
+
+[node name="option_1_3" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x" node_paths=PackedStringArray("icon_point", "up_option", "left_option", "right_option")]
+position = Vector2(-13, 152)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_1_2")
+left_option = NodePath("../../0x/option_0_3")
+right_option = NodePath("../../2x/option_2_3")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/1x/option_1_3"]
+position = Vector2(0, -11)
+
+[node name="2x" type="Node2D" parent="simple_select/upgrade_grid/bottom"]
+position = Vector2(33, 0)
+
+[node name="option_2_0" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 104)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../../top/spare_option_1_0")
+down_option = NodePath("../option_2_1")
+left_option = NodePath("../../1x/option_1_0")
+right_option = NodePath("../../3x/option_3_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x/option_2_0"]
+position = Vector2(0, -11)
+
+[node name="option_2_1" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 119)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_2_0")
+down_option = NodePath("../option_2_2")
+left_option = NodePath("../../1x/option_1_1")
+right_option = NodePath("../../3x/option_3_1")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x/option_2_1"]
+position = Vector2(0, -11)
+
+[node name="option_2_2" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 135)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_2_1")
+down_option = NodePath("../option_2_3")
+left_option = NodePath("../../1x/option_1_2")
+right_option = NodePath("../../3x/option_3_2")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x/option_2_2"]
+position = Vector2(0, -11)
+
+[node name="option_2_3" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x" node_paths=PackedStringArray("icon_point", "up_option", "left_option", "right_option")]
+position = Vector2(-13, 152)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_2_2")
+left_option = NodePath("../../1x/option_1_3")
+right_option = NodePath("../../3x/option_3_3")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/2x/option_2_3"]
+position = Vector2(0, -11)
+
+[node name="3x" type="Node2D" parent="simple_select/upgrade_grid/bottom"]
+position = Vector2(48, 0)
+
+[node name="option_3_0" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 104)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../../top/spare_option_1_0")
+down_option = NodePath("../option_3_1")
+left_option = NodePath("../../2x/option_2_0")
+right_option = NodePath("../../4x/option_4_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x/option_3_0"]
+position = Vector2(0, -11)
+
+[node name="option_3_1" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 119)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_3_0")
+down_option = NodePath("../option_3_2")
+left_option = NodePath("../../2x/option_2_1")
+right_option = NodePath("../../4x/option_4_1")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x/option_3_1"]
+position = Vector2(0, -11)
+
+[node name="option_3_2" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 135)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_3_1")
+down_option = NodePath("../option_3_3")
+left_option = NodePath("../../2x/option_2_2")
+right_option = NodePath("../../4x/option_4_2")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x/option_3_2"]
+position = Vector2(0, -11)
+
+[node name="option_3_3" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x" node_paths=PackedStringArray("icon_point", "up_option", "left_option", "right_option")]
+position = Vector2(-13, 152)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_3_2")
+left_option = NodePath("../../2x/option_2_3")
+right_option = NodePath("../../4x/option_4_3")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/3x/option_3_3"]
+position = Vector2(0, -11)
+
+[node name="4x" type="Node2D" parent="simple_select/upgrade_grid/bottom"]
+position = Vector2(65, 0)
+
+[node name="option_4_0" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 104)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../../top/spare_option_2_0")
+down_option = NodePath("../option_4_1")
+left_option = NodePath("../../3x/option_3_0")
+right_option = NodePath("../../5x/option_5_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x/option_4_0"]
+position = Vector2(0, -11)
+
+[node name="option_4_1" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 119)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_4_0")
+down_option = NodePath("../option_4_2")
+left_option = NodePath("../../3x/option_3_1")
+right_option = NodePath("../../5x/option_5_1")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x/option_4_1"]
+position = Vector2(0, -11)
+
+[node name="option_4_2" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option", "right_option")]
+position = Vector2(-13, 135)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_4_1")
+down_option = NodePath("../option_4_3")
+left_option = NodePath("../../3x/option_3_2")
+right_option = NodePath("../../5x/option_5_2")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x/option_4_2"]
+position = Vector2(0, -11)
+
+[node name="option_4_3" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x" node_paths=PackedStringArray("icon_point", "up_option", "left_option", "right_option")]
+position = Vector2(-13, 152)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_4_2")
+left_option = NodePath("../../3x/option_3_3")
+right_option = NodePath("../../5x/option_5_3")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/4x/option_4_3"]
+position = Vector2(0, -11)
+
+[node name="5x" type="Node2D" parent="simple_select/upgrade_grid/bottom"]
+position = Vector2(80, 0)
+
+[node name="option_5_0" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option")]
+position = Vector2(-13, 104)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../../../top/spare_option_2_0")
+down_option = NodePath("../option_5_1")
+left_option = NodePath("../../4x/option_4_0")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x/option_5_0"]
+position = Vector2(0, -11)
+
+[node name="option_5_1" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option")]
+position = Vector2(-13, 119)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_5_0")
+down_option = NodePath("../option_5_2")
+left_option = NodePath("../../4x/option_4_1")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x/option_5_1"]
+position = Vector2(0, -11)
+
+[node name="option_5_2" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x" node_paths=PackedStringArray("icon_point", "up_option", "down_option", "left_option")]
+position = Vector2(-13, 135)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_5_1")
+down_option = NodePath("../option_5_3")
+left_option = NodePath("../../4x/option_4_2")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x/option_5_2"]
+position = Vector2(0, -11)
+
+[node name="option_5_3" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x" node_paths=PackedStringArray("icon_point", "up_option", "left_option")]
+position = Vector2(-13, 152)
+script = ExtResource("5_l2k15")
+icon_point = NodePath("icon_point")
+up_option = NodePath("../option_5_2")
+left_option = NodePath("../../4x/option_4_3")
+
+[node name="icon_point" type="Node2D" parent="simple_select/upgrade_grid/bottom/5x/option_5_3"]
+position = Vector2(0, -11)
+
+[node name="icon" type="AnimatedSprite2D" parent="simple_select"]
+z_index = 15
+sprite_frames = SubResource("SpriteFrames_0wb2l")
+offset = Vector2(0.5, 0.5)
+
+[node name="spare_grid" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="spare_grid"]
+
+[node name="0" type="Node2D" parent="spare_grid/0"]
+
+[node name="1" type="Node2D" parent="spare_grid/0"]
+
+[node name="2" type="Node2D" parent="spare_grid/0"]
+
+[node name="3" type="Node2D" parent="spare_grid/0"]
+
+[node name="1" type="Node2D" parent="spare_grid"]
+
+[node name="0" type="Node2D" parent="spare_grid/1"]
+
+[node name="1" type="Node2D" parent="spare_grid/1"]
+
+[node name="2" type="Node2D" parent="spare_grid/1"]
+
+[node name="3" type="Node2D" parent="spare_grid/1"]
+
+[node name="2" type="Node2D" parent="spare_grid"]
+
+[node name="0" type="Node2D" parent="spare_grid/2"]
+
+[node name="1" type="Node2D" parent="spare_grid/2"]
+
+[node name="2" type="Node2D" parent="spare_grid/2"]
+
+[node name="3" type="Node2D" parent="spare_grid/2"]
+
+[node name="3" type="Node2D" parent="spare_grid"]
+
+[node name="0" type="Node2D" parent="spare_grid/3"]
+
+[node name="1" type="Node2D" parent="spare_grid/3"]
+
+[node name="2" type="Node2D" parent="spare_grid/3"]
+
+[node name="3" type="Node2D" parent="spare_grid/3"]
+
+[node name="block_grid" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="block_grid"]
+
+[node name="0" type="Node2D" parent="block_grid/0"]
+
+[node name="1" type="Node2D" parent="block_grid/0"]
+
+[node name="2" type="Node2D" parent="block_grid/0"]
+
+[node name="3" type="Node2D" parent="block_grid/0"]
+
+[node name="4" type="Node2D" parent="block_grid/0"]
+
+[node name="5" type="Node2D" parent="block_grid/0"]
+
+[node name="1" type="Node2D" parent="block_grid"]
+
+[node name="0" type="Node2D" parent="block_grid/1"]
+
+[node name="1" type="Node2D" parent="block_grid/1"]
+
+[node name="2" type="Node2D" parent="block_grid/1"]
+
+[node name="3" type="Node2D" parent="block_grid/1"]
+
+[node name="4" type="Node2D" parent="block_grid/1"]
+
+[node name="5" type="Node2D" parent="block_grid/1"]
+
+[node name="2" type="Node2D" parent="block_grid"]
+
+[node name="0" type="Node2D" parent="block_grid/2"]
+
+[node name="1" type="Node2D" parent="block_grid/2"]
+
+[node name="2" type="Node2D" parent="block_grid/2"]
+
+[node name="3" type="Node2D" parent="block_grid/2"]
+
+[node name="4" type="Node2D" parent="block_grid/2"]
+
+[node name="5" type="Node2D" parent="block_grid/2"]
+
+[node name="3" type="Node2D" parent="block_grid"]
+
+[node name="0" type="Node2D" parent="block_grid/3"]
+
+[node name="1" type="Node2D" parent="block_grid/3"]
+
+[node name="2" type="Node2D" parent="block_grid/3"]
+
+[node name="3" type="Node2D" parent="block_grid/3"]
+
+[node name="4" type="Node2D" parent="block_grid/3"]
+
+[node name="5" type="Node2D" parent="block_grid/3"]
+
+[node name="top_origin" type="Node2D" parent="."]
+position = Vector2(29, 57)
+
+[node name="grid_tutorial" type="Label" parent="."]
+visible = false
+offset_left = 4.0
+offset_top = 77.0
+offset_right = 121.0
+offset_bottom = 97.0
+theme_override_font_sizes/font_size = 5
+text = "fit modules into ship grid to unlock/upgrade abilities"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="moved" from="simple_select" to="." method="_on_simple_select_moved"]
+[connection signal="activated" from="simple_select/upgrade_grid/left" to="." method="_on_left_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/right" to="." method="_on_right_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/top/spare_option_0_0" to="." method="_on_spare_option_0_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/top/spare_option_1_0" to="." method="_on_spare_option_1_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/top/spare_option_2_0" to="." method="_on_spare_option_2_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/0x/option_0_0" to="." method="_on_option_0_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/0x/option_0_1" to="." method="_on_option_0_1_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/0x/option_0_2" to="." method="_on_option_0_2_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/0x/option_0_3" to="." method="_on_option_0_3_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/1x/option_1_0" to="." method="_on_option_1_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/1x/option_1_1" to="." method="_on_option_1_1_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/1x/option_1_2" to="." method="_on_option_1_2_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/1x/option_1_3" to="." method="_on_option_1_3_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/2x/option_2_0" to="." method="_on_option_2_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/2x/option_2_1" to="." method="_on_option_2_1_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/2x/option_2_2" to="." method="_on_option_2_2_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/2x/option_2_3" to="." method="_on_option_2_3_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/3x/option_3_0" to="." method="_on_option_3_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/3x/option_3_1" to="." method="_on_option_3_1_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/3x/option_3_2" to="." method="_on_option_3_2_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/3x/option_3_3" to="." method="_on_option_3_3_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/4x/option_4_0" to="." method="_on_option_4_0_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/4x/option_4_1" to="." method="_on_option_4_1_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/4x/option_4_2" to="." method="_on_option_4_2_activated"]
+[connection signal="activated" from="simple_select/upgrade_grid/bottom/4x/option_4_3" to="." method="_on_option_4_3_activated"]

@@ -2,6 +2,8 @@ extends Node2D
 class_name start_menu
 
 
+#TODO: decide where the initial scene is. straight to battle? or start in hangar? idk
+
 @export var start_link : scene_link
 @export var settings_link : scene_link
 

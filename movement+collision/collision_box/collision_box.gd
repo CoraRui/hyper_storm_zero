@@ -1,7 +1,6 @@
 extends Node2D
 class_name collision_box
 
-#TODO: all good. just remember to make local and set layermask on start
 
 #this collision box should make collision between different objects a little easier.
 #not being able to use the entire object is annoying, but making it local shouldnt be that bad.

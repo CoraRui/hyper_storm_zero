@@ -3,6 +3,7 @@ class_name enemy_loader
 
 
 #TODO: add some functionality for looping enemy patterns
+#TODO: clear enemies on scene_change or in level script? maybe??
 
 #this autoload holds a bunch of references to enemies.
 #you know, im getting a lot of these like "assigns a bunch of nodes to a string then instantiates them"
@@ -25,7 +26,7 @@ class_name enemy_loader
 #next event, those are commands that id want to be a part of the array.
 #so i think the string dict thing is pretty elegant.
 
-enum EComm { SPAWN_ENEMY, DELAY_QUEUE_TIME, }
+enum EComm { SPAWN_ENEMY, DELAY_QUEUE_TIME, GO_TO_INDEX}
 
 @export var enemy_arr : Array[enemy_reference]				#list of enemy types
 @export var fail_ref : enemy_reference
@@ -45,9 +46,7 @@ signal queue_finish
 
 func execute_command():
 	#this function should check for all possible commands
-	print("queue index: ", queue_index)
 	if queue_index >= enemy_queue.size():
-		debug_i.db_print("enemy queue finished", "emy_loa")
 		queue_finish.emit()
 		return
 	
@@ -58,6 +57,8 @@ func execute_command():
 			spawn_enemy(comm.par)
 		EComm.DELAY_QUEUE_TIME:
 			delay_queue_time(comm.par)
+		EComm.GO_TO_INDEX:
+			go_to_index(comm.par)
 		_:
 			debug_i.db_print("enemy loader didn't recognize command", "emy_loa")
 	
@@ -73,7 +74,6 @@ func spawn_enemy(p : Dictionary) -> void:
 	#frames of code
 	
 	var new_enemy : Node2D
-	print("enemy spawn ran")
 	
 	if p.has("enemy"):
 		new_enemy = find_enemy(p["enemy"]).enemy_ref.instantiate()
@@ -93,6 +93,20 @@ func delay_queue_time(p : Dictionary) -> void:
 		queue_index += 1
 		execute_command()
 	
+
+func go_to_index(p : Dictionary) -> void:
+	#index - int holding the index to advance to.
+	#if holding an invalid index send an error message and go to zero.
+	if p.has("index"):
+		if enemy_queue.size() > p["index"]:
+			queue_index = p["index"]
+		else:
+			debug_i.db_print("go_to_index() ran with oob index. using zero", "emy_loa")
+			queue_index = 0
+	else:
+		debug_i.db_print("go_to_index() ran without and index. concerning", "emy_loa")
+
+
 func find_enemy(el : enemy_link) -> enemy_reference:
 	
 	for e in enemy_arr:
@@ -104,6 +118,7 @@ func find_enemy(el : enemy_link) -> enemy_reference:
 func send_pattern(ea : Array[enemy_command]) -> void:
 	#receives an enemy pattern and starts it
 	enemy_queue = ea
+	queue_index = 0
 	execute_command()
 
 func clear_enemies():

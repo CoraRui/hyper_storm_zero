@@ -3,7 +3,6 @@ class_name enemy_health
 
 
 #should contain max hp, hp, functions for damage, a couple of basic signals.
-#TODO: finalize so i can make it local, or find a way to change shape size without localizing
 
 @export var hp : int = 1
 
@@ -11,7 +10,6 @@ class_name enemy_health
 
 @export var enemy_node : Node2D				#reference to the node to free on death
 
-#TODO: add default sound and anim effects for enemy health
 
 @export var hit_sf : sf_link				#sf for taking damage
 
@@ -26,7 +24,7 @@ signal dead
 @onready var simple_di : simple_drop = get_node("/root/simple_drop_auto")
 
 
-func damage(dam : int):
+func damage(dam : int) -> void:
 	hp -= dam
 	
 	if hit_sf != null:
@@ -35,7 +33,7 @@ func damage(dam : int):
 	if hp <= 0:
 		die()
  
-func die():
+func die() -> void:
 	
 	if death_fx:
 		death_fx.pos = enemy_node.global_position
@@ -48,6 +46,5 @@ func die():
 	enemy_node.queue_free()
 
 
-func _on_hit_shape_area_entered(area):
-	#TODO: have some sort of reference to how much damage the player should be doing. save file?
+func _on_hit_shape_area_entered(_area):
 	damage(1)

@@ -3,7 +3,6 @@ class_name text_box
 
 #autoload with functions for displaying text
 
-#TODO: should be ok for now
 
 
 enum TComm  {OPEN_TEXT_BOX, CLOSE_TEXT_BOX, UPDATE_TEXT, CHANGE_COLOR, WAIT_FOR_ADVANCE,
@@ -82,7 +81,6 @@ func execute_command( c_set : command_set) -> void:
 		next_command()
 	
 func advance() -> void:
-	#TODO:just triggers the next command for now, but eventually there might be checks for when the player can advance text.
 	#like a time limit between skips,  or a character count minimum or something.
 	next_command()
 	

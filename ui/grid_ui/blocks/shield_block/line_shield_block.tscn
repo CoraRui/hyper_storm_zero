@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://b76p0l1ybryso"]
+
+[ext_resource type="Script" path="res://ui/grid_ui/blocks/block_node.gd" id="1_ka2nj"]
+[ext_resource type="Script" path="res://ui/grid_ui/resources/block.gd" id="2_enqgk"]
+[ext_resource type="Texture2D" uid="uid://cscdpsdmwofi1" path="res://raw_assets/test_sprites/ui/shield_block.png" id="3_me5ta"]
+
+[sub_resource type="Resource" id="Resource_dsghk"]
+script = ExtResource("2_enqgk")
+block_type = "shield_block"
+upgrade = 1
+grid_shape = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2)])
+block_value = 0
+
+[node name="line_shield_block" type="Node2D" node_paths=PackedStringArray("block_sprite")]
+script = ExtResource("1_ka2nj")
+block_info = SubResource("Resource_dsghk")
+block_sprite = NodePath("block_sprite")
+
+[node name="block_sprite" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+texture = ExtResource("3_me5ta")

@@ -3,9 +3,6 @@ class_name simple_fx
 
 #this autoload has a library of special effects kinda nodes on hand that it can spawn in using the
 #place_fx command. theyre usually just nodes... they'll be placed by position passed in.
-
-#TODO: need to add some default fx to this, other than that the fx will probably be made on the spot
-
 @export var fx_arr : Array[fx_ref]
 
 @export var fail_ref : fx_ref

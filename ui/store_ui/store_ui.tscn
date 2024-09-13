@@ -1,0 +1,204 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmqa1l5doqko5"]
+
+[ext_resource type="Script" path="res://ui/store_ui/store_ui.gd" id="1_k6r6k"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="2_kfwh7"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_kouue"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/group/group.gd" id="3_kwj65"]
+[ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="4_jt46v"]
+[ext_resource type="Texture2D" uid="uid://bmlldp8mfmjex" path="res://raw_assets/test_sprites/vending machine.png" id="6_5lgyo"]
+[ext_resource type="Texture2D" uid="uid://bn8jyw5nuv1n3" path="res://raw_assets/test_sprites/ui/icons/select_icon.png" id="6_vbusv"]
+
+[sub_resource type="Resource" id="Resource_dsdmt"]
+script = ExtResource("2_kouue")
+scene_name = "grid_menu"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqlnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vbusv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="store_ui" type="Node2D" node_paths=PackedStringArray("coins_label", "desc_label", "price_label", "have_label", "store_tutorial")]
+script = ExtResource("1_k6r6k")
+coins_label = NodePath("coins_label")
+desc_label = NodePath("desc_label")
+price_label = NodePath("price_label")
+have_label = NodePath("have_label")
+right_scene = SubResource("Resource_dsdmt")
+store_tutorial = NodePath("store_tutorial")
+
+[node name="simple_select" type="Node2D" parent="." node_paths=PackedStringArray("active_option", "active_group", "icon")]
+script = ExtResource("2_kfwh7")
+active_option = NodePath("items_group/right_option")
+active_group = NodePath("items_group")
+icon = NodePath("../icon_anim")
+
+[node name="items_group" type="Node2D" parent="simple_select"]
+script = ExtResource("3_kwj65")
+
+[node name="right_option" type="Node2D" parent="simple_select/items_group" node_paths=PackedStringArray("icon_point", "option_label", "down_option")]
+position = Vector2(87, 14)
+script = ExtResource("4_jt46v")
+icon_point = NodePath("right_ip")
+option_label = NodePath("right_label")
+down_option = NodePath("../overshield_option")
+
+[node name="right_label" type="Label" parent="simple_select/items_group/right_option"]
+offset_right = 18.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 5
+text = "-->"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="right_ip" type="Node2D" parent="simple_select/items_group/right_option"]
+position = Vector2(23, 4)
+
+[node name="overshield_option" type="Node2D" parent="simple_select/items_group" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(77, 68)
+script = ExtResource("4_jt46v")
+icon_point = NodePath("overshield_ip")
+option_label = NodePath("overshield_label")
+up_option = NodePath("../right_option")
+down_option = NodePath("../powerbomb_option")
+
+[node name="overshield_label" type="Label" parent="simple_select/items_group/overshield_option"]
+offset_right = 41.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 5
+text = "overshield"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="overshield_ip" type="Node2D" parent="simple_select/items_group/overshield_option"]
+position = Vector2(-7, 5)
+
+[node name="powerbomb_option" type="Node2D" parent="simple_select/items_group" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(76, 80)
+script = ExtResource("4_jt46v")
+icon_point = NodePath("powerbomb_ip")
+option_label = NodePath("powerbomb_label")
+up_option = NodePath("../overshield_option")
+down_option = NodePath("../laser_option_option")
+
+[node name="powerbomb_label" type="Label" parent="simple_select/items_group/powerbomb_option"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 5
+text = "power_bomb"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="powerbomb_ip" type="Node2D" parent="simple_select/items_group/powerbomb_option"]
+position = Vector2(-6, 6)
+
+[node name="laser_option_option" type="Node2D" parent="simple_select/items_group" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(77, 92)
+script = ExtResource("4_jt46v")
+icon_point = NodePath("laser_option_ip")
+option_label = NodePath("laser_option_label")
+up_option = NodePath("../powerbomb_option")
+down_option = NodePath("../gold_dog_option")
+
+[node name="laser_option_label" type="Label" parent="simple_select/items_group/laser_option_option"]
+offset_right = 18.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 5
+text = "laser_option"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="laser_option_ip" type="Node2D" parent="simple_select/items_group/laser_option_option"]
+position = Vector2(-7, 5)
+
+[node name="gold_dog_option" type="Node2D" parent="simple_select/items_group" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
+position = Vector2(77, 104)
+script = ExtResource("4_jt46v")
+icon_point = NodePath("gold_dog_ip")
+option_label = NodePath("gold_dog_label")
+up_option = NodePath("../laser_option_option")
+
+[node name="gold_dog_label" type="Label" parent="simple_select/items_group/gold_dog_option"]
+offset_right = 18.0
+offset_bottom = 13.0
+theme_override_font_sizes/font_size = 5
+text = "golden_dog"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gold_dog_ip" type="Node2D" parent="simple_select/items_group/gold_dog_option"]
+position = Vector2(-7, 5)
+
+[node name="icon_anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oqlnh")
+offset = Vector2(0.5, 0.5)
+
+[node name="price_label" type="Label" parent="."]
+offset_left = 102.0
+offset_top = 122.0
+offset_right = 119.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 5
+text = "---"
+vertical_alignment = 1
+
+[node name="desc_label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 134.0
+offset_right = 114.0
+offset_bottom = 187.0
+theme_override_font_sizes/font_size = 5
+text = "---"
+autowrap_mode = 2
+
+[node name="have_label" type="Label" parent="."]
+offset_left = 72.0
+offset_top = 122.0
+offset_right = 99.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 5
+text = "---"
+vertical_alignment = 1
+
+[node name="coins_label" type="Label" parent="."]
+offset_left = 105.0
+offset_top = 30.0
+offset_right = 122.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 5
+text = "20G"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="vending_sprite" type="Sprite2D" parent="."]
+position = Vector2(37, 65)
+texture = ExtResource("6_5lgyo")
+
+[node name="store_tutorial" type="Label" parent="."]
+visible = false
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 123.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 5
+text = "purchase modules for your ship"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="activated" from="simple_select/items_group/right_option" to="." method="_on_right_option_activated"]
+[connection signal="selected" from="simple_select/items_group/right_option" to="." method="_on_right_option_selected"]
+[connection signal="activated" from="simple_select/items_group/overshield_option" to="." method="_on_overshield_option_activated"]
+[connection signal="selected" from="simple_select/items_group/overshield_option" to="." method="_on_overshield_option_selected"]
+[connection signal="activated" from="simple_select/items_group/powerbomb_option" to="." method="_on_powerbomb_option_activated"]
+[connection signal="selected" from="simple_select/items_group/powerbomb_option" to="." method="_on_powerbomb_option_selected"]
+[connection signal="activated" from="simple_select/items_group/laser_option_option" to="." method="_on_laser_option_option_activated"]
+[connection signal="selected" from="simple_select/items_group/laser_option_option" to="." method="_on_laser_option_option_selected"]
+[connection signal="activated" from="simple_select/items_group/gold_dog_option" to="." method="_on_gold_dog_option_activated"]
+[connection signal="selected" from="simple_select/items_group/gold_dog_option" to="." method="_on_gold_dog_option_selected"]

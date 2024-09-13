@@ -69,7 +69,7 @@ text = "music"
 position = Vector2(-7, 8)
 
 [node name="back" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
-position = Vector2(153, 176)
+position = Vector2(88, 155)
 script = ExtResource("4_m56pt")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")

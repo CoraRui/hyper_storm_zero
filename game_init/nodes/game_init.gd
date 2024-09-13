@@ -4,6 +4,7 @@ extends Node2D
 #i feel like most of the time, all its ever going to do is use the scene manager to load the title/intro or whatever
 #the way you actually do that is just by manually writing things into this script using the autoloads or whatever else
 
+
 @export var init_scene : scene_link
 
 @onready var scene_mi : scene_manager = get_node("/root/scene_manager_auto")

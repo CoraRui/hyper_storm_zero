@@ -1,0 +1,41 @@
+
+
+Tuesday:
+	set up grid, upgrade shop, calendar(just advance to next day) and player system for upgrades, options, shields, fire rate boosts???
+	
+Wednesday:
+	enemy design, level design
+	
+Thursday
+	enemy design, level design
+	
+Friday
+	enemy design, level design
+
+Saturday
+	wrap up enemies and levels, end of game stuff
+	
+	
+	
+All To Do
+
+grid
+upgrade shop
+calendar
+player upgrade system
+add options, shields, fire rate boosts
+
+enemy design
+level design
+
+
+for the grid connections...
+
+icon points
+directionals
+option names in inspector
+
+
+if i have time...
+
+add a bunch of different modules to add in.
