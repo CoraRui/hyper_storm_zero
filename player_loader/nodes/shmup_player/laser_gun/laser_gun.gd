@@ -21,6 +21,8 @@ var shot_frame : int = 0				#if greater than 0, shot_delay isn't over
 #i could just have references in here then check them. but that sounds inefficient.
 #so yeah. from bullet
 
+@onready var sfx_pi : sfx_player = get_node("/root/sfx_player_auto")
+
 func _physics_process(_delta):
 	
 	if(Input.is_action_pressed("action_2")):
@@ -39,7 +41,7 @@ func shoot() -> void:
 	new_bullet.global_position = bullet_point.global_position
 	new_bullet.laser_bi = self
 	shot_frame = shot_delay
-	
+	sfx_pi.play_effect(shoot_sf)
 	shot_rem -= 1
 	
 

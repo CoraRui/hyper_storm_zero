@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgawkg4no48q3"]
+
+[ext_resource type="Script" path="res://enemy_loader/enemies/turret/turret.gd" id="1_i1aek"]
+[ext_resource type="PackedScene" uid="uid://dg706c3hqt05n" path="res://enemy_loader/enemies/turret/tbullet.tscn" id="2_wagv8"]
+[ext_resource type="Texture2D" uid="uid://dw16v1r5w4mef" path="res://raw_assets/test_sprites/turret/turret.png" id="2_xqanu"]
+[ext_resource type="PackedScene" uid="uid://pcv4ypit0wli" path="res://enemy_loader/node/enemy_health/enemy_health.tscn" id="4_eef7t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e304i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xqanu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="turret" type="Node2D" node_paths=PackedStringArray("head_node", "bp", "pin_timer")]
+script = ExtResource("1_i1aek")
+head_node = NodePath("head")
+bp = NodePath("head/bullet_point")
+pin_timer = NodePath("shoot_timer")
+tbull = ExtResource("2_wagv8")
+
+[node name="head" type="Node2D" parent="."]
+rotation = -1.5708
+
+[node name="head_sprite" type="AnimatedSprite2D" parent="head"]
+sprite_frames = SubResource("SpriteFrames_e304i")
+offset = Vector2(0, 0.5)
+
+[node name="bullet_point" type="Node2D" parent="head"]
+position = Vector2(-5.24537e-07, 12)
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="enemy_health" parent="." node_paths=PackedStringArray("enemy_node") instance=ExtResource("4_eef7t")]
+hp = 6
+mhp = 6
+enemy_node = NodePath("..")
+score_value = 150
+
+[node name="hit_shape" parent="enemy_health/hit_shape" index="0"]
+position = Vector2(0.5, 0)
+
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+
+[editable path="enemy_health"]

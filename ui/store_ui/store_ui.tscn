@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmqa1l5doqko5"]
+[gd_scene load_steps=16 format=3 uid="uid://cmqa1l5doqko5"]
 
 [ext_resource type="Script" path="res://ui/store_ui/store_ui.gd" id="1_k6r6k"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="2_kfwh7"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_kouue"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="3_1yrbs"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/group/group.gd" id="3_kwj65"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="4_jt46v"]
 [ext_resource type="Texture2D" uid="uid://bmlldp8mfmjex" path="res://raw_assets/test_sprites/vending machine.png" id="6_5lgyo"]
@@ -11,6 +12,31 @@
 [sub_resource type="Resource" id="Resource_dsdmt"]
 script = ExtResource("2_kouue")
 scene_name = "grid_menu"
+
+[sub_resource type="Resource" id="Resource_swi2k"]
+script = ExtResource("3_1yrbs")
+sf_name = "hurt"
+sf_vol = -4.0
+
+[sub_resource type="Resource" id="Resource_r31eo"]
+script = ExtResource("3_1yrbs")
+sf_name = "fire_rate_up"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_f1iy0"]
+script = ExtResource("3_1yrbs")
+sf_name = "firepower"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_uv1v3"]
+script = ExtResource("3_1yrbs")
+sf_name = "fire_rate_up"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_ts5o4"]
+script = ExtResource("3_1yrbs")
+sf_name = "ruff!:3"
+sf_vol = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oqlnh"]
 animations = [{
@@ -30,6 +56,11 @@ desc_label = NodePath("desc_label")
 price_label = NodePath("price_label")
 have_label = NodePath("have_label")
 right_scene = SubResource("Resource_dsdmt")
+too_poor_sf = SubResource("Resource_swi2k")
+shield_sf = SubResource("Resource_r31eo")
+powerbomb_sf = SubResource("Resource_f1iy0")
+option_sf = SubResource("Resource_uv1v3")
+dog_sf = SubResource("Resource_ts5o4")
 store_tutorial = NodePath("store_tutorial")
 
 [node name="simple_select" type="Node2D" parent="." node_paths=PackedStringArray("active_option", "active_group", "icon")]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dg706c3hqt05n"]
+
+[ext_resource type="Script" path="res://enemy_loader/enemies/turret/tbullet.gd" id="1_h8dh7"]
+[ext_resource type="Texture2D" uid="uid://c3rlj6d44ihhe" path="res://raw_assets/test_sprites/turret/tbullet1.png" id="2_kqu52"]
+[ext_resource type="Texture2D" uid="uid://c8md1oyhkucqg" path="res://raw_assets/test_sprites/turret/tbullet2.png" id="3_ialgx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3gfr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kqu52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ialgx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_birh5"]
+size = Vector2(3, 3)
+
+[node name="tbullet" type="Node2D"]
+script = ExtResource("1_h8dh7")
+
+[node name="exp_timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="tb_anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t3gfr")
+autoplay = "default"
+frame_progress = 0.73674
+offset = Vector2(0.5, 0.5)
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="hitshape" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_birh5")
+
+[connection signal="timeout" from="exp_timer" to="." method="_on_exp_timer_timeout"]

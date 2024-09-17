@@ -18,11 +18,17 @@ var sp_index : int = 0						#index of the current sound player to be used
 
 @onready var debug_i : debug = get_node("/root/debug_auto")
 
-func play_effect(sl : sf_link) -> void:
+func play_effect(sl : sf_link, permanent : bool = false) -> void:
 	var sft : sf_track = find_sf(sl)
 	
 	if !sft:
 		return
+	
+	if permanent:
+		var new_player : AudioStreamPlayer = AudioStreamPlayer.new()
+		add_child(new_player)
+		new_player.stream = sft.sf_ref
+		new_player.play()
 	
 	sp_arr[sp_index].stream = sft.sf_ref
 	sp_arr[sp_index].volume_db = sl.sf_vol

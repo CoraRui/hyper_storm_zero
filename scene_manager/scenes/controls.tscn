@@ -1,0 +1,148 @@
+[gd_scene load_steps=10 format=3 uid="uid://hhuk8u85i2qd"]
+
+[ext_resource type="Script" path="res://scene_manager/scenes/controls.gd" id="1_0ow72"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_fqyri"]
+[ext_resource type="Texture2D" uid="uid://c4dgfxhwtgru6" path="res://raw_assets/test_sprites/enemies/bub/bub1.png" id="3_nq50r"]
+[ext_resource type="Texture2D" uid="uid://l4n7swt4fwvm" path="res://raw_assets/test_sprites/enemies/bub/bub2.png" id="4_a2jsy"]
+[ext_resource type="Texture2D" uid="uid://c8lsbywpjru35" path="res://raw_assets/test_sprites/pickups/coin/coin1.png" id="5_s25hy"]
+[ext_resource type="Texture2D" uid="uid://b4o2b58r72p0w" path="res://raw_assets/test_sprites/pickups/coin/coin2.png" id="6_o85fw"]
+
+[sub_resource type="Resource" id="Resource_oe6de"]
+script = ExtResource("2_fqyri")
+scene_name = "start"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ugmwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nq50r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a2jsy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1wal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_s25hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o85fw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="controls" type="Node2D" node_paths=PackedStringArray("return_label")]
+script = ExtResource("1_0ow72")
+return_label = NodePath("return to menu")
+start_link = SubResource("Resource_oe6de")
+
+[node name="return to menu" type="Label" parent="."]
+offset_left = 23.0
+offset_top = 159.0
+offset_right = 99.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 5
+text = "X to return to menu"
+
+[node name="return_timer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
+
+[node name="arrow to move" type="Label" parent="."]
+offset_left = -3.0
+offset_top = 7.0
+offset_right = 129.0
+offset_bottom = 22.0
+theme_override_font_sizes/font_size = 5
+text = "arrow keys - move ship
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="x to shoot" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 24.0
+offset_right = 99.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 5
+text = "X - shoot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="z to powerbomb" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 38.0
+offset_right = 115.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 5
+text = "Z - powerbomb(unlockable)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="f4 fullscreen" type="Label" parent="."]
+offset_left = 14.0
+offset_top = 52.0
+offset_right = 114.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 5
+text = "F4 - fullscreen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="esc quit" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 67.0
+offset_right = 111.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 5
+text = "ESC - hold to quit
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="synop" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 88.0
+offset_right = 122.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 5
+text = "every day, the aliens attack
+prepare your ship for battle
+use calendar to start next day
+good luck, pilot!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="bub" type="AnimatedSprite2D" parent="."]
+position = Vector2(7, 137)
+sprite_frames = SubResource("SpriteFrames_ugmwx")
+autoplay = "default"
+frame_progress = 0.683778
+offset = Vector2(0.5, 0.5)
+
+[node name="beat him up" type="Label" parent="bub"]
+offset_left = 6.0
+offset_top = -3.0
+offset_right = 114.0
+offset_bottom = 5.0
+theme_override_font_sizes/font_size = 5
+text = "<- drops money for upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="coin" type="AnimatedSprite2D" parent="bub"]
+position = Vector2(1, -10)
+sprite_frames = SubResource("SpriteFrames_f1wal")
+autoplay = "default"
+frame_progress = 0.544224
+
+[connection signal="timeout" from="return_timer" to="." method="_on_return_timer_timeout"]

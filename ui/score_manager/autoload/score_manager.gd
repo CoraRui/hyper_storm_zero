@@ -14,13 +14,13 @@ class_name score_manager
 
 @export var max_score : int = 999999		#max possible score
 
-
 @export var score_label : Label				#label containing score
 
 @export var max_digits : int = 10
 
-
-
+func update_score(sv : int) -> void:
+	score += sv
+	update_label()
 
 func update_label() -> void:
 	#this function should update the score label with the score value and properly space the zeroes.
@@ -36,3 +36,8 @@ func update_label() -> void:
 		zeroes -= 1
 	
 	score_label.text += str_score
+
+func clear() -> void:
+	#resets the score.
+	score = 0
+	update_label()

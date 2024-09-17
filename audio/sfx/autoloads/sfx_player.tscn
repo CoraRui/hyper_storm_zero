@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://7ogx55kxjhu7"]
+[gd_scene load_steps=47 format=3 uid="uid://7ogx55kxjhu7"]
 
 [ext_resource type="Script" path="res://audio/sfx/autoloads/sfx_player.gd" id="1_s02h6"]
 [ext_resource type="Script" path="res://audio/sfx/resources/sf_track.gd" id="2_uk66r"]
@@ -13,6 +13,15 @@
 [ext_resource type="AudioStream" uid="uid://tb2v1qibis4l" path="res://raw_assets/test_audio/sfx/ui/fire_rate_up.ogg" id="11_d2tik"]
 [ext_resource type="AudioStream" uid="uid://cabocfgw3s5qp" path="res://raw_assets/test_audio/sfx/ui/speed_up.ogg" id="12_l7qmb"]
 [ext_resource type="AudioStream" uid="uid://chn6y50l5cjo6" path="res://raw_assets/test_audio/sfx/ui/upgrade_firepower.ogg" id="13_bnnpq"]
+[ext_resource type="AudioStream" uid="uid://djcyhhi6w3cn0" path="res://raw_assets/test_audio/sfx/gabe.ogg" id="14_88wdk"]
+[ext_resource type="AudioStream" uid="uid://ed270sfr7ug8" path="res://raw_assets/test_audio/sfx/player_shoot.ogg" id="15_7ogp6"]
+[ext_resource type="AudioStream" uid="uid://d1x0edn37ols2" path="res://raw_assets/test_audio/sfx/power_boom.ogg" id="16_0rqos"]
+[ext_resource type="AudioStream" uid="uid://jxcc0ms2l1ge" path="res://raw_assets/test_audio/sfx/pick_up.ogg" id="17_2eo2m"]
+[ext_resource type="AudioStream" uid="uid://d3c7di6vcj0d3" path="res://raw_assets/test_audio/sfx/place.ogg" id="18_6wlca"]
+[ext_resource type="AudioStream" uid="uid://b0gcqwe22v0yj" path="res://raw_assets/test_audio/sfx/hurt.ogg" id="19_nr0n0"]
+[ext_resource type="AudioStream" uid="uid://dnefrp4im3nfs" path="res://raw_assets/test_audio/sfx/planet_death.ogg" id="20_7g1ml"]
+[ext_resource type="AudioStream" uid="uid://b5s5jietq3e8y" path="res://raw_assets/test_audio/sfx/chargeup.ogg" id="21_ecvy6"]
+[ext_resource type="AudioStream" uid="uid://cfdpofu8cnyr1" path="res://raw_assets/test_audio/sfx/blast.ogg" id="22_7vkgf"]
 
 [sub_resource type="Resource" id="Resource_txe5s"]
 script = ExtResource("2_uk66r")
@@ -69,6 +78,66 @@ script = ExtResource("2_uk66r")
 sf_name = "firepower_up"
 sf_ref = ExtResource("13_bnnpq")
 
+[sub_resource type="Resource" id="Resource_grv36"]
+script = ExtResource("2_uk66r")
+sf_name = "ruff!:3"
+sf_ref = ExtResource("14_88wdk")
+
+[sub_resource type="Resource" id="Resource_yjafv"]
+script = ExtResource("2_uk66r")
+sf_name = "player_shoot"
+sf_ref = ExtResource("15_7ogp6")
+
+[sub_resource type="Resource" id="Resource_o6fyq"]
+script = ExtResource("2_uk66r")
+sf_name = "power_boom"
+sf_ref = ExtResource("16_0rqos")
+
+[sub_resource type="Resource" id="Resource_sjtwy"]
+script = ExtResource("2_uk66r")
+sf_name = "pick_up"
+sf_ref = ExtResource("17_2eo2m")
+
+[sub_resource type="Resource" id="Resource_vbov0"]
+script = ExtResource("2_uk66r")
+sf_name = "put_down"
+sf_ref = ExtResource("18_6wlca")
+
+[sub_resource type="Resource" id="Resource_j0ksa"]
+script = ExtResource("2_uk66r")
+sf_name = "firepower"
+sf_ref = ExtResource("13_bnnpq")
+
+[sub_resource type="Resource" id="Resource_ti87e"]
+script = ExtResource("2_uk66r")
+sf_name = "fire_rate_up"
+sf_ref = ExtResource("11_d2tik")
+
+[sub_resource type="Resource" id="Resource_h4uam"]
+script = ExtResource("2_uk66r")
+sf_name = "hurt"
+sf_ref = ExtResource("19_nr0n0")
+
+[sub_resource type="Resource" id="Resource_y25j2"]
+script = ExtResource("2_uk66r")
+sf_name = "planet_death"
+sf_ref = ExtResource("20_7g1ml")
+
+[sub_resource type="Resource" id="Resource_u3sgc"]
+script = ExtResource("2_uk66r")
+sf_name = "chargeup"
+sf_ref = ExtResource("21_ecvy6")
+
+[sub_resource type="Resource" id="Resource_wedtv"]
+script = ExtResource("2_uk66r")
+sf_name = "blast"
+sf_ref = ExtResource("22_7vkgf")
+
+[sub_resource type="Resource" id="Resource_s64fx"]
+script = ExtResource("2_uk66r")
+sf_name = "hurt"
+sf_ref = ExtResource("19_nr0n0")
+
 [sub_resource type="Resource" id="Resource_0w0wl"]
 script = ExtResource("2_uk66r")
 sf_name = "fail_blip"
@@ -77,7 +146,7 @@ sf_ref = ExtResource("3_qditg")
 [node name="sfx_player" type="Node2D" node_paths=PackedStringArray("sp_arr")]
 script = ExtResource("1_s02h6")
 sp_arr = [NodePath("sp_0"), NodePath("sp_1"), NodePath("sp_2"), NodePath("sp_3"), NodePath("sp_4"), NodePath("sp_5"), NodePath("sp_6"), NodePath("sp_7"), NodePath("sp_8"), NodePath("sp_9"), NodePath("sp_10"), NodePath("sp_11"), NodePath("sp_12"), NodePath("sp_13"), NodePath("sp_14"), NodePath("sp_15")]
-sf_arr = Array[ExtResource("2_uk66r")]([SubResource("Resource_txe5s"), SubResource("Resource_qlpeg"), SubResource("Resource_4617i"), SubResource("Resource_85edu"), SubResource("Resource_crtin"), SubResource("Resource_nqct5"), SubResource("Resource_otde7"), SubResource("Resource_fj6v1"), SubResource("Resource_1dvrd"), SubResource("Resource_ffi1i"), SubResource("Resource_kudv7")])
+sf_arr = Array[ExtResource("2_uk66r")]([SubResource("Resource_txe5s"), SubResource("Resource_qlpeg"), SubResource("Resource_4617i"), SubResource("Resource_85edu"), SubResource("Resource_crtin"), SubResource("Resource_nqct5"), SubResource("Resource_otde7"), SubResource("Resource_fj6v1"), SubResource("Resource_1dvrd"), SubResource("Resource_ffi1i"), SubResource("Resource_kudv7"), SubResource("Resource_grv36"), SubResource("Resource_yjafv"), SubResource("Resource_o6fyq"), SubResource("Resource_sjtwy"), SubResource("Resource_vbov0"), SubResource("Resource_j0ksa"), SubResource("Resource_ti87e"), SubResource("Resource_h4uam"), SubResource("Resource_y25j2"), SubResource("Resource_u3sgc"), SubResource("Resource_wedtv"), SubResource("Resource_s64fx")])
 fail_sf = SubResource("Resource_0w0wl")
 
 [node name="sp_0" type="AudioStreamPlayer" parent="."]

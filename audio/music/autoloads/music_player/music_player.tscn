@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cexfi2rjpsylm"]
+[gd_scene load_steps=25 format=3 uid="uid://cexfi2rjpsylm"]
 
 [ext_resource type="Script" path="res://audio/music/autoloads/music_player/music_player.gd" id="1_k0xtw"]
 [ext_resource type="AudioStream" uid="uid://cjkq6uc4bil48" path="res://raw_assets/test_audio/music/unecessary tension.ogg" id="2_f5pt7"]
@@ -6,6 +6,12 @@
 [ext_resource type="AudioStream" uid="uid://cnnkn7movelw6" path="res://raw_assets/test_audio/music/game over.ogg" id="4_2xq2j"]
 [ext_resource type="AudioStream" uid="uid://chfedmqu5da32" path="res://raw_assets/test_audio/music/hyper_storm_zero.ogg" id="5_su1fl"]
 [ext_resource type="AudioStream" uid="uid://py8x5rayfmpg" path="res://raw_assets/test_audio/music/cave_story_mysterious_i_guess.ogg" id="6_rs8le"]
+[ext_resource type="AudioStream" uid="uid://dh07wcg40t4rj" path="res://raw_assets/test_audio/music/did it minor.ogg" id="7_4fatq"]
+[ext_resource type="AudioStream" uid="uid://cw1op7divy7sa" path="res://raw_assets/test_audio/music/hyper_storm_hero.ogg" id="8_r0muj"]
+[ext_resource type="AudioStream" uid="uid://dsskvfxfm0fad" path="res://raw_assets/test_audio/music/you saved them.ogg" id="9_thwms"]
+[ext_resource type="AudioStream" uid="uid://c2x82m6hcvr61" path="res://raw_assets/test_audio/music/mysterious_rhythm.ogg" id="10_n5vri"]
+[ext_resource type="AudioStream" uid="uid://bqh60n1xdoe40" path="res://raw_assets/test_audio/music/hyper_zone_cavern.ogg" id="11_b3pdt"]
+[ext_resource type="AudioStream" uid="uid://bwe47rs4qr8d5" path="res://raw_assets/test_audio/music/blanket.ogg" id="12_mtgl1"]
 
 [sub_resource type="Resource" id="Resource_kcy68"]
 script = ExtResource("2_fm0ua")
@@ -27,6 +33,41 @@ script = ExtResource("2_fm0ua")
 track_name = "hangar"
 music_file = ExtResource("6_rs8le")
 
+[sub_resource type="Resource" id="Resource_sn6mr"]
+script = ExtResource("2_fm0ua")
+track_name = "did_it_minor"
+music_file = ExtResource("7_4fatq")
+
+[sub_resource type="Resource" id="Resource_g47ur"]
+script = ExtResource("2_fm0ua")
+track_name = "hyper_storm_hero"
+music_file = ExtResource("8_r0muj")
+
+[sub_resource type="Resource" id="Resource_y774e"]
+script = ExtResource("2_fm0ua")
+track_name = "you_saved_them"
+music_file = ExtResource("9_thwms")
+
+[sub_resource type="Resource" id="Resource_ow5ro"]
+script = ExtResource("2_fm0ua")
+track_name = "prep_rhythm"
+music_file = ExtResource("10_n5vri")
+
+[sub_resource type="Resource" id="Resource_7b1c7"]
+script = ExtResource("2_fm0ua")
+track_name = "hyper_storm_zero"
+music_file = ExtResource("5_su1fl")
+
+[sub_resource type="Resource" id="Resource_62egm"]
+script = ExtResource("2_fm0ua")
+track_name = "hyper_zone_cavern"
+music_file = ExtResource("11_b3pdt")
+
+[sub_resource type="Resource" id="Resource_wl8y6"]
+script = ExtResource("2_fm0ua")
+track_name = "blanket"
+music_file = ExtResource("12_mtgl1")
+
 [sub_resource type="Resource" id="Resource_wkufu"]
 script = ExtResource("2_fm0ua")
 track_name = "none"
@@ -34,7 +75,7 @@ track_name = "none"
 [node name="music_player" type="Node2D" node_paths=PackedStringArray("stream_player")]
 script = ExtResource("1_k0xtw")
 stream_player = NodePath("stream_player")
-music_arr = Array[ExtResource("2_fm0ua")]([SubResource("Resource_kcy68"), SubResource("Resource_be14l"), SubResource("Resource_i5byc"), SubResource("Resource_gelgv")])
+music_arr = Array[ExtResource("2_fm0ua")]([SubResource("Resource_kcy68"), SubResource("Resource_be14l"), SubResource("Resource_i5byc"), SubResource("Resource_gelgv"), SubResource("Resource_sn6mr"), SubResource("Resource_g47ur"), SubResource("Resource_y774e"), SubResource("Resource_ow5ro"), SubResource("Resource_7b1c7"), SubResource("Resource_62egm"), SubResource("Resource_wl8y6")])
 fail_track = SubResource("Resource_wkufu")
 
 [node name="tracks" type="Node2D" parent="."]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgawkg4no48q3"]
+
+[ext_resource type="Script" path="res://enemy_loader/enemies/turret/turret.gd" id="1_i1aek"]
+[ext_resource type="Texture2D" uid="uid://dw16v1r5w4mef" path="res://raw_assets/test_sprites/turret/turret.png" id="2_xqanu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e304i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xqanu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="turret" type="Node2D"]
+script = ExtResource("1_i1aek")
+
+[node name="head" type="Node2D" parent="."]
+rotation = 0.785398
+
+[node name="head_sprite" type="AnimatedSprite2D" parent="head"]
+sprite_frames = SubResource("SpriteFrames_e304i")
+
+[node name="bullet_point" type="Node2D" parent="head"]
+position = Vector2(0, 7)

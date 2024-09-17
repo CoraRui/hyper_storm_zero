@@ -20,27 +20,37 @@ class_name grid_ui
 #TODO: since youre reusing functions the file will add block upgrades everytime the thing is reloaded. fix that
 #TODO: decrement spare blocks when a spare is picked up
 
-@export var spare_grid : Node2D				#stores all spare blocks as 2d child array
+
+@export_group("grid info")
+#main grid
 @export var block_grid : Node2D				#stores all active blocks in 2d child array
-@export var held_block : block_node			#holds the currently held block
-
 @export var main_origin : Node2D			#marks the 0,0 point in the main grid
-
 @export var block_adj : Array[Array]
 
-@export var sim_select : simple_select
+#bottom grid
+@export var spare_grid : Node2D				#stores all spare blocks as 2d child array
+@export var top_origin : Node2D #for placement of spare parts
+@export var held_block : block_node			#holds the currently held block
 
+#sfx
+@export var pick_up_sf : sf_link
+@export var put_down_sf : sf_link
+
+@export_group("ui")
+@export var sim_select : simple_select
 @export var hangar_scene : scene_link
 @export var left_scene : scene_link
-
-@export var top_origin : Node2D #for placement of spare parts
-
 @export var grid_tutorial_label : Label
+@export_group("","")
 
+
+#region autoload
 #autoloads
 @onready var save_mi : save_manager = get_node("/root/save_manager_auto")
 @onready var scene_mi : scene_manager = get_node("/root/scene_manager_auto")
 @onready var block_mi : block_manager = get_node("/root/block_manager_auto")
+@onready var sfx_pi : sfx_player = get_node("/root/sfx_player_auto")
+#endregion
 
 func _ready():
 	#clear block_adj cause it doesnt close for some reason
@@ -64,6 +74,7 @@ func _ready():
 		print(k)
 		held_block = block_mi.block_dict[save_mi.file_01.block_dict[k]].instantiate()
 		get_tree().get_root().add_child.call_deferred(held_block)
+		print(k)
 		put_down_main(k, false)
 		
 	print("finished with main blocks")
@@ -77,13 +88,13 @@ func _ready():
 	
 	for s in save_mi.file_01.spare_dict["laser_block"]:
 		#for however many shield parts the player has, put down another one in the shield part spot
-		held_block = block_mi.block_dict["option_block"].instantiate()
+		held_block = block_mi.block_dict["laser_block"].instantiate()
 		get_tree().get_root().add_child.call_deferred(held_block)
 		put_down_spare(Vector2(1,0), false)
 		
 	for s in save_mi.file_01.spare_dict["power_block"]:
 		#for however many shield parts the player has, put down another one in the shield part spot
-		held_block = block_mi.block_dict["bomb_block"].instantiate()
+		held_block = block_mi.block_dict["power_block"].instantiate()
 		get_tree().get_root().add_child.call_deferred(held_block)
 		put_down_spare(Vector2(2,0),false)
 		
@@ -97,9 +108,8 @@ func _input(event):
 	if event.is_action_pressed("db_nine"):
 		print_adj()
 	
-func pick_up_main(pos : Vector2i):
+func pick_up_main(pos : Vector2i, use_value : bool):
 	#parameter is just location i think.
-	
 	if block_grid.get_child(pos.x).get_child(pos.y).get_child_count() == 0:
 		return
 	
@@ -111,11 +121,11 @@ func pick_up_main(pos : Vector2i):
 	#move the block to the icons position in sim_select
 	held_block.global_position = sim_select.icon.global_position
 
+	sfx_pi.play_effect(pick_up_sf)
 
 	for s in held_block.block_info.grid_shape:
 		#find each "cube" in the block_adj grid and set if to false
 		block_adj[s.x + pos.x][s.y + pos.y] = false
-	
 	match held_block.block_info.upgrade:
 		block.UpgradeType.SHIELD:
 			save_mi.file_01.shields -= 1
@@ -125,6 +135,9 @@ func pick_up_main(pos : Vector2i):
 			save_mi.file_01.options -= 1
 		_:
 			print("block had no upgrade type in pick up function. this is strange")
+	
+	if use_value:
+		sfx_pi.play_effect(pick_up_sf)
 	
 	#remove the block from the block_dict
 	
@@ -155,6 +168,8 @@ func put_down_main(pos : Vector2i, use_value : bool) -> void:
 			print("aborted place block collision: ", new_pos)
 			return
 		
+
+		
 	#made it through for, all spots should be free
 	for p  in held_block.block_info.grid_shape:
 		#compare each spots position in relation to the position of placement to the grid.
@@ -167,6 +182,7 @@ func put_down_main(pos : Vector2i, use_value : bool) -> void:
 		block_adj[new_pos.x][new_pos.y] = true
 	
 	if use_value:
+		sfx_pi.play_effect(put_down_sf)
 		match held_block.block_info.upgrade:
 			block.UpgradeType.SHIELD:
 				save_mi.file_01.shields += 1
@@ -201,6 +217,9 @@ func pick_up_spare(pos : Vector2i, use_value : bool) -> void:
 	get_tree().get_root().add_child.call_deferred(held_block)
 	held_block.global_position = sim_select.icon.global_position
 	
+	if use_value:
+		sfx_pi.play_effect(pick_up_sf)
+	
 	#update spare count
 	match held_block.block_info.upgrade:
 		block.UpgradeType.SHIELD:
@@ -224,6 +243,8 @@ func put_down_spare(pos : Vector2i, use_value : bool) -> void:
 			block.UpgradeType.OPTION:
 				save_mi.file_01.spare_dict["laser_block"] += 1
 	
+	if use_value:
+		sfx_pi.play_effect(put_down_sf)
 
 	#not going to have a limit of one to spot. ill just have multiple in the same spot.
 	get_tree().get_root().remove_child.call_deferred(held_block)
@@ -264,7 +285,7 @@ func try_main(g_pos : Vector2i) -> void:
 		put_down_main(g_pos, true)
 		print("attempted put down")
 	else:
-		pick_up_main(g_pos)
+		pick_up_main(g_pos,true)
 		print("attempt pick up")
 
 func _on_option_0_0_activated():

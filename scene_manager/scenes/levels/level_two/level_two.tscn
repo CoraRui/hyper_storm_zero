@@ -1,14 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd3x26y6t4to4"]
+[gd_scene load_steps=88 format=3 uid="uid://dd3x26y6t4to4"]
 
 [ext_resource type="Script" path="res://scene_manager/scenes/levels/level_two/level_two.gd" id="1_cp33b"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_pmrw3"]
+[ext_resource type="Script" path="res://audio/music/resources/music_link/music_link.gd" id="3_olki8"]
 [ext_resource type="PackedScene" uid="uid://v0ig1j0vucnl" path="res://enemy_loader/node/enemy_module/enemy_module.tscn" id="3_un6i6"]
 [ext_resource type="Script" path="res://enemy_loader/resources/enemy_link.gd" id="4_40lsq"]
 [ext_resource type="Script" path="res://enemy_loader/resources/enemy_command.gd" id="4_wmd1h"]
+[ext_resource type="Texture2D" uid="uid://dj73eqjnqbb43" path="res://raw_assets/test_sprites/stupid stars.png" id="6_byjhk"]
+[ext_resource type="Script" path="res://movement+collision/collision_box/collision_box.gd" id="8_17xac"]
 
 [sub_resource type="Resource" id="Resource_s1nb6"]
 script = ExtResource("2_pmrw3")
 scene_name = "hangar_menu"
+
+[sub_resource type="Resource" id="Resource_tj08y"]
+script = ExtResource("3_olki8")
+name = "hyper_storm_hero"
+vol = -8.0
+delay = 0.0
+
+[sub_resource type="Resource" id="Resource_7jrin"]
+script = ExtResource("3_olki8")
+name = "you_saved_them"
+vol = -1.0
+delay = 0.0
 
 [sub_resource type="Resource" id="Resource_s21sn"]
 script = ExtResource("4_40lsq")
@@ -16,10 +31,11 @@ enemy_name = "dial"
 
 [sub_resource type="Resource" id="Resource_4g3j3"]
 script = ExtResource("4_wmd1h")
+comm_title = "center_dial"
 comm = 0
 par = {
 "enemy": SubResource("Resource_s21sn"),
-"position": Vector2i(60, 20)
+"position": Vector2i(60, -16)
 }
 
 [sub_resource type="Resource" id="Resource_6hpuf"]
@@ -28,32 +44,616 @@ enemy_name = "bub_jitter_down"
 
 [sub_resource type="Resource" id="Resource_exino"]
 script = ExtResource("4_wmd1h")
+comm_title = "bub left"
 comm = 0
 par = {
 "enemy": SubResource("Resource_6hpuf"),
-"position": Vector2i(60, 0)
+"position": Vector2i(30, 0)
+}
+
+[sub_resource type="Resource" id="Resource_u0yu2"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_6hpuf"),
+"position": Vector2i(90, 0)
+}
+
+[sub_resource type="Resource" id="Resource_j1xdu"]
+script = ExtResource("4_40lsq")
+enemy_name = "gun_ship"
+
+[sub_resource type="Resource" id="Resource_cwb20"]
+script = ExtResource("4_wmd1h")
+comm_title = "gun_ship"
+comm = 0
+par = {
+"enemy": SubResource("Resource_j1xdu"),
+"position": Vector2i(60, -16)
 }
 
 [sub_resource type="Resource" id="Resource_mavct"]
 script = ExtResource("4_wmd1h")
+comm_title = "command_title"
 comm = 1
 par = {
-"time": 320.0
+"time": 4.0
 }
+
+[sub_resource type="Resource" id="Resource_660il"]
+script = ExtResource("4_40lsq")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_yk1w5"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(16, -16)
+}
+
+[sub_resource type="Resource" id="Resource_ly5il"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(16, -48)
+}
+
+[sub_resource type="Resource" id="Resource_ne5tu"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(16, -80)
+}
+
+[sub_resource type="Resource" id="Resource_x3gxh"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(16, -112)
+}
+
+[sub_resource type="Resource" id="Resource_sqpnn"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(16, -144)
+}
+
+[sub_resource type="Resource" id="Resource_gq65y"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(16, -176)
+}
+
+[sub_resource type="Resource" id="Resource_7y72n"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(110, -16)
+}
+
+[sub_resource type="Resource" id="Resource_scnud"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(110, -48)
+}
+
+[sub_resource type="Resource" id="Resource_d4ly0"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(110, -80)
+}
+
+[sub_resource type="Resource" id="Resource_p3cyg"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(110, -112)
+}
+
+[sub_resource type="Resource" id="Resource_o6g3b"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(110, -144)
+}
+
+[sub_resource type="Resource" id="Resource_t6wub"]
+script = ExtResource("4_wmd1h")
+comm_title = "dial_col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_660il"),
+"position": Vector2i(110, -176)
+}
+
+[sub_resource type="Resource" id="Resource_nxlxw"]
+script = ExtResource("4_wmd1h")
+comm_title = "delay"
+comm = 1
+par = {
+"time": 3.0
+}
+
+[sub_resource type="Resource" id="Resource_ygy5x"]
+script = ExtResource("4_wmd1h")
+comm_title = "gun_ship"
+comm = 0
+par = {
+"position": Vector2i(60, 0)
+}
+
+[sub_resource type="Resource" id="Resource_rqoix"]
+script = ExtResource("4_wmd1h")
+comm_title = "delay"
+comm = 1
+par = {
+"time": 3.0
+}
+
+[sub_resource type="Resource" id="Resource_vjvqj"]
+script = ExtResource("4_40lsq")
+enemy_name = "bub_jitter_down"
+
+[sub_resource type="Resource" id="Resource_0hitg"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -16)
+}
+
+[sub_resource type="Resource" id="Resource_q8ruo"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -48)
+}
+
+[sub_resource type="Resource" id="Resource_0t566"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -80)
+}
+
+[sub_resource type="Resource" id="Resource_8n7yp"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -112)
+}
+
+[sub_resource type="Resource" id="Resource_lrvay"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -144)
+}
+
+[sub_resource type="Resource" id="Resource_3m20b"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -176)
+}
+
+[sub_resource type="Resource" id="Resource_q54ov"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(93, -16)
+}
+
+[sub_resource type="Resource" id="Resource_lljgb"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(93, -48)
+}
+
+[sub_resource type="Resource" id="Resource_gej3e"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(93, -80)
+}
+
+[sub_resource type="Resource" id="Resource_dr41l"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(93, -112)
+}
+
+[sub_resource type="Resource" id="Resource_yvb7c"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(93, -144)
+}
+
+[sub_resource type="Resource" id="Resource_l7qej"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(93, -176)
+}
+
+[sub_resource type="Resource" id="Resource_un70n"]
+script = ExtResource("4_wmd1h")
+comm_title = "delay"
+comm = 1
+par = {
+"time": 5.0
+}
+
+[sub_resource type="Resource" id="Resource_l0sbq"]
+script = ExtResource("4_40lsq")
+enemy_name = "gun_ship"
+
+[sub_resource type="Resource" id="Resource_kpw8f"]
+script = ExtResource("4_wmd1h")
+comm_title = "gun_ship"
+comm = 0
+par = {
+"enemy": SubResource("Resource_l0sbq"),
+"position": Vector2i(60, 0)
+}
+
+[sub_resource type="Resource" id="Resource_bhoka"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -16)
+}
+
+[sub_resource type="Resource" id="Resource_6ohmt"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -48)
+}
+
+[sub_resource type="Resource" id="Resource_jcj0w"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -80)
+}
+
+[sub_resource type="Resource" id="Resource_lg4xq"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -112)
+}
+
+[sub_resource type="Resource" id="Resource_cf73p"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -144)
+}
+
+[sub_resource type="Resource" id="Resource_4yw0l"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(32, -172)
+}
+
+[sub_resource type="Resource" id="Resource_kayst"]
+script = ExtResource("4_wmd1h")
+comm_title = "bubs"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(45, 0)
+}
+
+[sub_resource type="Resource" id="Resource_16er5"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(109, -48)
+}
+
+[sub_resource type="Resource" id="Resource_y4c08"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(109, -80)
+}
+
+[sub_resource type="Resource" id="Resource_foulr"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(109, -112)
+}
+
+[sub_resource type="Resource" id="Resource_hobd1"]
+script = ExtResource("4_wmd1h")
+comm_title = "next_gun"
+comm = 0
+par = {
+"enemy_string": "gun_ship",
+"position": Vector2i(60, 0)
+}
+
+[sub_resource type="Resource" id="Resource_blvsj"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(95, -6)
+}
+
+[sub_resource type="Resource" id="Resource_w45oo"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(34, -5)
+}
+
+[sub_resource type="Resource" id="Resource_wicup"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(32, -8)
+}
+
+[sub_resource type="Resource" id="Resource_4l26g"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(28, -6)
+}
+
+[sub_resource type="Resource" id="Resource_jht7e"]
+script = ExtResource("4_wmd1h")
+comm_title = "delay 3"
+comm = 1
+par = {
+"time": 1.8
+}
+
+[sub_resource type="Resource" id="Resource_oeo4d"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(90, -6)
+}
+
+[sub_resource type="Resource" id="Resource_crppf"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(93, -8)
+}
+
+[sub_resource type="Resource" id="Resource_nud1x"]
+script = ExtResource("4_wmd1h")
+comm_title = "bub_jitter_down"
+comm = 0
+par = {
+"enemy_string": "bub_jitter_down",
+"position": Vector2i(97, -6)
+}
+
+[sub_resource type="Resource" id="Resource_w2cvq"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(16, -16)
+}
+
+[sub_resource type="Resource" id="Resource_p5kkl"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(109, -16)
+}
+
+[sub_resource type="Resource" id="Resource_gpkbv"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(60, -48)
+}
+
+[sub_resource type="Resource" id="Resource_rocwr"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(16, -80)
+}
+
+[sub_resource type="Resource" id="Resource_xbe2b"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(109, -80)
+}
+
+[sub_resource type="Resource" id="Resource_k3u5a"]
+script = ExtResource("4_wmd1h")
+comm_title = "col_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(60, -112)
+}
+
+[sub_resource type="Resource" id="Resource_4kh8t"]
+script = ExtResource("4_wmd1h")
+comm_title = "bubs"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(60, 0)
+}
+
+[sub_resource type="Resource" id="Resource_86yko"]
+script = ExtResource("4_wmd1h")
+comm_title = "bubs"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(90, 5)
+}
+
+[sub_resource type="Resource" id="Resource_hslle"]
+script = ExtResource("4_wmd1h")
+comm_title = "bubs"
+comm = 0
+par = {
+"enemy": SubResource("Resource_vjvqj"),
+"position": Vector2i(30, -5)
+}
+
+[sub_resource type="Resource" id="Resource_tj6dw"]
+script = ExtResource("4_wmd1h")
+comm_title = "delay 3"
+comm = 1
+par = {
+"time": 5.0
+}
+
+[sub_resource type="Resource" id="Resource_kyyyn"]
+script = ExtResource("4_wmd1h")
+comm_title = "gun one"
+comm = 0
+par = {
+"enemy_string": "gun_ship",
+"position": Vector2i(20, -16)
+}
+
+[sub_resource type="Resource" id="Resource_0k665"]
+script = ExtResource("4_wmd1h")
+comm_title = "gun one"
+comm = 0
+par = {
+"enemy_string": "gun_ship",
+"position": Vector2i(80, -16)
+}
+
+[sub_resource type="Resource" id="Resource_mknau"]
+script = ExtResource("4_wmd1h")
+comm_title = "delay"
+comm = 1
+par = {
+"time": 5.0
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grlkt"]
+size = Vector2(148, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_som5s"]
+size = Vector2(144, 14.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0iv73"]
+size = Vector2(8, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ny2fv"]
+size = Vector2(14, 202)
 
 [node name="level_two" type="Node2D" node_paths=PackedStringArray("clear_label", "next_stage_timer")]
 script = ExtResource("1_cp33b")
 clear_label = NodePath("clear_label")
 next_stage_timer = NodePath("next_stage")
 upgrade_scene = SubResource("Resource_s1nb6")
-
-[node name="level_two_label" type="Label" parent="."]
-offset_left = 22.0
-offset_top = 76.0
-offset_right = 94.0
-offset_bottom = 96.0
-theme_override_font_sizes/font_size = 10
-text = "level_two"
+level_music = SubResource("Resource_tj08y")
+clear_music = SubResource("Resource_7jrin")
 
 [node name="clear_label" type="Label" parent="."]
 visible = false
@@ -65,9 +665,75 @@ theme_override_font_sizes/font_size = 15
 text = "CLEAR!!!"
 
 [node name="next_stage" type="Timer" parent="."]
+wait_time = 16.0
+one_shot = true
 
 [node name="enemy_module" parent="." instance=ExtResource("3_un6i6")]
 send_onready = true
-enemy_arr = Array[ExtResource("4_wmd1h")]([SubResource("Resource_4g3j3"), SubResource("Resource_exino"), SubResource("Resource_mavct")])
+enemy_arr = Array[ExtResource("4_wmd1h")]([SubResource("Resource_4g3j3"), SubResource("Resource_exino"), SubResource("Resource_u0yu2"), SubResource("Resource_cwb20"), SubResource("Resource_mavct"), SubResource("Resource_yk1w5"), SubResource("Resource_ly5il"), SubResource("Resource_ne5tu"), SubResource("Resource_x3gxh"), SubResource("Resource_sqpnn"), SubResource("Resource_gq65y"), SubResource("Resource_7y72n"), SubResource("Resource_scnud"), SubResource("Resource_d4ly0"), SubResource("Resource_p3cyg"), SubResource("Resource_o6g3b"), SubResource("Resource_t6wub"), SubResource("Resource_nxlxw"), SubResource("Resource_ygy5x"), SubResource("Resource_rqoix"), SubResource("Resource_0hitg"), SubResource("Resource_q8ruo"), SubResource("Resource_0t566"), SubResource("Resource_8n7yp"), SubResource("Resource_lrvay"), SubResource("Resource_3m20b"), SubResource("Resource_q54ov"), SubResource("Resource_lljgb"), SubResource("Resource_gej3e"), SubResource("Resource_dr41l"), SubResource("Resource_yvb7c"), SubResource("Resource_l7qej"), SubResource("Resource_un70n"), SubResource("Resource_kpw8f"), SubResource("Resource_bhoka"), SubResource("Resource_6ohmt"), SubResource("Resource_jcj0w"), SubResource("Resource_lg4xq"), SubResource("Resource_cf73p"), SubResource("Resource_4yw0l"), SubResource("Resource_kayst"), SubResource("Resource_16er5"), SubResource("Resource_y4c08"), SubResource("Resource_foulr"), SubResource("Resource_kayst"), SubResource("Resource_kayst"), SubResource("Resource_hobd1"), SubResource("Resource_blvsj"), SubResource("Resource_w45oo"), SubResource("Resource_wicup"), SubResource("Resource_4l26g"), SubResource("Resource_jht7e"), SubResource("Resource_oeo4d"), SubResource("Resource_crppf"), SubResource("Resource_nud1x"), SubResource("Resource_w2cvq"), SubResource("Resource_p5kkl"), SubResource("Resource_gpkbv"), SubResource("Resource_rocwr"), SubResource("Resource_xbe2b"), SubResource("Resource_k3u5a"), SubResource("Resource_kayst"), SubResource("Resource_kayst"), SubResource("Resource_kayst"), SubResource("Resource_4kh8t"), SubResource("Resource_86yko"), SubResource("Resource_hslle"), SubResource("Resource_tj6dw"), SubResource("Resource_kyyyn"), SubResource("Resource_0k665"), SubResource("Resource_mknau")])
+
+[node name="space_bg" type="Sprite2D" parent="."]
+z_index = -20
+texture = ExtResource("6_byjhk")
+centered = false
+
+[node name="collision_box" type="Node2D" parent="." node_paths=PackedStringArray("up_area", "down_area", "left_area", "right_area")]
+script = ExtResource("8_17xac")
+up_area = NodePath("up_area")
+down_area = NodePath("down_area")
+left_area = NodePath("left_area")
+right_area = NodePath("right_area")
+
+[node name="up_area" type="Area2D" parent="collision_box"]
+position = Vector2(70, 6)
+collision_layer = 4
+collision_mask = 0
+
+[node name="up_shape" type="CollisionShape2D" parent="collision_box/up_area"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_grlkt")
+
+[node name="down_area" type="Area2D" parent="collision_box"]
+position = Vector2(63, 174)
+collision_layer = 4
+collision_mask = 0
+
+[node name="down_shape" type="CollisionShape2D" parent="collision_box/down_area"]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_som5s")
+
+[node name="left_area" type="Area2D" parent="collision_box"]
+position = Vector2(5, 85)
+collision_layer = 4
+collision_mask = 0
+
+[node name="left_shape" type="CollisionShape2D" parent="collision_box/left_area"]
+position = Vector2(-9.5, 0)
+shape = SubResource("RectangleShape2D_0iv73")
+
+[node name="right_area" type="Area2D" parent="collision_box"]
+position = Vector2(123, 89)
+collision_layer = 4
+collision_mask = 0
+
+[node name="right_shape" type="CollisionShape2D" parent="collision_box/right_area"]
+position = Vector2(9.5, 0)
+shape = SubResource("RectangleShape2D_ny2fv")
 
 [connection signal="timeout" from="next_stage" to="." method="_on_next_stage_timeout"]
+[connection signal="area_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_entered"]
+[connection signal="area_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_exited"]
+[connection signal="body_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_body_entered"]
+[connection signal="body_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_body_exited"]
+[connection signal="area_entered" from="collision_box/down_area" to="collision_box" method="_on_down_area_area_entered"]
+[connection signal="area_exited" from="collision_box/down_area" to="collision_box" method="_on_down_area_area_exited"]
+[connection signal="body_entered" from="collision_box/down_area" to="collision_box" method="_on_down_area_body_entered"]
+[connection signal="body_exited" from="collision_box/down_area" to="collision_box" method="_on_down_area_body_exited"]
+[connection signal="area_entered" from="collision_box/left_area" to="collision_box" method="_on_left_area_area_entered"]
+[connection signal="area_exited" from="collision_box/left_area" to="collision_box" method="_on_left_area_area_exited"]
+[connection signal="body_entered" from="collision_box/left_area" to="collision_box" method="_on_left_area_body_entered"]
+[connection signal="body_exited" from="collision_box/left_area" to="collision_box" method="_on_left_area_body_exited"]
+[connection signal="area_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_area_entered"]
+[connection signal="area_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_area_exited"]
+[connection signal="body_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_entered"]
+[connection signal="body_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_exited"]

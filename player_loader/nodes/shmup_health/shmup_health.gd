@@ -38,26 +38,25 @@ class_name shmup_health
 
 func _ready():
 	var i : int = life_arr.size() - 1
-	while i > save_mi.file_01.lives:
+	while i  >= save_mi.file_01.lives:
 		life_arr[i].set_visible(false)
 		i -= 1
-
+		
 func hit():
 	player_li.player_ins.freeze(true)
 	destroy_timer.start()
-
 	
 func _on_destroy_timer_timeout():
 	sfx_pi.play_effect(death_sf)
 	simple_fi.place_fx(death_fx)
 	respawn_timer.start()
 	player_li.unload_player()
-
-
+	
 func _on_respawn_timer_timeout():
+	print("current life", save_mi.file_01.lives)
+	life_arr[save_mi.file_01.lives-1].set_visible(false)
 	if save_mi.file_01.lives > 0:
 		player_li.load_player()
-		life_arr[save_mi.file_01.lives].set_visible(false)
 		save_mi.file_01.lives -= 1
 		
 	else:

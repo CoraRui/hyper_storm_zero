@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://dge6h1006ap45"]
+
+[ext_resource type="Script" path="res://enemy_loader/enemies/gun_ship/gun_ship.gd" id="1_alrux"]
+[ext_resource type="PackedScene" uid="uid://eyijsj88mbeo" path="res://enemy_loader/enemies/gun_ship/gun_bullet.tscn" id="2_tykd4"]
+[ext_resource type="PackedScene" uid="uid://pcv4ypit0wli" path="res://enemy_loader/node/enemy_health/enemy_health.tscn" id="3_7u66h"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="4_7hsbi"]
+[ext_resource type="Texture2D" uid="uid://sv8r17jh5fx2" path="res://raw_assets/test_sprites/gun_ship.png" id="4_yvd53"]
+
+[sub_resource type="Resource" id="Resource_fqppk"]
+script = ExtResource("4_7hsbi")
+sf_name = "player_death"
+sf_vol = 0.0
+
+[node name="gun_ship" type="Node2D" node_paths=PackedStringArray("bp", "shoot_timer", "pause_timer")]
+script = ExtResource("1_alrux")
+bp = NodePath("bp")
+bullet_ref = ExtResource("2_tykd4")
+right_pos = Vector2i(115, 10)
+shoot_timer = NodePath("shoot_timer")
+pause_timer = NodePath("pause_timer")
+
+[node name="bp" type="Node2D" parent="."]
+position = Vector2(4, 21)
+
+[node name="pause_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="shoot_timer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
+[node name="leave_timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="expire_timer" type="Timer" parent="."]
+wait_time = 32.0
+one_shot = true
+autostart = true
+
+[node name="enemy_health" parent="." node_paths=PackedStringArray("enemy_node") instance=ExtResource("3_7u66h")]
+position = Vector2(8, 8)
+hp = 10
+mhp = 10
+enemy_node = NodePath("..")
+death_sf = SubResource("Resource_fqppk")
+
+[node name="gun_ship_sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_yvd53")
+centered = false
+
+[connection signal="timeout" from="pause_timer" to="." method="_on_pause_timer_timeout"]
+[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="leave_timer" to="." method="_on_leave_timer_timeout"]
+[connection signal="timeout" from="expire_timer" to="." method="_on_expire_timer_timeout"]
+[connection signal="dead" from="enemy_health" to="." method="_on_enemy_health_dead"]
+
+[editable path="enemy_health"]

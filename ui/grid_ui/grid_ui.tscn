@@ -1,12 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1kr574ap8rtw"]
+[gd_scene load_steps=14 format=3 uid="uid://c1kr574ap8rtw"]
 
 [ext_resource type="Script" path="res://ui/grid_ui/grid_ui.gd" id="1_wnhru"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_4fok3"]
 [ext_resource type="Texture2D" uid="uid://dyqejqipxq4on" path="res://raw_assets/test_sprites/ui/upgrade_grid.png" id="2_dlric"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="2_ijfc0"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="3_ibydn"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/group/group.gd" id="4_ttkj4"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="5_l2k15"]
 [ext_resource type="Texture2D" uid="uid://bn8jyw5nuv1n3" path="res://raw_assets/test_sprites/ui/icons/select_icon.png" id="7_pi0n1"]
+
+[sub_resource type="Resource" id="Resource_ke6je"]
+script = ExtResource("2_ijfc0")
+sf_name = "pick_up"
+sf_vol = 0.0
+
+[sub_resource type="Resource" id="Resource_jmash"]
+script = ExtResource("2_ijfc0")
+sf_name = "put_down"
+sf_vol = 0.0
 
 [sub_resource type="Resource" id="Resource_4y2gm"]
 script = ExtResource("2_4fok3")
@@ -27,16 +38,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="grid_ui" type="Node2D" node_paths=PackedStringArray("spare_grid", "block_grid", "main_origin", "sim_select", "top_origin", "grid_tutorial_label")]
+[node name="grid_ui" type="Node2D" node_paths=PackedStringArray("block_grid", "main_origin", "spare_grid", "top_origin", "sim_select", "grid_tutorial_label")]
 script = ExtResource("1_wnhru")
-spare_grid = NodePath("spare_grid")
 block_grid = NodePath("block_grid")
 main_origin = NodePath("grid_sprite/grid_origin")
 block_adj = Array[Array]([[false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, false]])
+spare_grid = NodePath("spare_grid")
+top_origin = NodePath("top_origin")
+pick_up_sf = SubResource("Resource_ke6je")
+put_down_sf = SubResource("Resource_jmash")
 sim_select = NodePath("simple_select")
 hangar_scene = SubResource("Resource_4y2gm")
 left_scene = SubResource("Resource_85hg7")
-top_origin = NodePath("top_origin")
 grid_tutorial_label = NodePath("grid_tutorial")
 
 [node name="grid_sprite" type="Sprite2D" parent="."]

@@ -5,4 +5,4 @@ class_name sf_link
 
 @export var sf_name : String = "default_sf"
 
-@export_range(-100, 0) var sf_vol : float = 0.0
+@export_range(-100, 20) var sf_vol : float = 0.0

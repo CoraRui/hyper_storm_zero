@@ -1,12 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://gihp7u0yj5x0"]
+[gd_scene load_steps=18 format=3 uid="uid://gihp7u0yj5x0"]
 
 [ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="1_bn6g4"]
 [ext_resource type="Script" path="res://scene_manager/scenes/main_menu/start_menu/start.gd" id="1_mop4u"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/group/group.gd" id="2_qbs78"]
 [ext_resource type="Script" path="res://ui/simple_select/nodes/option/option.gd" id="3_kkgr4"]
+[ext_resource type="Script" path="res://audio/music/resources/music_link/music_link.gd" id="3_sbhj3"]
+[ext_resource type="Texture2D" uid="uid://dj73eqjnqbb43" path="res://raw_assets/test_sprites/stupid stars.png" id="4_lv03r"]
 [ext_resource type="PackedScene" uid="uid://ctgfb3nn5ssjb" path="res://scene_manager/nodes/scene_module.tscn" id="4_xvi4m"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="5_6squo"]
 [ext_resource type="Texture2D" uid="uid://bn8jyw5nuv1n3" path="res://raw_assets/test_sprites/ui/icons/select_icon.png" id="6_iqwuo"]
+[ext_resource type="Texture2D" uid="uid://c4dgfxhwtgru6" path="res://raw_assets/test_sprites/enemies/bub/bub1.png" id="8_3o0ra"]
+[ext_resource type="Texture2D" uid="uid://l4n7swt4fwvm" path="res://raw_assets/test_sprites/enemies/bub/bub2.png" id="9_e8t25"]
 
 [sub_resource type="Resource" id="Resource_kduvt"]
 script = ExtResource("5_6squo")
@@ -14,7 +18,13 @@ scene_name = "hangar_menu"
 
 [sub_resource type="Resource" id="Resource_cb8so"]
 script = ExtResource("5_6squo")
-scene_name = "settings"
+scene_name = "control_menu"
+
+[sub_resource type="Resource" id="Resource_7ourp"]
+script = ExtResource("3_sbhj3")
+name = "prep_rhythm"
+vol = -1.0
+delay = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0wb2l"]
 animations = [{
@@ -31,10 +41,29 @@ animations = [{
 script = ExtResource("5_6squo")
 scene_name = "test_scene"
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ocuof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3o0ra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_e8t25")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="start" type="Node2D"]
 script = ExtResource("1_mop4u")
 start_link = SubResource("Resource_kduvt")
 settings_link = SubResource("Resource_cb8so")
+prep_rhythm = SubResource("Resource_7ourp")
+
+[node name="stars" type="Sprite2D" parent="."]
+texture = ExtResource("4_lv03r")
+centered = false
 
 [node name="main_menu" type="Node2D" parent="."]
 
@@ -49,12 +78,12 @@ script = ExtResource("2_qbs78")
 options = [NodePath("start_option"), null, null, null]
 
 [node name="start_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "down_option")]
-position = Vector2(51, 97)
+position = Vector2(51, 114)
 script = ExtResource("3_kkgr4")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")
 option_name = "start"
-down_option = NodePath("../settings_option")
+down_option = NodePath("../how to play")
 
 [node name="option_text" type="Label" parent="main_menu/simple_select/group_one/start_option"]
 offset_left = -1.0
@@ -68,8 +97,8 @@ vertical_alignment = 1
 [node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/start_option"]
 position = Vector2(-7, 3)
 
-[node name="settings_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
-position = Vector2(39, 116)
+[node name="how to play" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
+position = Vector2(39, 129)
 script = ExtResource("3_kkgr4")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")
@@ -77,26 +106,25 @@ option_name = "options"
 up_option = NodePath("../start_option")
 down_option = NodePath("../quit_option")
 
-[node name="option_text" type="Label" parent="main_menu/simple_select/group_one/settings_option"]
-offset_left = 4.0
-offset_top = -3.0
-offset_right = 38.0
-offset_bottom = 10.0
+[node name="option_text" type="Label" parent="main_menu/simple_select/group_one/how to play"]
+offset_top = -2.0
+offset_right = 44.0
+offset_bottom = 11.0
 theme_override_font_sizes/font_size = 5
-text = "settings"
+text = "how to play"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/settings_option"]
-position = Vector2(-3, 2)
+[node name="icon_point" type="Node2D" parent="main_menu/simple_select/group_one/how to play"]
+position = Vector2(-9, 2)
 
 [node name="quit_option" type="Node2D" parent="main_menu/simple_select/group_one" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
-position = Vector2(52, 134)
+position = Vector2(52, 143)
 script = ExtResource("3_kkgr4")
 icon_point = NodePath("icon_point")
 option_label = NodePath("option_text")
 option_name = "quit"
-up_option = NodePath("../settings_option")
+up_option = NodePath("../how to play")
 
 [node name="option_text" type="Label" parent="main_menu/simple_select/group_one/quit_option"]
 offset_left = -1.0
@@ -118,6 +146,97 @@ offset = Vector2(0.5, 0.5)
 [node name="scene_module" parent="main_menu" instance=ExtResource("4_xvi4m")]
 link = SubResource("Resource_80ng3")
 
+[node name="bub" type="AnimatedSprite2D" parent="."]
+position = Vector2(25, 34)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.198208
+offset = Vector2(0.5, 0.5)
+
+[node name="bub2" type="AnimatedSprite2D" parent="."]
+position = Vector2(103, 64)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub3" type="AnimatedSprite2D" parent="."]
+position = Vector2(24, 88)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub4" type="AnimatedSprite2D" parent="."]
+position = Vector2(96, 101)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub5" type="AnimatedSprite2D" parent="."]
+position = Vector2(23, 142)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub6" type="AnimatedSprite2D" parent="."]
+position = Vector2(93, 149)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub7" type="AnimatedSprite2D" parent="."]
+position = Vector2(93, 149)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub8" type="AnimatedSprite2D" parent="."]
+position = Vector2(59, 67)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub9" type="AnimatedSprite2D" parent="."]
+position = Vector2(82, 39)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub10" type="AnimatedSprite2D" parent="."]
+position = Vector2(51, 6)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub11" type="AnimatedSprite2D" parent="."]
+position = Vector2(102, 16)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub12" type="AnimatedSprite2D" parent="."]
+position = Vector2(54, 162)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
+[node name="bub13" type="AnimatedSprite2D" parent="."]
+position = Vector2(54, 162)
+sprite_frames = SubResource("SpriteFrames_ocuof")
+autoplay = "default"
+frame_progress = 0.207838
+offset = Vector2(0.5, 0.5)
+
 [connection signal="activated" from="main_menu/simple_select/group_one/start_option" to="." method="_on_start_option_activated"]
-[connection signal="activated" from="main_menu/simple_select/group_one/settings_option" to="." method="_on_settings_option_activated"]
+[connection signal="activated" from="main_menu/simple_select/group_one/how to play" to="." method="_on_settings_option_activated"]
 [connection signal="activated" from="main_menu/simple_select/group_one/quit_option" to="." method="_on_quit_option_activated"]

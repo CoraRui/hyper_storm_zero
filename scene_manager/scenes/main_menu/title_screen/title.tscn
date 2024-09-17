@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf58yww00ho3i"]
+[gd_scene load_steps=11 format=3 uid="uid://bf58yww00ho3i"]
 
 [ext_resource type="Script" path="res://scene_manager/scenes/main_menu/title_screen/title.gd" id="1_jjcq2"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_n6r6n"]
 [ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="3_lj53j"]
 [ext_resource type="Script" path="res://audio/music/resources/music_link/music_link.gd" id="4_tafn5"]
+[ext_resource type="FontFile" uid="uid://deowx8x4w3rgu" path="res://raw_assets/fonts/Teeny Tiny Pixls.otf" id="5_i75lc"]
+[ext_resource type="Texture2D" uid="uid://dj73eqjnqbb43" path="res://raw_assets/test_sprites/stupid stars.png" id="5_nju6h"]
 
 [sub_resource type="Resource" id="Resource_olqb5"]
 script = ExtResource("2_n6r6n")
@@ -14,26 +16,42 @@ script = ExtResource("3_lj53j")
 sf_name = "title_sf"
 sf_vol = 0.0
 
-[sub_resource type="Resource" id="Resource_63cws"]
+[sub_resource type="Resource" id="Resource_ftpsd"]
 script = ExtResource("4_tafn5")
-name = "title_music"
-vol = -1.0
+name = "hyper_storm_zero"
+vol = -8.0
 delay = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_vm43c"]
+base_font = ExtResource("5_i75lc")
 
 [node name="title" type="Node2D" node_paths=PackedStringArray("start_label")]
 script = ExtResource("1_jjcq2")
 start_link = SubResource("Resource_olqb5")
 start_label = NodePath("press start")
 start_sf = SubResource("Resource_31l0j")
-mus_link = SubResource("Resource_63cws")
+title_music = SubResource("Resource_ftpsd")
+
+[node name="stars" type="Sprite2D" parent="."]
+texture = ExtResource("5_nju6h")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 19.0
+offset_top = 29.0
+offset_right = 104.0
+offset_bottom = 56.0
+color = Color(0, 0, 0, 1)
 
 [node name="title_label" type="Label" parent="."]
-offset_left = -3.0
-offset_top = 27.0
-offset_right = 132.0
-offset_bottom = 66.0
-theme_override_font_sizes/font_size = 15
-text = "HYPERSTORM ZERO"
+offset_left = 8.0
+offset_top = 25.0
+offset_right = 115.0
+offset_bottom = 64.0
+theme_override_fonts/font = SubResource("FontVariation_vm43c")
+theme_override_font_sizes/font_size = 10
+text = "HYPERSTORM
+ZERO"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

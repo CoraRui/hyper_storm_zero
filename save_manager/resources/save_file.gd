@@ -14,9 +14,13 @@ class_name save_file
 
 
 @export var player_name : String = "player"		#name of person playing game
-@export var coins : int = 0					#current health idk whatever
+@export var coins : int = 10					#current health idk whatever
 @export var day : int = 0					#current progress in days, should be updated on level clear.
 @export var lives : int = 2					#lives left
+@export var score_one : int			#holds scores for each day
+@export var score_two : int = 0			#holds scores for each day
+@export var score_three : int = 0			#holds scores for each day
+@export var score_four : int = 0			#holds scores for each day
 
 
 @export_group("upgrades")
@@ -27,17 +31,15 @@ class_name save_file
 @export var options : int = 0				#how many options, secondary bullet guns
 @export var shields : int = 0				#how many extra shields? thinking an extra hit per life, maybe regen
 @export var power_bombs : int = 0
-#i need a variable to store what blocks there are, and where they are.
-#vector position keys, and string values? whatever that works
-#can i save a dictionary in a dictionary? its values wont be packedscenes, its strings+vectors now.
-#it seems like when serializing values, the only real values i can trust are ints, bools, and strings.
+
+#vector position keys, string values of whats on the grid
+#"laser_block", "power_block", "shield_block"
 @export var block_dict : Dictionary = {
-	
 }
 #contains which blocks the player has in storage. string key, int values string is also the name of the block in block loader.
 # has "laser_block", "power_block", and "shield_block"
 @export var spare_dict : Dictionary = {
-	"shield_block" : 1,
+	"shield_block" : 0,
 	"power_block" : 0,
 	"laser_block" : 0,
 }
@@ -94,7 +96,8 @@ static func dict_to_file(sd : Dictionary) -> save_file:
 	new_file.options = sd["options"]
 	new_file.shields = sd["shields"]
 	new_file.power_bombs = sd["power_bombs"]
-	new_file.block_dict = sd["block_dict"]
+	#if i leave that in grid tries to load it and vomits
+	#new_file.block_dict = sd["block_dict"]
 	new_file.spare_dict = sd["spare_dict"]
 	new_file.master_volume = sd["master_volume"]
 	new_file.music_volume = sd["music_volume"]

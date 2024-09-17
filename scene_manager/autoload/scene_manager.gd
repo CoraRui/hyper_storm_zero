@@ -15,6 +15,8 @@ class_name scene_manager
 
 @export var fail_scene : scene
 
+@export var temp_scene : scene_link
+
 @onready var debug_i : debug = get_node("/root/debug_auto")
 
 func load_scene(sl : scene_link):
@@ -35,5 +37,9 @@ func find_scene(sl : scene_link) -> scene:
 			
 	return fail_scene
 	
-	
+func load_temp_to_next(sl : scene_link, d : float) -> void:
+	#just loads in the temp scene and directs the temp to the actual desired next
+	load_scene(temp_scene)
+	current_scene.next_scene = sl
+	current_scene.next_timer.wait_time = d
 

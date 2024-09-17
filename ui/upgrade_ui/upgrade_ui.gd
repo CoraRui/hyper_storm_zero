@@ -47,7 +47,6 @@ func _ready():
 func update_money() -> void:
 	money_label.text = str(save_mi.file_01.coins) + "G"
 	
-	
 func initialize_ui() -> void:
 	update_money()
 	speed_tier.play(str(save_mi.file_01.speed_up))
@@ -59,7 +58,6 @@ func initialize_ui() -> void:
 		hangar_tutorial_label.set_visible(true)
 		calendar_tutorial_label.set_visible(true)
 	
-
 func update_ui() -> void:
 	#grab all values from save file to write to the ui
 	money_label.text = str(save_mi.file_01.coins)
@@ -69,7 +67,6 @@ func update_ui() -> void:
 	money_tier.play(str(save_mi.file_01.money_up))
 	rate_tier.play(str(save_mi.file_01.rate_up))
 	
-
 func _on_velocity_option_activated():
 	if save_mi.file_01.coins >= 5 && save_mi.file_01.speed_up < 3:
 		sfx_pi.play_effect(velocity_sf)

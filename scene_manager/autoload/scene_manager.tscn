@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3kdku3xfhkjv"]
+[gd_scene load_steps=36 format=3 uid="uid://d3kdku3xfhkjv"]
 
 [ext_resource type="Script" path="res://scene_manager/autoload/scene_manager.gd" id="1_s3dc7"]
 [ext_resource type="PackedScene" uid="uid://bbwg6uxy46a58" path="res://scene_manager/scenes/main_menu/intro/intro.tscn" id="2_s1om1"]
@@ -13,6 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://c1kr574ap8rtw" path="res://ui/grid_ui/grid_ui.tscn" id="10_qhuw5"]
 [ext_resource type="PackedScene" uid="uid://cmqa1l5doqko5" path="res://ui/store_ui/store_ui.tscn" id="11_em18l"]
 [ext_resource type="PackedScene" uid="uid://dd3x26y6t4to4" path="res://scene_manager/scenes/levels/level_two/level_two.tscn" id="12_oxnad"]
+[ext_resource type="PackedScene" uid="uid://h1q2778x6ke8" path="res://scene_manager/scenes/temp/fake_load.tscn" id="13_0fcyp"]
+[ext_resource type="PackedScene" uid="uid://hhuk8u85i2qd" path="res://scene_manager/scenes/controls.tscn" id="14_vvxh8"]
+[ext_resource type="PackedScene" uid="uid://2rxl762rd71d" path="res://scene_manager/scenes/levels/level_three/level_three.tscn" id="15_g2yi6"]
+[ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="15_rdsm5"]
+[ext_resource type="PackedScene" uid="uid://nrmq8o4je0qw" path="res://scene_manager/scenes/end_game/you_won.tscn" id="16_j7ukt"]
 
 [sub_resource type="Resource" id="Resource_xanhw"]
 script = ExtResource("3_oysdi")
@@ -69,12 +74,37 @@ script = ExtResource("3_oysdi")
 scene_name = "level_two"
 scene_ref = ExtResource("12_oxnad")
 
+[sub_resource type="Resource" id="Resource_h34y2"]
+script = ExtResource("3_oysdi")
+scene_name = "fake_load"
+scene_ref = ExtResource("13_0fcyp")
+
+[sub_resource type="Resource" id="Resource_0e87y"]
+script = ExtResource("3_oysdi")
+scene_name = "control_menu"
+scene_ref = ExtResource("14_vvxh8")
+
+[sub_resource type="Resource" id="Resource_nonlt"]
+script = ExtResource("3_oysdi")
+scene_name = "level_three"
+scene_ref = ExtResource("15_g2yi6")
+
+[sub_resource type="Resource" id="Resource_voktx"]
+script = ExtResource("3_oysdi")
+scene_name = "you_won"
+scene_ref = ExtResource("16_j7ukt")
+
 [sub_resource type="Resource" id="Resource_tfkmx"]
 script = ExtResource("3_oysdi")
 scene_name = "test_scene"
 scene_ref = ExtResource("2_tmlig")
 
+[sub_resource type="Resource" id="Resource_qp4uf"]
+script = ExtResource("15_rdsm5")
+scene_name = "fake_load"
+
 [node name="scene_manager" type="Node2D"]
 script = ExtResource("1_s3dc7")
-scene_arr = Array[ExtResource("3_oysdi")]([SubResource("Resource_xanhw"), SubResource("Resource_t4f3d"), SubResource("Resource_uokr7"), SubResource("Resource_6s5bb"), SubResource("Resource_oc0dd"), SubResource("Resource_l47nw"), SubResource("Resource_2g3sl"), SubResource("Resource_yf25s"), SubResource("Resource_fjbvp"), SubResource("Resource_bugj0"), SubResource("Resource_3q3qd")])
+scene_arr = Array[ExtResource("3_oysdi")]([SubResource("Resource_xanhw"), SubResource("Resource_t4f3d"), SubResource("Resource_uokr7"), SubResource("Resource_6s5bb"), SubResource("Resource_oc0dd"), SubResource("Resource_l47nw"), SubResource("Resource_2g3sl"), SubResource("Resource_yf25s"), SubResource("Resource_fjbvp"), SubResource("Resource_bugj0"), SubResource("Resource_3q3qd"), SubResource("Resource_h34y2"), SubResource("Resource_0e87y"), SubResource("Resource_nonlt"), SubResource("Resource_voktx")])
 fail_scene = SubResource("Resource_tfkmx")
+temp_scene = SubResource("Resource_qp4uf")

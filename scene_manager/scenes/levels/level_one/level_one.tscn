@@ -1,15 +1,29 @@
-[gd_scene load_steps=32 format=3 uid="uid://c0tw3tftck06l"]
+[gd_scene load_steps=73 format=3 uid="uid://c0tw3tftck06l"]
 
 [ext_resource type="Script" path="res://scene_manager/scenes/levels/level_one/level_one.gd" id="1_g7ush"]
 [ext_resource type="PackedScene" uid="uid://v0ig1j0vucnl" path="res://enemy_loader/node/enemy_module/enemy_module.tscn" id="1_t1tsm"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="2_1dcqm"]
 [ext_resource type="Script" path="res://enemy_loader/resources/enemy_link.gd" id="2_bjlqp"]
 [ext_resource type="Script" path="res://enemy_loader/resources/enemy_command.gd" id="2_c85y4"]
+[ext_resource type="Script" path="res://audio/music/resources/music_link/music_link.gd" id="3_krija"]
 [ext_resource type="Script" path="res://movement+collision/collision_box/collision_box.gd" id="5_px5na"]
+[ext_resource type="Texture2D" uid="uid://dj73eqjnqbb43" path="res://raw_assets/test_sprites/stupid stars.png" id="7_y534d"]
 
 [sub_resource type="Resource" id="Resource_jxjii"]
 script = ExtResource("2_1dcqm")
 scene_name = "hangar_menu"
+
+[sub_resource type="Resource" id="Resource_8r2y0"]
+script = ExtResource("3_krija")
+name = "hyper_storm_hero"
+vol = -7.0
+delay = 0.0
+
+[sub_resource type="Resource" id="Resource_241u5"]
+script = ExtResource("3_krija")
+name = "you_saved_them"
+vol = -4.0
+delay = 0.0
 
 [sub_resource type="Resource" id="Resource_dwt04"]
 script = ExtResource("2_bjlqp")
@@ -17,10 +31,38 @@ enemy_name = "bub_jitter_down"
 
 [sub_resource type="Resource" id="Resource_sg30c"]
 script = ExtResource("2_c85y4")
+comm_title = "bub_right"
 comm = 0
 par = {
 "enemy": SubResource("Resource_dwt04"),
-"position": Vector2i(90, 20)
+"position": Vector2i(90, -5)
+}
+
+[sub_resource type="Resource" id="Resource_dbuku"]
+script = ExtResource("2_bjlqp")
+enemy_name = "bub_jitter_down"
+
+[sub_resource type="Resource" id="Resource_431im"]
+script = ExtResource("2_c85y4")
+comm_title = "bub"
+comm = 0
+par = {
+"enemy": SubResource("Resource_dbuku"),
+"position": Vector2i(62, -16)
+}
+
+[sub_resource type="Resource" id="Resource_1kqns"]
+script = ExtResource("2_bjlqp")
+enemy_name = "bub_jitter_down"
+
+[sub_resource type="Resource" id="Resource_2c0r1"]
+script = ExtResource("2_c85y4")
+comm_title = "bub_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_1kqns"),
+"position": Vector2i(95, -10),
+Vector2i(90, 0): null
 }
 
 [sub_resource type="Resource" id="Resource_ufwdv"]
@@ -29,6 +71,7 @@ enemy_name = "dial"
 
 [sub_resource type="Resource" id="Resource_u0c8p"]
 script = ExtResource("2_c85y4")
+comm_title = "dial_right"
 comm = 0
 par = {
 "enemy": SubResource("Resource_ufwdv"),
@@ -37,6 +80,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_t0fg3"]
 script = ExtResource("2_c85y4")
+comm_title = "dial_right"
 comm = 0
 par = {
 "enemy": SubResource("Resource_ufwdv"),
@@ -45,6 +89,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_4bpcw"]
 script = ExtResource("2_c85y4")
+comm_title = "dial_right"
 comm = 0
 par = {
 "enemy": SubResource("Resource_ufwdv"),
@@ -53,6 +98,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_ci8e8"]
 script = ExtResource("2_c85y4")
+comm_title = "pause 2sec"
 comm = 1
 par = {
 "time": 2.0
@@ -60,6 +106,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_otui2"]
 script = ExtResource("2_c85y4")
+comm_title = "dial_left"
 comm = 0
 par = {
 "enemy": SubResource("Resource_ufwdv"),
@@ -68,6 +115,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_2ta6g"]
 script = ExtResource("2_c85y4")
+comm_title = "dial_left"
 comm = 0
 par = {
 "enemy": SubResource("Resource_ufwdv"),
@@ -76,14 +124,34 @@ par = {
 
 [sub_resource type="Resource" id="Resource_qx2kl"]
 script = ExtResource("2_c85y4")
+comm_title = "dial_left"
 comm = 0
 par = {
 "enemy": SubResource("Resource_ufwdv"),
 "position": Vector2i(30, -80)
 }
 
+[sub_resource type="Resource" id="Resource_0sovj"]
+script = ExtResource("2_c85y4")
+comm_title = "bub_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_1kqns"),
+"position": Vector2i(25, 0)
+}
+
+[sub_resource type="Resource" id="Resource_g70g4"]
+script = ExtResource("2_c85y4")
+comm_title = "bub_left"
+comm = 0
+par = {
+"enemy": SubResource("Resource_1kqns"),
+"position": Vector2i(20, 0)
+}
+
 [sub_resource type="Resource" id="Resource_3mdqr"]
 script = ExtResource("2_c85y4")
+comm_title = "pause 2sec"
 comm = 1
 par = {
 "time": 2.0
@@ -95,6 +163,7 @@ enemy_name = "dial"
 
 [sub_resource type="Resource" id="Resource_7trpn"]
 script = ExtResource("2_c85y4")
+comm_title = "Xdial_lower"
 comm = 0
 par = {
 "enemy": SubResource("Resource_evg12"),
@@ -103,6 +172,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_qw4o0"]
 script = ExtResource("2_c85y4")
+comm_title = "Xdial_lower_right"
 comm = 0
 par = {
 "enemy": SubResource("Resource_evg12"),
@@ -111,6 +181,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_c48sd"]
 script = ExtResource("2_c85y4")
+comm_title = "x_dial_center"
 comm = 0
 par = {
 "enemy": SubResource("Resource_evg12"),
@@ -119,6 +190,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_urxbw"]
 script = ExtResource("2_c85y4")
+comm_title = "xdialupperright"
 comm = 0
 par = {
 "enemy": SubResource("Resource_evg12"),
@@ -127,6 +199,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_i006f"]
 script = ExtResource("2_c85y4")
+comm_title = "dialxupper left"
 comm = 0
 par = {
 "enemy": SubResource("Resource_evg12"),
@@ -135,6 +208,7 @@ par = {
 
 [sub_resource type="Resource" id="Resource_crd8d"]
 script = ExtResource("2_c85y4")
+comm_title = "pause_2sec"
 comm = 1
 par = {
 "time": 2.0
@@ -146,11 +220,261 @@ enemy_name = "bub_jitter_down"
 
 [sub_resource type="Resource" id="Resource_j0qms"]
 script = ExtResource("2_c85y4")
+comm_title = "bub_jitter_top"
 comm = 0
 par = {
 "enemy": SubResource("Resource_xm7fi"),
 "position": Vector2i(60, -16)
 }
+
+[sub_resource type="Resource" id="Resource_btl3h"]
+script = ExtResource("2_c85y4")
+comm_title = "bub_right"
+comm = 0
+par = {
+"enemy": SubResource("Resource_1kqns")
+}
+
+[sub_resource type="Resource" id="Resource_huu3l"]
+script = ExtResource("2_bjlqp")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_vmexr"]
+script = ExtResource("2_c85y4")
+comm_title = "left_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_huu3l"),
+"position": Vector2i(20, -16)
+}
+
+[sub_resource type="Resource" id="Resource_b80pr"]
+script = ExtResource("2_c85y4")
+comm_title = "left_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_huu3l"),
+"position": Vector2i(20, -80)
+}
+
+[sub_resource type="Resource" id="Resource_xbdkj"]
+script = ExtResource("2_c85y4")
+comm_title = "left_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_huu3l"),
+"position": Vector2i(20, -48)
+}
+
+[sub_resource type="Resource" id="Resource_p8888"]
+script = ExtResource("2_c85y4")
+comm_title = "right_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_huu3l"),
+"position": Vector2i(105, -16)
+}
+
+[sub_resource type="Resource" id="Resource_rxj5f"]
+script = ExtResource("2_c85y4")
+comm_title = "right_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_huu3l"),
+"position": Vector2i(105, -48)
+}
+
+[sub_resource type="Resource" id="Resource_kyr6s"]
+script = ExtResource("2_c85y4")
+comm_title = "right col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_huu3l"),
+"position": Vector2i(105, -80)
+}
+
+[sub_resource type="Resource" id="Resource_fo4lp"]
+script = ExtResource("2_bjlqp")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_ntl10"]
+script = ExtResource("2_c85y4")
+comm_title = "mid_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_fo4lp"),
+"position": Vector2i(62, -16)
+}
+
+[sub_resource type="Resource" id="Resource_58yvc"]
+script = ExtResource("2_c85y4")
+comm_title = "mid_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_fo4lp"),
+"position": Vector2i(62, -48)
+}
+
+[sub_resource type="Resource" id="Resource_rn0s1"]
+script = ExtResource("2_c85y4")
+comm_title = "mid_col"
+comm = 0
+par = {
+"enemy": SubResource("Resource_fo4lp"),
+"position": Vector2i(62, -80)
+}
+
+[sub_resource type="Resource" id="Resource_nrl56"]
+script = ExtResource("2_c85y4")
+comm_title = "pause_2sec"
+comm = 1
+par = {
+"time": 2.0
+}
+
+[sub_resource type="Resource" id="Resource_g1kpl"]
+script = ExtResource("2_bjlqp")
+enemy_name = "dial"
+
+[sub_resource type="Resource" id="Resource_1alba"]
+script = ExtResource("2_c85y4")
+comm_title = "left_out"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(10, -16)
+}
+
+[sub_resource type="Resource" id="Resource_fihsd"]
+script = ExtResource("2_c85y4")
+comm_title = "left_out"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(10, -48)
+}
+
+[sub_resource type="Resource" id="Resource_revvp"]
+script = ExtResource("2_c85y4")
+comm_title = "left_out"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(10, -80)
+}
+
+[sub_resource type="Resource" id="Resource_ij0b5"]
+script = ExtResource("2_c85y4")
+comm_title = "left_in"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(43, -16)
+}
+
+[sub_resource type="Resource" id="Resource_6gl5d"]
+script = ExtResource("2_c85y4")
+comm_title = "left_in"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(43, -48)
+}
+
+[sub_resource type="Resource" id="Resource_bj7kb"]
+script = ExtResource("2_c85y4")
+comm_title = "left_in"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(43, -80)
+}
+
+[sub_resource type="Resource" id="Resource_cphva"]
+script = ExtResource("2_c85y4")
+comm_title = "right_in"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(77, -16)
+}
+
+[sub_resource type="Resource" id="Resource_1f2hd"]
+script = ExtResource("2_c85y4")
+comm_title = "right_in"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(77, -48)
+}
+
+[sub_resource type="Resource" id="Resource_s6ic0"]
+script = ExtResource("2_c85y4")
+comm_title = "right_in"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(77, -80)
+}
+
+[sub_resource type="Resource" id="Resource_5ung1"]
+script = ExtResource("2_c85y4")
+comm_title = "right_out"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(115, -16)
+}
+
+[sub_resource type="Resource" id="Resource_a6kjt"]
+script = ExtResource("2_c85y4")
+comm_title = "right_out"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(115, -48)
+}
+
+[sub_resource type="Resource" id="Resource_leapc"]
+script = ExtResource("2_c85y4")
+comm_title = "right_out"
+comm = 0
+par = {
+"enemy": SubResource("Resource_g1kpl"),
+"position": Vector2i(115, -80)
+}
+
+[sub_resource type="Resource" id="Resource_o0lik"]
+script = ExtResource("2_c85y4")
+comm_title = "clear4gunship"
+comm = 1
+par = {
+"time": 4.0
+}
+
+[sub_resource type="Resource" id="Resource_07h7q"]
+script = ExtResource("2_bjlqp")
+enemy_name = "gun_ship"
+
+[sub_resource type="Resource" id="Resource_4owqj"]
+script = ExtResource("2_c85y4")
+comm_title = "gun_ship"
+comm = 0
+par = {
+"enemy": SubResource("Resource_07h7q")
+}
+
+[sub_resource type="Resource" id="Resource_02vet"]
+script = ExtResource("2_c85y4")
+comm_title = "gunship fight time"
+comm = 1
+par = {}
+
+[sub_resource type="Resource" id="Resource_bcwlg"]
+script = ExtResource("2_c85y4")
+comm_title = "command_title"
+comm = 0
+par = {}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grlkt"]
 size = Vector2(150, 6)
@@ -169,12 +493,20 @@ script = ExtResource("1_g7ush")
 clear_label = NodePath("clear")
 next_stage_timer = NodePath("next_stage")
 next_scene = SubResource("Resource_jxjii")
+level_music = SubResource("Resource_8r2y0")
+clear_music = SubResource("Resource_241u5")
+
+[node name="space_bg" type="Sprite2D" parent="."]
+z_index = -20
+texture = ExtResource("7_y534d")
+centered = false
 
 [node name="enemy_module" parent="." instance=ExtResource("1_t1tsm")]
 send_onready = true
-enemy_arr = Array[ExtResource("2_c85y4")]([SubResource("Resource_sg30c"), SubResource("Resource_u0c8p"), SubResource("Resource_t0fg3"), SubResource("Resource_4bpcw"), SubResource("Resource_ci8e8"), SubResource("Resource_otui2"), SubResource("Resource_2ta6g"), SubResource("Resource_qx2kl"), SubResource("Resource_3mdqr"), SubResource("Resource_7trpn"), SubResource("Resource_qw4o0"), SubResource("Resource_c48sd"), SubResource("Resource_urxbw"), SubResource("Resource_i006f"), SubResource("Resource_crd8d"), SubResource("Resource_j0qms")])
+enemy_arr = Array[ExtResource("2_c85y4")]([SubResource("Resource_sg30c"), SubResource("Resource_431im"), SubResource("Resource_2c0r1"), SubResource("Resource_u0c8p"), SubResource("Resource_t0fg3"), SubResource("Resource_4bpcw"), SubResource("Resource_ci8e8"), SubResource("Resource_otui2"), SubResource("Resource_2ta6g"), SubResource("Resource_qx2kl"), SubResource("Resource_0sovj"), SubResource("Resource_g70g4"), SubResource("Resource_3mdqr"), SubResource("Resource_7trpn"), SubResource("Resource_qw4o0"), SubResource("Resource_c48sd"), SubResource("Resource_urxbw"), SubResource("Resource_i006f"), SubResource("Resource_crd8d"), SubResource("Resource_j0qms"), SubResource("Resource_btl3h"), SubResource("Resource_vmexr"), SubResource("Resource_b80pr"), SubResource("Resource_xbdkj"), SubResource("Resource_p8888"), SubResource("Resource_rxj5f"), SubResource("Resource_kyr6s"), SubResource("Resource_ntl10"), SubResource("Resource_58yvc"), SubResource("Resource_rn0s1"), SubResource("Resource_nrl56"), SubResource("Resource_1alba"), SubResource("Resource_fihsd"), SubResource("Resource_revvp"), SubResource("Resource_ij0b5"), SubResource("Resource_6gl5d"), SubResource("Resource_bj7kb"), SubResource("Resource_cphva"), SubResource("Resource_1f2hd"), SubResource("Resource_s6ic0"), SubResource("Resource_5ung1"), SubResource("Resource_a6kjt"), SubResource("Resource_leapc"), SubResource("Resource_o0lik"), SubResource("Resource_4owqj"), SubResource("Resource_02vet"), SubResource("Resource_bcwlg")])
 
 [node name="level_one" type="Label" parent="."]
+visible = false
 offset_left = 21.0
 offset_top = 124.0
 offset_right = 103.0
@@ -227,15 +559,19 @@ shape = SubResource("RectangleShape2D_ny2fv")
 [node name="clear" type="Label" parent="."]
 visible = false
 offset_left = 16.0
-offset_top = 22.0
+offset_top = 36.0
 offset_right = 112.0
-offset_bottom = 42.0
+offset_bottom = 56.0
 theme_override_font_sizes/font_size = 15
 text = "CLEAR!!!"
 
 [node name="next_stage" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 15.0
 one_shot = true
+
+[node name="flash_timer" type="Timer" parent="."]
+wait_time = 0.6
+autostart = true
 
 [connection signal="area_entered" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_entered"]
 [connection signal="area_exited" from="collision_box/up_area" to="collision_box" method="_on_up_area_area_exited"]
@@ -254,3 +590,4 @@ one_shot = true
 [connection signal="body_entered" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_entered"]
 [connection signal="body_exited" from="collision_box/right_area" to="collision_box" method="_on_right_area_body_exited"]
 [connection signal="timeout" from="next_stage" to="." method="_on_next_stage_timeout"]
+[connection signal="timeout" from="flash_timer" to="." method="_on_flash_timer_timeout"]

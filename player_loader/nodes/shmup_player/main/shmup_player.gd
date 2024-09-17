@@ -100,13 +100,10 @@ func load_upgrades() -> void:
 	if save_mi.file_01.dog_statue > 0:
 		laser_gi.shoot_sf.sf_name = "ruff!:3"
 		
-	#give the player the amount of options necessary
-	
 	#give overshields
 	shield_left = save_mi.file_01.shields
 	if shield_left > 0:
 		shield_anim.play("shield")
-	
 	
 	#set ship speed
 	match save_mi.file_01.speed_up:

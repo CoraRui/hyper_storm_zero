@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_hnxeo"]
 script = ExtResource("2_7u4sw")
-block_type = "power_bomb"
+block_type = "power_block"
 upgrade = 0
 grid_shape = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 1), Vector2i(-1, 1), Vector2i(1, 0)])
 block_value = 1

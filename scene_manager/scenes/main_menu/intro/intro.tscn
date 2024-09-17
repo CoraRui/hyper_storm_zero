@@ -13,7 +13,7 @@ scene_name = "title"
 [sub_resource type="Resource" id="Resource_oid17"]
 script = ExtResource("3_sntq5")
 name = "intro"
-vol = -1.0
+vol = -4.0
 delay = 0.0
 
 [sub_resource type="Resource" id="Resource_30xb7"]
@@ -26,7 +26,7 @@ script = ExtResource("4_0urmp")
 comm = 2
 par_dict = {
 "delta_char": 5,
-"text": "everything was peaceful.. until it wasn't"
+"text": "w"
 }
 
 [sub_resource type="Resource" id="Resource_3j7yr"]

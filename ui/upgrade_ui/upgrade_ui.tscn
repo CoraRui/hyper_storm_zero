@@ -31,17 +31,17 @@ sf_vol = 0.0
 [sub_resource type="Resource" id="Resource_v53dc"]
 script = ExtResource("2_dg7qq")
 sf_name = "fire_rate_up"
-sf_vol = 0.0
+sf_vol = 2.0
 
 [sub_resource type="Resource" id="Resource_7g7yn"]
 script = ExtResource("2_dg7qq")
 sf_name = "money_up"
-sf_vol = 0.0
+sf_vol = 2.0
 
 [sub_resource type="Resource" id="Resource_4hteg"]
 script = ExtResource("2_dg7qq")
 sf_name = "spend_money"
-sf_vol = 0.0
+sf_vol = 2.0
 
 [sub_resource type="Resource" id="Resource_paqbc"]
 script = ExtResource("3_wl0ts")
@@ -50,7 +50,7 @@ scene_name = "grid_menu"
 [sub_resource type="Resource" id="Resource_vhs3w"]
 script = ExtResource("4_tm4r4")
 name = "hangar"
-vol = -1.0
+vol = -5.0
 delay = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aywu3"]
@@ -86,6 +86,20 @@ animations = [{
 "loop": true,
 "name": &"3",
 "speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqri6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_eu331")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_j8eu4")
+}],
+"loop": true,
+"name": &"chaching",
+"speed": 15.0
 }]
 
 [sub_resource type="Resource" id="Resource_j7ssu"]
@@ -126,20 +140,6 @@ animations = [{
 "loop": true,
 "name": &"right",
 "speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_oqri6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("9_eu331")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_j8eu4")
-}],
-"loop": true,
-"name": &"chaching",
-"speed": 15.0
 }]
 
 [node name="upgrade_ui" type="Node2D" node_paths=PackedStringArray("money_label", "money_anim", "speed_tier", "money_tier", "rate_tier", "hangar_tutorial_label", "calendar_tutorial_label")]
@@ -225,9 +225,10 @@ position = Vector2(46, 8)
 texture = ExtResource("4_vk1ld")
 
 [node name="option_text" type="Label" parent="simple_select/hangar_group/velocity_option"]
-offset_left = 20.0
-offset_right = 86.0
-offset_bottom = 16.0
+offset_left = 19.0
+offset_top = -4.0
+offset_right = 85.0
+offset_bottom = 12.0
 theme_override_font_sizes/font_size = 5
 text = "velocity++"
 horizontal_alignment = 1
@@ -247,6 +248,23 @@ sprite_frames = SubResource("SpriteFrames_aywu3")
 animation = &"0"
 offset = Vector2(0.5, 0)
 
+[node name="velo_price" type="Label" parent="simple_select/hangar_group/velocity_option"]
+offset_left = 48.0
+offset_top = 11.0
+offset_right = 59.0
+offset_bottom = 19.0
+theme_override_font_sizes/font_size = 5
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="money_sprite" type="AnimatedSprite2D" parent="simple_select/hangar_group/velocity_option/velo_price"]
+position = Vector2(-1, 2)
+sprite_frames = SubResource("SpriteFrames_oqri6")
+animation = &"chaching"
+frame_progress = 0.756182
+
 [node name="money_option" type="Node2D" parent="simple_select/hangar_group" node_paths=PackedStringArray("icon_point", "option_label", "up_option", "down_option")]
 position = Vector2(-18, 102)
 script = ExtResource("3_bwgxm")
@@ -260,10 +278,10 @@ position = Vector2(46, 6)
 texture = ExtResource("4_vk1ld")
 
 [node name="option_text" type="Label" parent="simple_select/hangar_group/money_option"]
-offset_left = 28.0
-offset_top = -2.0
-offset_right = 78.0
-offset_bottom = 14.0
+offset_left = 26.0
+offset_top = -6.0
+offset_right = 76.0
+offset_bottom = 10.0
 theme_override_font_sizes/font_size = 5
 text = "money++"
 horizontal_alignment = 1
@@ -283,6 +301,23 @@ sprite_frames = SubResource("SpriteFrames_aywu3")
 animation = &"0"
 offset = Vector2(0.5, 0)
 
+[node name="money_price" type="Label" parent="simple_select/hangar_group/money_option"]
+offset_left = 48.0
+offset_top = 9.0
+offset_right = 59.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 5
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="money_sprite" type="AnimatedSprite2D" parent="simple_select/hangar_group/money_option/money_price"]
+position = Vector2(-1, 2)
+sprite_frames = SubResource("SpriteFrames_oqri6")
+animation = &"chaching"
+frame_progress = 0.756182
+
 [node name="rate_option" type="Node2D" parent="simple_select/hangar_group" node_paths=PackedStringArray("icon_point", "option_label", "up_option")]
 position = Vector2(-16, 134)
 script = ExtResource("3_bwgxm")
@@ -295,10 +330,10 @@ position = Vector2(44, 6)
 texture = ExtResource("4_vk1ld")
 
 [node name="option_text" type="Label" parent="simple_select/hangar_group/rate_option"]
-offset_left = 24.0
-offset_top = -1.0
-offset_right = 80.0
-offset_bottom = 13.0
+offset_left = 22.0
+offset_top = -4.0
+offset_right = 78.0
+offset_bottom = 10.0
 theme_override_font_sizes/font_size = 5
 text = "fire rate++"
 horizontal_alignment = 1
@@ -317,6 +352,23 @@ position = Vector2(83, 7)
 sprite_frames = SubResource("SpriteFrames_aywu3")
 animation = &"0"
 offset = Vector2(0.5, 0)
+
+[node name="velo_price" type="Label" parent="simple_select/hangar_group/rate_option"]
+offset_left = 46.0
+offset_top = 9.0
+offset_right = 57.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 5
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="money_sprite" type="AnimatedSprite2D" parent="simple_select/hangar_group/rate_option/velo_price"]
+position = Vector2(-1, 2)
+sprite_frames = SubResource("SpriteFrames_oqri6")
+animation = &"chaching"
+frame_progress = 0.756182
 
 [node name="hangar_tutorial" type="Label" parent="simple_select/hangar_group"]
 visible = false
@@ -483,6 +535,13 @@ text = "select a day to start level"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="simple_select/calendar_group"]
+offset_left = 45.0
+offset_top = 101.0
+offset_right = 64.0
+offset_bottom = 133.0
+color = Color(0, 0, 0, 1)
 
 [node name="select_icon" type="AnimatedSprite2D" parent="simple_select"]
 position = Vector2(89, 105)

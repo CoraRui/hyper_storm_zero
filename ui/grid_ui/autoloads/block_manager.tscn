@@ -8,9 +8,7 @@
 [node name="block_manager" type="Node2D"]
 script = ExtResource("1_laqxq")
 block_dict = {
-"bomb_block": ExtResource("3_koycy"),
-"line_shield_block": ExtResource("2_34bfx"),
-"option_block": ExtResource("4_e64lc"),
-"rate_block": ExtResource("3_koycy"),
+"laser_block": ExtResource("4_e64lc"),
+"power_block": ExtResource("3_koycy"),
 "shield_block": ExtResource("2_34bfx")
 }

@@ -47,17 +47,17 @@ func initialize_dates():
 
 
 func _on_day_one_4_activated():
-	scene_mi.load_scene(day_four_link)
+	scene_mi.load_temp_to_next(day_four_link, 4)
 	music_pi.stop_track()
 
 func _on_day_one_3_activated():
-	scene_mi.load_scene(day_three_link)
+	scene_mi.load_temp_to_next(day_three_link, 4)
 	music_pi.stop_track()
 
 func _on_day_one_2_activated():
-	scene_mi.load_scene(day_two_link)
+	scene_mi.load_temp_to_next(day_two_link, 4)
 	music_pi.stop_track()
 
 func _on_day_one_activated():
-	scene_mi.load_scene(day_one_link)
+	scene_mi.load_temp_to_next(day_one_link, 4)
 	music_pi.stop_track()

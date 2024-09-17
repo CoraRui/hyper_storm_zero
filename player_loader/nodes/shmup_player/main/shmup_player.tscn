@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsil1jov41qpi"]
+[gd_scene load_steps=21 format=3 uid="uid://bsil1jov41qpi"]
 
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/main/shmup_player.gd" id="1_lpbq4"]
 [ext_resource type="Texture2D" uid="uid://kw23a1ib3sp2" path="res://raw_assets/test_sprites/test_ship/rocket.png" id="2_nmlhc"]
@@ -9,6 +9,11 @@
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/main/power_bomb.gd" id="7_k5nq3"]
 [ext_resource type="Texture2D" uid="uid://cjtyelmpyd3f4" path="res://raw_assets/test_sprites/test_ship/shield.png" id="8_4lljn"]
 [ext_resource type="Texture2D" uid="uid://cavdoih4x06e2" path="res://raw_assets/test_sprites/none.png" id="8_haaj8"]
+
+[sub_resource type="Resource" id="Resource_pkndd"]
+script = ExtResource("6_g6728")
+sf_name = "hurt"
+sf_vol = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cslgb"]
 atlas = ExtResource("2_nmlhc")
@@ -40,10 +45,15 @@ size = Vector2(2, 10)
 [sub_resource type="Resource" id="Resource_jgfqe"]
 script = ExtResource("6_g6728")
 sf_name = "player_shoot"
-sf_vol = 0.0
+sf_vol = -6.716
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctush"]
-size = Vector2(7, 10)
+size = Vector2(5, 7)
+
+[sub_resource type="Resource" id="Resource_7roer"]
+script = ExtResource("6_g6728")
+sf_name = "power_boom"
+sf_vol = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mlkrp"]
 animations = [{
@@ -70,6 +80,7 @@ m_node = NodePath(".")
 v_skip = Vector2i(1, 1)
 col_box = NodePath("collision_box")
 shield_anim = NodePath("shield_anim")
+shield_hit_sf = SubResource("Resource_pkndd")
 player_anim = NodePath("player_anim")
 laser_gi = NodePath("laser_gun")
 power_bi = NodePath("power_bomb")
@@ -126,14 +137,15 @@ shoot_sf = SubResource("Resource_jgfqe")
 [node name="bullet_point" type="Node2D" parent="laser_gun"]
 
 [node name="hit_area" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 34
 
 [node name="hitshape" type="CollisionShape2D" parent="hit_area"]
-position = Vector2(0.5, 0)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ctush")
 
 [node name="power_bomb" type="Node2D" parent="."]
 script = ExtResource("7_k5nq3")
+boom_sf = SubResource("Resource_7roer")
 
 [node name="shield_anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mlkrp")

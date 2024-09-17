@@ -1,18 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3o7hm0ljfpth"]
+[gd_scene load_steps=14 format=3 uid="uid://c3o7hm0ljfpth"]
 
 [ext_resource type="PackedScene" uid="uid://bc32velo42mfy" path="res://movement+collision/simple_bullet/simple_bullet.tscn" id="1_02gtu"]
 [ext_resource type="Script" path="res://movement+collision/simple_bullet/resources/move_set/move_set.gd" id="2_qjxti"]
+[ext_resource type="Texture2D" uid="uid://bp0dh5d662cg2" path="res://raw_assets/test_sprites/proto_dial/dial_vtwo1.png" id="3_kpiij"]
 [ext_resource type="Texture2D" uid="uid://bptqixxeairet" path="res://raw_assets/test_sprites/proto_dial/proto_dial1.png" id="3_wx0kt"]
 [ext_resource type="Texture2D" uid="uid://dhw3kh3cf3te2" path="res://raw_assets/test_sprites/proto_dial/proto_dial2.png" id="4_5d1ao"]
+[ext_resource type="Texture2D" uid="uid://doya6aespvfmj" path="res://raw_assets/test_sprites/proto_dial/dial_vtwo2.png" id="4_uawsb"]
 [ext_resource type="Texture2D" uid="uid://cae7lh5b7w7py" path="res://raw_assets/test_sprites/proto_dial/proto_dial3.png" id="5_2chdr"]
+[ext_resource type="Texture2D" uid="uid://dhlorg126dcmn" path="res://raw_assets/test_sprites/proto_dial/dial_vtwo3.png" id="5_tbu4c"]
 [ext_resource type="PackedScene" uid="uid://pcv4ypit0wli" path="res://enemy_loader/node/enemy_health/enemy_health.tscn" id="6_m68qp"]
 [ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="7_cnapa"]
 
 [sub_resource type="Resource" id="Resource_lsil4"]
 script = ExtResource("2_qjxti")
 vel_carry = false
-vel_vec = Vector2i(0, 2)
-vel_skip = Vector2i(2, 2)
+vel_vec = Vector2i(0, 1)
+vel_skip = Vector2i(1, 1)
 acc_carry = false
 acc_vec = Vector2i(0, 0)
 acc_skip = Vector2i(2, 2)
@@ -20,6 +23,23 @@ dur_frames = 10000
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fx8m6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kpiij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uawsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tbu4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uawsb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_wx0kt")
@@ -34,7 +54,7 @@ animations = [{
 "texture": ExtResource("4_5d1ao")
 }],
 "loop": true,
-"name": &"default",
+"name": &"old",
 "speed": 7.0
 }]
 
@@ -52,9 +72,9 @@ move_queue = Array[ExtResource("2_qjxti")]([SubResource("Resource_lsil4")])
 [node name="dial_anim" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fx8m6")
 autoplay = "default"
-frame = 3
-frame_progress = 0.158151
+frame_progress = 0.232375
 
 [node name="enemy_health" parent="." node_paths=PackedStringArray("enemy_node") instance=ExtResource("6_m68qp")]
 enemy_node = NodePath("..")
 hit_sf = SubResource("Resource_ekb2m")
+score_value = 200

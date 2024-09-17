@@ -67,9 +67,8 @@ dur_frames = 20
 
 [node name="bub" parent="." instance=ExtResource("1_ho8t2")]
 
-[node name="enemy_health" parent="bub" index="0"]
-hp = 1
-mhp = 1
+[node name="hit_shape" parent="bub/enemy_health/hit_shape" index="0"]
+position = Vector2(0.5, 1)
 
 [node name="bub_anim" parent="bub" index="1"]
 offset = Vector2(0.5, 0.5)
@@ -77,4 +76,11 @@ offset = Vector2(0.5, 0.5)
 [node name="simple_bullet" parent="bub" index="2"]
 move_queue = Array[ExtResource("2_l4pu4")]([SubResource("Resource_2lo0n"), SubResource("Resource_864fb"), SubResource("Resource_osyn7"), SubResource("Resource_l7om7"), SubResource("Resource_p5xc4"), SubResource("Resource_fwy8a")])
 
+[node name="kill_timer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[connection signal="timeout" from="kill_timer" to="bub/enemy_health" method="_on_kill_timer_timeout"]
+
 [editable path="bub"]
+[editable path="bub/enemy_health"]

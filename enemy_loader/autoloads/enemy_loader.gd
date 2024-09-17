@@ -48,6 +48,7 @@ func execute_command():
 	#this function should check for all possible commands
 	if queue_index >= enemy_queue.size():
 		queue_finish.emit()
+		print("queue finish")
 		return
 	
 	var comm : enemy_command = enemy_queue[queue_index]
@@ -79,9 +80,25 @@ func spawn_enemy(p : Dictionary) -> void:
 		new_enemy = find_enemy(p["enemy"]).enemy_ref.instantiate()
 		get_tree().get_root().add_child.call_deferred(new_enemy)
 		enemy_ia.insert(0, new_enemy)
+		print("enemy loaded...")
+	else:
+		print("enemy_loader has no enemy???")
+		return
+		
+	if p.has("enemy_string"):
+		#modified to identify enemy by plain string rather than enemy link
+		var new_link : enemy_link 
+		new_link.enemy_name = p["enemy_string"]
+		new_enemy = find_enemy(new_link).enemy_ref.instantiate()
+		get_tree().get_root().add_child.call_deferred(new_enemy)
+		enemy_ia.insert(0, new_enemy)
+		print("enemy_string loaded...")
 		
 	if p.has("position") && new_enemy:
 		new_enemy.global_position = p["position"]
+		print("position set")
+	else:
+		print("enemy loader has no position")
 	
 func delay_queue_time(p : Dictionary) -> void:
 	#dont do the next command immediately, trigger a timer whose signal will trigger the next command.

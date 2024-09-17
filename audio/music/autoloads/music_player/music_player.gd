@@ -45,5 +45,5 @@ func find_track(ml : music_link) -> track:
 		if ml.name == t.track_name:
 			return t
 	
-	print("couldn't find track: ", ml.track_name)
+	print("couldn't find track: ", ml.name)
 	return fail_track

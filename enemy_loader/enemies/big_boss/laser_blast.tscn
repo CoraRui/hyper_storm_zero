@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://ov7m2pidw7r6"]
+
+[ext_resource type="Script" path="res://enemy_loader/enemies/big_boss/laser_blast.gd" id="1_xpfn1"]
+[ext_resource type="Script" path="res://audio/sfx/resources/sf_link.gd" id="2_ubgtg"]
+[ext_resource type="Texture2D" uid="uid://chc5rcwwjkb0a" path="res://raw_assets/test_sprites/enemies/big_boss/blast_top1.png" id="3_d1s2m"]
+[ext_resource type="Texture2D" uid="uid://bsmsrome05t8m" path="res://raw_assets/test_sprites/enemies/big_boss/blast_top2.png" id="4_ps0p5"]
+[ext_resource type="Texture2D" uid="uid://bel62s7g68am8" path="res://raw_assets/test_sprites/enemies/big_boss/column1.png" id="5_wi2uq"]
+[ext_resource type="Texture2D" uid="uid://de2vlxmeyjlfe" path="res://raw_assets/test_sprites/enemies/big_boss/column2.png" id="6_d3gmi"]
+[ext_resource type="Texture2D" uid="uid://cavdoih4x06e2" path="res://raw_assets/test_sprites/none.png" id="7_0vx1l"]
+
+[sub_resource type="Resource" id="Resource_ut2ia"]
+script = ExtResource("2_ubgtg")
+sf_name = "chargeup"
+sf_vol = -5.0
+
+[sub_resource type="Resource" id="Resource_usgx5"]
+script = ExtResource("2_ubgtg")
+sf_name = "blast"
+sf_vol = -5.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rcyf3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_d1s2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ps0p5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qoxg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wi2uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d3gmi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0vx1l")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0fyp"]
+size = Vector2(29, 151)
+
+[node name="laser_blast" type="Node2D" node_paths=PackedStringArray("col_anim", "top_anim", "exp_timer", "hit_area")]
+script = ExtResource("1_xpfn1")
+col_anim = NodePath("col_anim")
+top_anim = NodePath("top_anim")
+exp_timer = NodePath("exp_timer")
+hit_area = NodePath("hitbox")
+charge_sf = SubResource("Resource_ut2ia")
+blast_sf = SubResource("Resource_usgx5")
+
+[node name="col_anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rcyf3")
+autoplay = "default"
+frame_progress = 0.635166
+
+[node name="top_anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 71)
+sprite_frames = SubResource("SpriteFrames_qoxg8")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="to_blast" type="Timer" parent="."]
+wait_time = 1.3
+one_shot = true
+autostart = true
+
+[node name="hitbox" type="Area2D" parent="."]
+disable_mode = 2
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="hitshape" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 65.5)
+shape = SubResource("RectangleShape2D_c0fyp")
+disabled = true
+
+[node name="exp_timer" type="Timer" parent="."]
+wait_time = 1.7
+one_shot = true
+
+[connection signal="timeout" from="to_blast" to="." method="_on_to_blast_timeout"]
+[connection signal="timeout" from="exp_timer" to="." method="_on_exp_timer_timeout"]

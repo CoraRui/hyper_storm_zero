@@ -5,14 +5,21 @@
 [node name="score_manager" type="Node2D" node_paths=PackedStringArray("score_label")]
 visible = false
 script = ExtResource("1_to1tb")
-score_label = NodePath("score_label")
+score_label = NodePath("background/score_label")
 
-[node name="score_label" type="Label" parent="."]
-offset_left = 85.0
-offset_top = 2.0
-offset_right = 215.0
-offset_bottom = 22.0
-theme_override_font_sizes/font_size = 10
+[node name="background" type="ColorRect" parent="."]
+offset_left = 76.0
+offset_top = 3.0
+offset_right = 115.0
+offset_bottom = 8.0
+color = Color(0, 0, 0, 1)
+
+[node name="score_label" type="Label" parent="background"]
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 42.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 5
 text = "0000000000"
 horizontal_alignment = 1
 vertical_alignment = 1

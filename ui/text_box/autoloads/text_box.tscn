@@ -17,6 +17,7 @@ spacing_space = 1
 spacing_top = 3
 
 [node name="text_box" type="Node2D" node_paths=PackedStringArray("main_label", "box_anim", "delay_timer")]
+visible = false
 script = ExtResource("1_nl2j6")
 main_label = NodePath("main_label")
 box_anim = NodePath("text_box")

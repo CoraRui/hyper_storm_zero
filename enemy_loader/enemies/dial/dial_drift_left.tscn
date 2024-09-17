@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddx72lcpjdsqy"]
+
+[ext_resource type="PackedScene" uid="uid://c3o7hm0ljfpth" path="res://enemy_loader/enemies/dial/dial.tscn" id="1_764ip"]
+[ext_resource type="Script" path="res://movement+collision/simple_bullet/resources/move_set/move_set.gd" id="2_gp5of"]
+
+[sub_resource type="Resource" id="Resource_c5rsp"]
+script = ExtResource("2_gp5of")
+vel_carry = false
+vel_vec = Vector2i(0, 1)
+vel_skip = Vector2i(1, 1)
+acc_carry = false
+acc_vec = Vector2i(0, 0)
+acc_skip = Vector2i(2, 2)
+dur_frames = 60
+
+[sub_resource type="Resource" id="Resource_0s7lm"]
+script = ExtResource("2_gp5of")
+vel_carry = false
+vel_vec = Vector2i(-1, 1)
+vel_skip = Vector2i(1, 1)
+acc_carry = false
+acc_vec = Vector2i(0, 0)
+acc_skip = Vector2i(2, 2)
+dur_frames = 40
+
+[sub_resource type="Resource" id="Resource_j6cbg"]
+script = ExtResource("2_gp5of")
+vel_carry = false
+vel_vec = Vector2i(2, 1)
+vel_skip = Vector2i(1, 1)
+acc_carry = false
+acc_vec = Vector2i(0, 0)
+acc_skip = Vector2i(2, 2)
+dur_frames = 0
+
+[node name="dial_dirft" type="Node2D"]
+
+[node name="dial" parent="." instance=ExtResource("1_764ip")]
+
+[node name="simple_bullet" parent="dial" index="0"]
+move_queue = Array[ExtResource("2_gp5of")]([SubResource("Resource_c5rsp"), SubResource("Resource_0s7lm"), SubResource("Resource_j6cbg")])
+
+[editable path="dial"]

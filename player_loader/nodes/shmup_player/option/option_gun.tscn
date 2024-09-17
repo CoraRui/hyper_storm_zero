@@ -1,8 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://brslbx4b5ok0r"]
+[gd_scene load_steps=7 format=3 uid="uid://brslbx4b5ok0r"]
 
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/laser_gun/laser_gun.gd" id="1_rs1ys"]
 [ext_resource type="PackedScene" uid="uid://ntkyekpbo2t5" path="res://player_loader/nodes/shmup_player/laser_gun/laser_beam.tscn" id="3_igs1b"]
 [ext_resource type="Script" path="res://player_loader/nodes/shmup_player/option/option_move.gd" id="3_u2iiq"]
+[ext_resource type="Texture2D" uid="uid://cw6n0vy8ko28l" path="res://raw_assets/test_sprites/laser_option1.png" id="4_4uhy4"]
+[ext_resource type="Texture2D" uid="uid://c3l71wf40lga5" path="res://raw_assets/test_sprites/laser_option2.png" id="5_t1de4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3jos"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4uhy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t1de4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="option_gun" type="Node2D"]
 script = ExtResource("3_u2iiq")
@@ -20,3 +36,7 @@ offset_bottom = 4.0
 script = ExtResource("1_rs1ys")
 bullet_ref = ExtResource("3_igs1b")
 bullet_point = NodePath("../bullet_point")
+
+[node name="option_anim" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t3jos")
+frame_progress = 0.809592
