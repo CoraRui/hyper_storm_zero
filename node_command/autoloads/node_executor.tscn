@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://gkjyb3hwwgke"]
+
+[ext_resource type="Script" path="res://node_command/autoloads/node_executor.gd" id="1_crp37"]
+[ext_resource type="PackedScene" uid="uid://bjteppu2bv0h8" path="res://node_command/resources/node_command/node_command.tscn" id="2_s70e8"]
+[ext_resource type="PackedScene" uid="uid://keckrdw4wl3m" path="res://node_command/resources/print_comm/print_comm.tscn" id="3_moofj"]
+
+[node name="node_executor" type="Node2D" node_paths=PackedStringArray("delay_timer")]
+script = ExtResource("1_crp37")
+delay_timer = NodePath("delay_timer")
+ready_start = true
+
+[node name="test_message" parent="." instance=ExtResource("2_s70e8")]
+
+[node name="print_comm" parent="test_message" instance=ExtResource("3_moofj")]
+print_string = "test_print"
+
+[node name="test_message2" parent="." instance=ExtResource("2_s70e8")]
+
+[node name="print_comm" parent="test_message2" instance=ExtResource("3_moofj")]
+print_string = "your mom"
+
+[node name="test_message3" parent="." instance=ExtResource("2_s70e8")]
+
+[node name="print_comm" parent="test_message3" instance=ExtResource("3_moofj")]
+print_string = "has aids"
+
+[node name="test_message4" parent="." instance=ExtResource("2_s70e8")]
+
+[node name="print_comm" parent="test_message4" instance=ExtResource("3_moofj")]
+print_string = "loser"
+
+[node name="end_node" type="Node2D" parent="."]
+
+[node name="delay_timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="delay_timer" to="." method="_on_delay_timer_timeout"]

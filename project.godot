@@ -32,6 +32,7 @@ score_manager_auto="*res://ui/score_manager/autoload/score_manager.tscn"
 simple_drop_auto="*res://simple_drop/autoloads/simple_drop.tscn"
 shmup_health_auto="*res://player_loader/nodes/shmup_health/shmup_health.tscn"
 block_manager_auto="*res://ui/grid_ui/autoloads/block_manager.tscn"
+node_executor_auto="*res://node_command/autoloads/node_executor.tscn"
 
 [display]
 

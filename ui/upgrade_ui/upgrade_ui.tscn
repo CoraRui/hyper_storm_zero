@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://3vmixsh258vy"]
+[gd_scene load_steps=37 format=3 uid="uid://3vmixsh258vy"]
 
 [ext_resource type="Script" path="res://ui/simple_select/nodes/simple_select/simple_select.gd" id="1_6v355"]
 [ext_resource type="Script" path="res://ui/upgrade_ui/upgrade_ui.gd" id="1_351op"]
@@ -117,6 +117,10 @@ scene_name = "level_three"
 [sub_resource type="Resource" id="Resource_q677h"]
 script = ExtResource("3_wl0ts")
 scene_name = "level_four"
+
+[sub_resource type="Resource" id="Resource_i7us1"]
+script = ExtResource("3_wl0ts")
+scene_name = ""
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0wb2l"]
 animations = [{
@@ -388,7 +392,6 @@ texture = ExtResource("16_7cefq")
 offset = Vector2(0.5, 0)
 
 [node name="calendar_group" type="Node2D" parent="simple_select" node_paths=PackedStringArray("options")]
-visible = false
 position = Vector2(35, 10)
 script = ExtResource("2_vk26y")
 options = [NodePath("left_option"), NodePath("day_one"), NodePath("day_one2"), NodePath("day_one3"), NodePath("day_one4")]
@@ -402,6 +405,7 @@ day_one_link = SubResource("Resource_j7ssu")
 day_two_link = SubResource("Resource_j53xx")
 day_three_link = SubResource("Resource_b2a4w")
 day_four_link = SubResource("Resource_q677h")
+test_one_link = SubResource("Resource_i7us1")
 
 [node name="left_option" type="Node2D" parent="simple_select/calendar_group" node_paths=PackedStringArray("icon_point", "option_label", "target_group", "down_option")]
 position = Vector2(-25, 3)
@@ -429,11 +433,12 @@ position = Vector2(-21, -3)
 texture = ExtResource("14_26ohv")
 centered = false
 
-[node name="day_one" type="Node2D" parent="simple_select/calendar_group" node_paths=PackedStringArray("icon_point", "up_option")]
+[node name="day_one" type="Node2D" parent="simple_select/calendar_group" node_paths=PackedStringArray("icon_point", "up_option", "down_option")]
 position = Vector2(-1, 113)
 script = ExtResource("3_bwgxm")
 icon_point = NodePath("ip_one")
 up_option = NodePath("../left_option")
+down_option = NodePath("../secret!!!!/test_one")
 
 [node name="ip_one" type="Node2D" parent="simple_select/calendar_group/day_one"]
 position = Vector2(-1, -18)
@@ -543,6 +548,52 @@ offset_right = 64.0
 offset_bottom = 133.0
 color = Color(0, 0, 0, 1)
 
+[node name="secret!!!!" type="ColorRect" parent="simple_select/calendar_group"]
+offset_left = -9.0
+offset_top = 130.0
+offset_right = 75.0
+offset_bottom = 161.0
+color = Color(0.180392, 0, 0.647059, 1)
+
+[node name="test_one" type="Node2D" parent="simple_select/calendar_group/secret!!!!" node_paths=PackedStringArray("icon_point", "up_option", "right_option")]
+position = Vector2(14, 17)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("ip_one")
+up_option = NodePath("../../day_one")
+right_option = NodePath("../test_two")
+
+[node name="ip_one" type="Node2D" parent="simple_select/calendar_group/secret!!!!/test_one"]
+position = Vector2(-1, -18)
+
+[node name="test_two" type="Node2D" parent="simple_select/calendar_group/secret!!!!" node_paths=PackedStringArray("icon_point", "left_option", "right_option")]
+position = Vector2(33, 17)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("ip_one")
+left_option = NodePath("../test_one")
+right_option = NodePath("../test_three")
+
+[node name="ip_one" type="Node2D" parent="simple_select/calendar_group/secret!!!!/test_two"]
+position = Vector2(-1, -18)
+
+[node name="test_three" type="Node2D" parent="simple_select/calendar_group/secret!!!!" node_paths=PackedStringArray("icon_point", "left_option", "right_option")]
+position = Vector2(51, 17)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("ip_one")
+left_option = NodePath("../test_two")
+right_option = NodePath("../test_four")
+
+[node name="ip_one" type="Node2D" parent="simple_select/calendar_group/secret!!!!/test_three"]
+position = Vector2(-1, -18)
+
+[node name="test_four" type="Node2D" parent="simple_select/calendar_group/secret!!!!" node_paths=PackedStringArray("icon_point", "left_option")]
+position = Vector2(69, 17)
+script = ExtResource("3_bwgxm")
+icon_point = NodePath("ip_one")
+left_option = NodePath("../test_three")
+
+[node name="ip_one" type="Node2D" parent="simple_select/calendar_group/secret!!!!/test_four"]
+position = Vector2(0, -18)
+
 [node name="select_icon" type="AnimatedSprite2D" parent="simple_select"]
 position = Vector2(89, 105)
 sprite_frames = SubResource("SpriteFrames_0wb2l")
@@ -574,3 +625,7 @@ frame_progress = 0.756182
 [connection signal="activated" from="simple_select/calendar_group/day_one2" to="simple_select/calendar_group/calendar_script" method="_on_day_one_2_activated"]
 [connection signal="activated" from="simple_select/calendar_group/day_one3" to="simple_select/calendar_group/calendar_script" method="_on_day_one_3_activated"]
 [connection signal="activated" from="simple_select/calendar_group/day_one4" to="simple_select/calendar_group/calendar_script" method="_on_day_one_4_activated"]
+[connection signal="activated" from="simple_select/calendar_group/secret!!!!/test_one" to="simple_select/calendar_group/calendar_script" method="_on_test_one_activated"]
+[connection signal="activated" from="simple_select/calendar_group/secret!!!!/test_two" to="simple_select/calendar_group/calendar_script" method="_on_test_two_activated"]
+[connection signal="activated" from="simple_select/calendar_group/secret!!!!/test_three" to="simple_select/calendar_group/calendar_script" method="_on_test_three_activated"]
+[connection signal="activated" from="simple_select/calendar_group/secret!!!!/test_four" to="simple_select/calendar_group/calendar_script" method="_on_test_four_activated"]

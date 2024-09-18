@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://keckrdw4wl3m"]
+
+[ext_resource type="Script" path="res://node_command/resources/print_comm/print_comm.gd" id="1_c6m1q"]
+
+[node name="print_comm" type="Node2D"]
+script = ExtResource("1_c6m1q")
