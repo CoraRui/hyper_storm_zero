@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d3kdku3xfhkjv"]
+[gd_scene load_steps=38 format=3 uid="uid://d3kdku3xfhkjv"]
 
 [ext_resource type="Script" path="res://scene_manager/autoload/scene_manager.gd" id="1_s3dc7"]
 [ext_resource type="PackedScene" uid="uid://bbwg6uxy46a58" path="res://scene_manager/scenes/main_menu/intro/intro.tscn" id="2_s1om1"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://2rxl762rd71d" path="res://scene_manager/scenes/levels/level_three/level_three.tscn" id="15_g2yi6"]
 [ext_resource type="Script" path="res://scene_manager/resource/scene_link.gd" id="15_rdsm5"]
 [ext_resource type="PackedScene" uid="uid://nrmq8o4je0qw" path="res://scene_manager/scenes/end_game/you_won.tscn" id="16_j7ukt"]
+[ext_resource type="PackedScene" uid="uid://cjai1m1bepy4v" path="res://scene_manager/scenes/test_levels/test_new_comm.tscn" id="17_q6kov"]
 
 [sub_resource type="Resource" id="Resource_xanhw"]
 script = ExtResource("3_oysdi")
@@ -94,6 +95,11 @@ script = ExtResource("3_oysdi")
 scene_name = "you_won"
 scene_ref = ExtResource("16_j7ukt")
 
+[sub_resource type="Resource" id="Resource_c8ws7"]
+script = ExtResource("3_oysdi")
+scene_name = "test_scene_one"
+scene_ref = ExtResource("17_q6kov")
+
 [sub_resource type="Resource" id="Resource_tfkmx"]
 script = ExtResource("3_oysdi")
 scene_name = "test_scene"
@@ -105,6 +111,6 @@ scene_name = "fake_load"
 
 [node name="scene_manager" type="Node2D"]
 script = ExtResource("1_s3dc7")
-scene_arr = Array[ExtResource("3_oysdi")]([SubResource("Resource_xanhw"), SubResource("Resource_t4f3d"), SubResource("Resource_uokr7"), SubResource("Resource_6s5bb"), SubResource("Resource_oc0dd"), SubResource("Resource_l47nw"), SubResource("Resource_2g3sl"), SubResource("Resource_yf25s"), SubResource("Resource_fjbvp"), SubResource("Resource_bugj0"), SubResource("Resource_3q3qd"), SubResource("Resource_h34y2"), SubResource("Resource_0e87y"), SubResource("Resource_nonlt"), SubResource("Resource_voktx")])
+scene_arr = Array[ExtResource("3_oysdi")]([SubResource("Resource_xanhw"), SubResource("Resource_t4f3d"), SubResource("Resource_uokr7"), SubResource("Resource_6s5bb"), SubResource("Resource_oc0dd"), SubResource("Resource_l47nw"), SubResource("Resource_2g3sl"), SubResource("Resource_yf25s"), SubResource("Resource_fjbvp"), SubResource("Resource_bugj0"), SubResource("Resource_3q3qd"), SubResource("Resource_h34y2"), SubResource("Resource_0e87y"), SubResource("Resource_nonlt"), SubResource("Resource_voktx"), SubResource("Resource_c8ws7")])
 fail_scene = SubResource("Resource_tfkmx")
 temp_scene = SubResource("Resource_qp4uf")

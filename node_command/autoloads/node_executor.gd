@@ -52,23 +52,28 @@ func do_next():
 	
 func take_commands(ns : PackedScene):
 	#takes a packedscene, then adds the children of the instantiated node into its own children.
-	
 	var new_node = ns.instantiate()
 	
-	var new_comms : node_command
+	var new_comms : node_comm_set
 	
-	if new_node is node_command:
+	if !(new_node is node_comm_set):
 		print("take_commands in node_executor was passed a packed scene that isnt a node command ")
 		return
 	else:
 		new_comms = new_node
+		
+	var i : int = 0
+	#get the index of the end node. just use i to store the index of the node preceding the end node 
+	while get_child(i+1).name != "end_node":
+		i += 1
+		
+	var last_comm = get_child(i)
 	
-	
-	
-	
-	
-	
-	
+	while new_comms.get_child_count() != 0:
+		var steal : Node2D = new_comms.get_child(0)
+		new_comms.remove_child(steal)
+		add_sibling(steal)
+		
 	
 func _on_delay_timer_timeout():
 	do_next()

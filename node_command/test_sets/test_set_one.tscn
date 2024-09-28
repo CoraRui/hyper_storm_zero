@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2q21i6xn2f8h"]
+
+[ext_resource type="Script" path="res://node_command/resources/command_set/command_set.gd" id="1_6k3pv"]
+[ext_resource type="PackedScene" uid="uid://bjteppu2bv0h8" path="res://node_command/resources/node_command/node_command.tscn" id="2_3tgrk"]
+[ext_resource type="PackedScene" uid="uid://keckrdw4wl3m" path="res://node_command/resources/print_comm/print_comm.tscn" id="3_akg4q"]
+
+[node name="test_set_one" type="Node2D"]
+script = ExtResource("1_6k3pv")
+
+[node name="node_command" parent="." instance=ExtResource("2_3tgrk")]
+
+[node name="print_comm" parent="node_command" instance=ExtResource("3_akg4q")]
+print_string = "your"
+
+[node name="node_command2" parent="." instance=ExtResource("2_3tgrk")]
+
+[node name="print_comm" parent="node_command2" instance=ExtResource("3_akg4q")]
+print_string = "mom"
+
+[node name="node_command3" parent="." instance=ExtResource("2_3tgrk")]
+
+[node name="print_comm" parent="node_command3" instance=ExtResource("3_akg4q")]
+print_string = "has aids loser"

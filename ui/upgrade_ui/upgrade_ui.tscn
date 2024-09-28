@@ -120,7 +120,7 @@ scene_name = "level_four"
 
 [sub_resource type="Resource" id="Resource_i7us1"]
 script = ExtResource("3_wl0ts")
-scene_name = ""
+scene_name = "test_scene_one"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0wb2l"]
 animations = [{
@@ -392,6 +392,7 @@ texture = ExtResource("16_7cefq")
 offset = Vector2(0.5, 0)
 
 [node name="calendar_group" type="Node2D" parent="simple_select" node_paths=PackedStringArray("options")]
+visible = false
 position = Vector2(35, 10)
 script = ExtResource("2_vk26y")
 options = [NodePath("left_option"), NodePath("day_one"), NodePath("day_one2"), NodePath("day_one3"), NodePath("day_one4")]

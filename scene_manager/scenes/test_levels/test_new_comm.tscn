@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjai1m1bepy4v"]
+[gd_scene load_steps=3 format=3 uid="uid://cjai1m1bepy4v"]
 
 [ext_resource type="Script" path="res://scene_manager/scenes/test_levels/test_new_comm.gd" id="1_76qir"]
+[ext_resource type="PackedScene" uid="uid://c2q21i6xn2f8h" path="res://node_command/test_sets/test_set_one.tscn" id="2_m5pym"]
 
 [node name="test_new_comm" type="Node2D"]
 script = ExtResource("1_76qir")
+test_set = ExtResource("2_m5pym")
